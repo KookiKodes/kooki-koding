@@ -1,0 +1,34 @@
+@import './mixins/layoutMixin', './variables/colors'
+
+.container
+  position: relative
+  width: 100%
+  height: 100%
+  list-style: none
+  +dFlex(flex-start, center, column)
+
+.link
+  position: relative
+  font-size: 5rem
+  width: 100%
+  padding: 40px
+  user-select: none
+  background: rgba(0,0,0,0)
+  color: $ShamrockGreen
+  +dFlex()
+  a
+    text-decoration: none
+    z-index: 2
+    cursor: pointer
+    color: inherit
+.selector
+  position: absolute
+  top: 25%
+  width: 100%
+  min-width: 400px
+  height: 50%
+  background: rgba($ShamrockGreen, .4)
+  //border: 5px solid $Cream
+  border-radius: 10px
+  box-shadow: 0 0 10px rgba($DarkJungleGreen, .4)
+  z-index: 1
