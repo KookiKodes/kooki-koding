@@ -1,5 +1,5 @@
 //* Packages
-import React, {useState} from 'react';
+import React, {SetStateAction, useState} from 'react';
 import {AnimatePresence, AnimateSharedLayout, motion} from 'framer-motion'
 
 //* Components
@@ -15,7 +15,7 @@ import navlinkVariants from '../variants/navlinkVariants';
 import navlink from '../../styles/Navlink.module.sass'
 
 export default function NavlinkContainer(props: NlinkContainer) {
-  const [hovering, setHovering] = useState(null);
+  const [hovering, setHovering] = useState('');
 
   return (
     <AnimateSharedLayout>

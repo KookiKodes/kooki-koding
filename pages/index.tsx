@@ -1,8 +1,15 @@
 import React from 'react';
-import navigation from '../styles/Navbar.module.sass';
+import Head from 'next/head'
 
 export default function Index() {
   return (
-    <h1>Home</h1>
+    <>
+      <Head>
+        <title>Devin Jackson | Front-end Developer</title>
+      </Head>
+      <header>
+        <h1>Front-end Developer | </h1>
+      </header>
+    </>
   )
 }

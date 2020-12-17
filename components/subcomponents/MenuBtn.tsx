@@ -14,7 +14,7 @@ const MenuBar = (props: BarProps) => {
       className={menu.bar}
       variants={props.variants} 
       transition={{
-        duration: .5,
+        duration: .8,
         type: 'spring'
       }}
     />

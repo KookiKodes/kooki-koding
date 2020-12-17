@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }:AppProps) {
   return (
     <>
       <Head>
-        <link href="/kooki-koding-favicon.png" rel="shortcut icon" />
+        
       </Head>
       <AnimatePresence>
         <Navbar />
