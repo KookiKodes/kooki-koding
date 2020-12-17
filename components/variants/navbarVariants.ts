@@ -11,7 +11,7 @@ const variants: Variants = {
     background: `rgba(142,164,210, 0)`,
     transition: {
       duration: 1,
-      delay: .5,
+      delay: .3,
       type: 'spring'
     }
   }

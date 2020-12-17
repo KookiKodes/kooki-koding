@@ -9,9 +9,9 @@
 
 .link
   position: relative
-  font-size: 5rem
+  font-size: 5em
   width: 100%
-  padding: 2rem
+  padding: .8em
   user-select: none
   color: $bkSec
   +dFlex()
@@ -20,14 +20,21 @@
     z-index: 1
     cursor: pointer
     color: inherit
+    margin: 0
+    padding: 0
 .selector
   position: absolute
-  top: 25%
+  display: flex
+  justify-content: center
+  align-items: center
   width: 100%
   min-width: 400px
   height: 60%
   background: rgba($bkDark, 1)
-  //border: 5px solid $Cream
+  // border: 5px solid $prim
   border-radius: 10px
-  box-shadow: 0 0 5px rgba(0, 0, 0, .3)
+  box-shadow: 0 0 10px rgba(0, 0, 0, .8)
   z-index: 1
+  p
+    position: relative
+    margin: 0 auto

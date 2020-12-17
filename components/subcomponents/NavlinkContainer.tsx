@@ -1,5 +1,5 @@
 //* Packages
-import React, {SetStateAction, useState} from 'react';
+import React, {useState} from 'react';
 import {AnimatePresence, AnimateSharedLayout, motion} from 'framer-motion'
 
 //* Components

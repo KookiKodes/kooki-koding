@@ -18,7 +18,7 @@ export default function Navlink(props: Nlink) {
     <motion.li
       className={navlink.link}
       variants={navlinkVariants.link}
-      whileHover={{scale: 1.5, color: colors.sec}}
+      whileHover={{ color: colors.prim}}
       animate={{color: props.isHovering ? colors.sec : colors.secMono}}
       onHoverStart={props.onHover}
       onTapStart={props.onHover}
@@ -29,12 +29,14 @@ export default function Navlink(props: Nlink) {
           layoutId="selector"
           layout
           className={navlink.selector}
-          initial={false}
           transition={{
             type: 'spring',
             duration: .5
           }}
-        /> 
+        >
+          <p>&lt;</p>
+          <p>/&gt;</p>
+        </motion.div> 
       }
       <Link href={props.href}>
         <a onClick={props.toggleNavbar}>{props.title}</a>
