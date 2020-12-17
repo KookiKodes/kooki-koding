@@ -7,7 +7,8 @@ import {motion} from 'framer-motion';
 import {Nlink} from '../interfaces/Navigation';
 
 //* Variants
-import navlinkVariants from '../static/navlinkVariants';
+import navlinkVariants from '../variants/navlinkVariants';
+import colors from '../static/colors'
 
 //* Style
 import navlink from '../../styles/Navlink.module.sass'
@@ -15,12 +16,13 @@ import navlink from '../../styles/Navlink.module.sass'
 export default function Navlink(props: Nlink) {
   return (
     <motion.li
-      layout
       className={navlink.link}
       variants={navlinkVariants.link}
-      whileHover={{scale: 1.5, color: `rgba(255,251,189,1)`}}
+      whileHover={{scale: 1.5, color: colors.sec}}
+      animate={{color: props.isHovering ? colors.sec : colors.secMono}}
       onHoverStart={props.onHover}
       onTapStart={props.onHover}
+      exit="closed"
     >
       {props.isHovering &&
         <motion.div

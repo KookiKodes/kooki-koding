@@ -1,6 +1,6 @@
 //* Packages
 import React, {useState} from 'react';
-import {AnimateSharedLayout, motion} from 'framer-motion'
+import {AnimatePresence, AnimateSharedLayout, motion} from 'framer-motion'
 
 //* Components
 import Navlink from './Navlink';
@@ -9,13 +9,13 @@ import Navlink from './Navlink';
 import {NlinkContainer} from '../interfaces/Navigation'
 
 //* Static
-import navlinkVariants from '../static/navlinkVariants';
+import navlinkVariants from '../variants/navlinkVariants';
 
 //* Styles
 import navlink from '../../styles/Navlink.module.sass'
 
 export default function NavlinkContainer(props: NlinkContainer) {
-  const [hovering, setHovering] = useState('Home');
+  const [hovering, setHovering] = useState(null);
 
   return (
     <AnimateSharedLayout>
@@ -23,7 +23,8 @@ export default function NavlinkContainer(props: NlinkContainer) {
         className={navlink.container} 
         variants={navlinkVariants.container}
       >
-        {props.links.map((link, index) => {
+        <AnimatePresence>
+        {props.isOpen && props.links.map((link, index) => {
           return (
             <Navlink
               href={link.href}
@@ -35,6 +36,7 @@ export default function NavlinkContainer(props: NlinkContainer) {
             />
           )
         })}
+        </AnimatePresence>
       </motion.ul>
     </AnimateSharedLayout>
   )

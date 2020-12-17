@@ -13,6 +13,7 @@ export interface Nlink {
 export interface NlinkContainer {
   links: Nlink[];
   toggleNavbar?: voidFn;
+  isOpen: boolean;
 }
 
 export interface BarProps {

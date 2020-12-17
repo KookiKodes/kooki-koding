@@ -23,7 +23,7 @@ const MenuBar = (props: BarProps) => {
 
 export default function MenuBtn({toggleNavbar, bars}:MenuBtnProps) {
   return (
-    <motion.button className={menu.btn} onClick={toggleNavbar}>
+    <motion.button className={menu.btn} onClick={toggleNavbar} whileHover={{scale: .8}}>
       {bars.map((bar, index) => {
         return <MenuBar variants={bar.variants} key={index} />
       })}

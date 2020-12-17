@@ -1,13 +1,14 @@
 import {Variants} from 'framer-motion'
+import colors from '../static/colors'
 
 const variants: Variants = {
   open: {
     width: '100vw',
-    background: 'rgba(21, 122, 110, 1)'
+    background: colors.primMono
   },
   closed: {
     width: 110,
-    background: `rgba(30,32,25, 0)`,
+    background: `rgba(142,164,210, 0)`,
     transition: {
       duration: 1,
       delay: .5,

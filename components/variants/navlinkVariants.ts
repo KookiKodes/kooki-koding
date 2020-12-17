@@ -13,15 +13,17 @@ const link: Variants = {
   open: {
     y: 0,
     opacity: 1,
+    width: `100%`,
     transition: {
-      y: {stiffness: 1000, velocity: -100}
+      y: {stiffness: 1000, velocity: -100, duration: .5}
     },
   },
   closed: {
-    y: 150,
+    y: 1550,
+    width: 0,
     opacity: 0,
     transition: {
-      y: {stiffness: 1000}
+      y: {stiffness: 1000, duration: .5}
     }
   }
 }
