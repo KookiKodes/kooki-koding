@@ -15,7 +15,7 @@ import navlinkVariants from '../variants/navlinkVariants';
 import navlink from '../../styles/Navlink.module.sass'
 
 export default function NavlinkContainer(props: NlinkContainer) {
-  const [hovering, setHovering] = useState('');
+  const [hovering, setHovering] = useState('null');
 
   return (
     <AnimateSharedLayout>
