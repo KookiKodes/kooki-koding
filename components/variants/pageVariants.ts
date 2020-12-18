@@ -2,13 +2,23 @@ import {Variants} from 'framer-motion'
 
 const variants:Variants = {
   initial: {
-    opacity: 0
+    x: '-100vw',
+    transition: {
+      duration: .5,
+      delay: .5,
+      type: 'spring'
+    }
   },
-  animate: {
-    opacity: 1
+  visible: {
+    x: 0,
+    rotateZ: 0
   },
-  exit: {
-    opacity: 0
+  hidden: {
+    x: '100vw',
+    zIndex: 3,
+    transition: {
+      duration: 1
+    }
   }
 }
 

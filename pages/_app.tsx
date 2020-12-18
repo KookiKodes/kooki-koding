@@ -1,7 +1,7 @@
 //* Packages
 import type {AppProps} from 'next/app'
 import Head from 'next/head'
-import {motion, AnimatePresence} from 'framer-motion'
+import {motion, AnimatePresence, useIsPresent} from 'framer-motion'
 import {useRouter} from 'next/router'
 
 //* Component
@@ -12,6 +12,7 @@ import variants from '../components/variants/pageVariants'
 
 //* Style
 import '../styles/global.sass'
+import general from '../styles/general.module.sass'
 
 
 function MyApp({ Component, pageProps }:AppProps) {
@@ -19,14 +20,11 @@ function MyApp({ Component, pageProps }:AppProps) {
   
   return (
     <>
-      <Head>
-        
-      </Head>
-      <AnimatePresence>
-        <Navbar />
-        <motion.div key={router.route} transition={{duration: 1}}variants={variants} initial="initial" animate="animate" exit="exit" >
-          <Component {...pageProps} />
-        </motion.div>
+      <Navbar />
+      <AnimatePresence initial={false} >
+        <motion.main initial="initial" className={general.page_container} variants={variants} animate='visible' exit="hidden" key={router.route}>
+          <Component {...pageProps}  />
+        </motion.main>
       </AnimatePresence>
     </>
   )
