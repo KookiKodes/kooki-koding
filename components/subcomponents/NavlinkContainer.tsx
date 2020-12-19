@@ -1,6 +1,7 @@
 //* Packages
 import React, {useState} from 'react';
 import {AnimatePresence, AnimateSharedLayout, motion} from 'framer-motion'
+import { useRouter } from 'next/router';
 
 //* Components
 import Navlink from './Navlink';
@@ -15,7 +16,16 @@ import navlinkVariants from '../variants/navlinkVariants';
 import navlink from '../../styles/Navlink.module.sass'
 
 export default function NavlinkContainer(props: NlinkContainer) {
+  const router = useRouter()
   const [hovering, setHovering] = useState('null');
+  const [active, setActive] = useState(router.route);
+
+  function onClick(href: string) {
+    setActive(href); 
+    setTimeout(() => {
+      props.toggleNavbar();
+    }, 200)
+  }
 
   return (
     <AnimateSharedLayout>
@@ -29,10 +39,11 @@ export default function NavlinkContainer(props: NlinkContainer) {
             <Navlink
               href={link.href}
               title={link.title}
-              toggleNavbar={props.toggleNavbar}
               key={index}
               isHovering={hovering === link.title}
               onHover={() => setHovering(link.title)}
+              onClick={() => onClick(link.href)}
+              isActive={active === link.href}
             />
           )
         })}

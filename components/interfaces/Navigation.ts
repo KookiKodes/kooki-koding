@@ -6,13 +6,14 @@ export interface Nlink {
   href: string;
   title: string;
   isHovering?: boolean;
-  toggleNavbar?: voidFn;
+  onClick?: voidFn;
   onHover?: voidFn;
+  isActive?: boolean;
 }
 
 export interface NlinkContainer {
   links: Nlink[];
-  toggleNavbar?: voidFn;
+  toggleNavbar: voidFn;
   isOpen: boolean;
 }
 

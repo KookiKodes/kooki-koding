@@ -21,7 +21,22 @@
     cursor: pointer
     color: inherit
     margin: 0
-    padding: 0
+    padding: 0 .2em .2em .2em
+    border-radius: .1em
+.active__selector
+  position: absolute
+  width: 30%
+  height: 50%
+  box-sizing: border-box
+  border: 5px solid
+  border-color: inherit
+  border-radius: .1em
+  background: rgba($sec, .2)
+  z-index: 2
+
+.active
+  cursor: default !important
+
 .selector
   position: absolute
   display: flex
@@ -35,6 +50,3 @@
   border-radius: 10px
   box-shadow: 0 0 10px rgba(0, 0, 0, .8)
   z-index: 1
-  p
-    position: relative
-    margin: 0 auto

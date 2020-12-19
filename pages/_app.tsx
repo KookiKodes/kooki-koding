@@ -17,11 +17,13 @@ import general from '../styles/general.module.sass'
 
 function MyApp({ Component, pageProps }:AppProps) {
   const router = useRouter();
+
+  console.log(router)
   
   return (
     <>
       <Navbar />
-      <AnimatePresence initial={false} >
+      <AnimatePresence initial={false}>
         <motion.main initial="initial" className={general.page_container} variants={variants} animate='visible' exit="hidden" key={router.route}>
           <Component {...pageProps}  />
         </motion.main>
