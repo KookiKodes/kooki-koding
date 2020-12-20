@@ -12,7 +12,7 @@ const bars:BarProps[] = [
     closed: {opacity: 1, rotateY: 0, rotateZ: 0, scale: 1}
   }},
   {variants: {
-    open: {rotateZ: -225, y: '-1.6em'},
+    open: {rotateZ: -225, y: '-1.5em'},
     closed: {rotateZ: 0, y: '0rem'}
   }}
 ]

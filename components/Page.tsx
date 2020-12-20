@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import {motion, useCycle, useIsPresent} from 'framer-motion'
+import React from 'react'
+import {motion, useIsPresent} from 'framer-motion'
 
 //* Variants
 import variants from '../components/variants/pageVariants'
@@ -16,13 +16,13 @@ export default function Page({children}:Props) {
 
   return (
     <>
-    {present &&
-      (
-        <motion.main initial="initial" className={general.page_container} variants={variants} animate={present ? 'visible' : 'hidden'} exit="hidden" transition={{duration: 1, delay: .5}}>
-        {children} 
+      {present &&
+        (
+        <motion.main initial="initial" className={general.page_container} variants={variants} animate='visible' exit="hidden">
+          {children}
         </motion.main>
-      )
-    }
+        )
+      }
     </>
   )
 }

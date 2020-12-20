@@ -1,33 +1,28 @@
 //* Packages
 import type {AppProps} from 'next/app'
-import Head from 'next/head'
-import {motion, AnimatePresence, useIsPresent} from 'framer-motion'
+import {AnimatePresence} from 'framer-motion'
 import {useRouter} from 'next/router'
 
 //* Component
 import Navbar from '../components/Navbar'
-
-//* Variants
-import variants from '../components/variants/pageVariants'
+import Page from '../components/Page'
+import Footer from '../components/Footer'
 
 //* Style
 import '../styles/global.sass'
-import general from '../styles/general.module.sass'
 
-
-function MyApp({ Component, pageProps }:AppProps) {
+function MyApp({ Component: Route, pageProps }:AppProps) {
   const router = useRouter();
 
-  console.log(router)
-  
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <AnimatePresence initial={false}>
-        <motion.main initial="initial" className={general.page_container} variants={variants} animate='visible' exit="hidden" key={router.route}>
-          <Component {...pageProps}  />
-        </motion.main>
+        <Page key={router.route}>
+          <Route {...pageProps}  />
+        </Page>
       </AnimatePresence>
+      <Footer />
     </>
   )
 }

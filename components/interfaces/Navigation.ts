@@ -24,4 +24,5 @@ export interface BarProps {
 export interface MenuBtnProps {
   toggleNavbar: voidFn;
   bars: BarProps[];
+  isDisabled: boolean
 }

@@ -21,9 +21,15 @@ const MenuBar = (props: BarProps) => {
   )
 }
 
-export default function MenuBtn({toggleNavbar, bars}:MenuBtnProps) {
+export default function MenuBtn({toggleNavbar, bars, isDisabled}:MenuBtnProps) {
+
   return (
-    <motion.button className={menu.btn} onClick={toggleNavbar} whileHover={{scale: .8}}>
+    <motion.button
+      className={menu.btn} 
+      onClick={toggleNavbar} 
+      whileHover={{scale: .8}}
+      disabled={isDisabled}  
+    >
       {bars.map((bar, index) => {
         return <MenuBar variants={bar.variants} key={index} />
       })}

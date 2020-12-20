@@ -3,7 +3,8 @@ import colors from '../static/colors'
 
 const variants: Variants = {
   open: {
-    width: '100vw',
+    width: '100%',
+    height: '100%',
     background: colors.primMono
   },
   closed: {

@@ -8,12 +8,15 @@ import Head from 'next/head'
 export default function Index() {
   return (
     <>
+      <Head>
+        <title>Devin Jackson | Front-end Developer</title>
+      </Head>
       <header>
         <h1>&lt; Front-end Developer /&gt;</h1>
-        <h3>Designing, developing and delivering one beautiful app at a time</h3>
+        <h3>Designing, developing and delivering beautiful React apps</h3>
       </header>
       <section>
-      {/* This is where all of the rest of the content will go */}
+        
       </section>
     </>
   )

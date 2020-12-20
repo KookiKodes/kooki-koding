@@ -1,10 +1,16 @@
+//* Packages
 import React from 'react'
-
-//* Components
-import Page from '../components/Page'
+import Head from 'next/head'
 
 export default function Project() {
   return (
-    <h1>My Projects</h1>
+    <>
+      <Head>
+        <title>Devin Jackson | Portfolio</title>
+      </Head>
+      <header>
+        <h1>Projects</h1>
+      </header>
+    </>
   )
 }
