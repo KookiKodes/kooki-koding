@@ -1,6 +1,5 @@
 @import './variables/colors', './mixins/layoutMixin.sass'
 
-
 .page_container
   display: flex
   position: relative
@@ -11,3 +10,17 @@
   padding: 0
   width: 100%
   height: 100%
+
+.btn
+  width: auto
+  height: auto
+  padding: 1em
+  font-size: 1.2em
+  font-weight: 600
+  border: none
+  flex-wrap: wrap
+  background: none
+  cursor: pointer
+  +dFlex()
+  &:focus, &:hover
+    outline: none

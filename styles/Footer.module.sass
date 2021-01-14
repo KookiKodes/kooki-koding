@@ -6,24 +6,17 @@
   width: 100%
   bottom: 0
   align-self: flex-end
+  z-index: 2
   +dFlex(center, center, column)
 
 .svg_container
   width: 100%
+  padding-top: .5em
   +dFlex()
-
 .svg_link
-  color: $bkSec
-  border: .15em solid $bkSec
   padding: .3em
   border-radius: 50%
   width: 2.2em
   height: 2.2em
   margin: 0 1em
-  stroke-width: .1em
-  transition: .5s
-  &:hover
-    transition: .5s
-    background: $prim
-    color: $bkComp
-    border-color: $prim
+  stroke-width: .07em

@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import {AnimatePresence, AnimateSharedLayout, motion} from 'framer-motion'
 import { useRouter } from 'next/router';
+import { useThemedContext } from 'kooki-components';
 
 //* Components
 import Navlink from './Navlink';
@@ -17,6 +18,7 @@ import navlink from '../../styles/Navlink.module.sass'
 
 export default function NavlinkContainer(props: NlinkContainer) {
   const router = useRouter()
+  const {colors} = useThemedContext()
   const [hovering, setHovering] = useState('null');
   const [active, setActive] = useState(router.route);
 
@@ -27,11 +29,15 @@ export default function NavlinkContainer(props: NlinkContainer) {
     }, 200)
   }
 
+  React.useEffect(() => {
+    setActive(router.route)
+  }, [router.route])
+
   return (
     <AnimateSharedLayout>
       <motion.ul
         className={navlink.container} 
-        variants={navlinkVariants.container}
+        variants={navlinkVariants.container(colors)}
       >
         <AnimatePresence>
         {props.isOpen && props.links.map((link, index) => {

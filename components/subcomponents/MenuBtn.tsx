@@ -1,6 +1,10 @@
 //* Packages
 import React from 'react';
-import {motion} from 'framer-motion';
+import {motion, useAnimation} from 'framer-motion';
+import { useThemedContext } from 'kooki-components';
+
+//* Static
+import variants from '../variants/menubtnVariants'
 
 //* Interfaces
 import {BarProps, MenuBtnProps} from '../interfaces/Navigation'
@@ -8,11 +12,14 @@ import {BarProps, MenuBtnProps} from '../interfaces/Navigation'
 //* Styles
 import menu from '../../styles/MenuBtn.module.sass';
 
-const MenuBar = (props: BarProps) => {
+const MenuBar = (props:BarProps) => {
+  const {colors} = useThemedContext();
+
+
   return (
     <motion.div
       className={menu.bar}
-      variants={props.variants} 
+      variants={props.variants(colors)} 
       transition={{
         duration: .8,
         type: 'spring'
@@ -21,16 +28,19 @@ const MenuBar = (props: BarProps) => {
   )
 }
 
-export default function MenuBtn({toggleNavbar, bars, isDisabled}:MenuBtnProps) {
+export default function MenuBtn({toggleNavbar, isDisabled}:MenuBtnProps) {
+  const {colors} = useThemedContext();
 
   return (
     <motion.button
+      layout="position"
       className={menu.btn} 
-      onClick={toggleNavbar} 
+      onClick={toggleNavbar}
       whileHover={{scale: .8}}
       disabled={isDisabled}  
+      variants={variants.button(colors)}
     >
-      {bars.map((bar, index) => {
+      {variants.bars.map((bar, index) => {
         return <MenuBar variants={bar.variants} key={index} />
       })}
     </motion.button>
