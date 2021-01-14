@@ -8,13 +8,12 @@ import typewriterVariants from '@components/variants/typewriterVariants'
 //* Styles
 import typewriter from '../../styles/Typewriter.module.sass';
 
+//* Interfaces
+import {LetterProps} from '../interfaces/Typewriter'
 
-interface TypewriterLetterProps {
-    letter: string;
-    colors: object;
-}
 
-export default function TypewriterLetter(props: TypewriterLetterProps) {
+
+export default function TypewriterLetter(props: LetterProps) {
 
     return (
             <motion.p

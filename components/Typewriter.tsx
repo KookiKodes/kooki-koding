@@ -9,11 +9,9 @@ import TypewriterWord from '@components/subcomponents/TypewritterWord';
 //* Styles
 import typewriter from '../styles/Typewriter.module.sass'
 
+//* Interfaces
+import {TypewriterProps} from './interfaces/Typewriter';
 
-interface TypewriterProps {
-    words: string[]
-    start?: number;
-}
 
 export default function Typewriter(props:TypewriterProps){
     const {colors} = useThemedContext();

@@ -1,6 +1,6 @@
 //* Packages
 import React from 'react';
-import {motion, useCycle, useIsPresent} from 'framer-motion';
+import {motion, useIsPresent} from 'framer-motion';
 
 //* Variants
 import typewriterVariants from '@components/variants/typewriterVariants'
@@ -12,16 +12,11 @@ import InsertionCursor from './InsertionCursor';
 //* Styles
 import typewriter from '../../styles/Typewriter.module.sass';
 
+//* Interfaces
+import {WordProps} from '../interfaces/Typewriter'
 
-interface TypewriterWordProps {
-    word: string;
-    wordIndex: number;
-    colors: object;
-    start?: number;
-    animComplete(): void;
-}
 
-export default function TypewriterWord(props: TypewriterWordProps) {
+export default function TypewriterWord(props: WordProps) {
     const [isTyping, setIsTyping] = React.useState(true);
     const animWord = props.word.substring(props.start || 0).split('');
     const isPresent = useIsPresent();

@@ -9,14 +9,10 @@ import typewriterVariants from '@components/variants/typewriterVariants'
 import typewriter from '../../styles/Typewriter.module.sass'
 import { useThemedContext } from 'kooki-components';
 
+//* Interfaces
+import {CursorProps} from '../interfaces/Typewriter'
 
-//TODO -> Need to determine if the person is "Typing"
-
-interface InsertionCursorProps {
-   isTyping: boolean; 
-}
-
-export default function InsertionCursor(props: InsertionCursorProps) {
+export default function InsertionCursor(props: CursorProps) {
     const container = useAnimation();
     const {colors, themeName} = useThemedContext();
     
