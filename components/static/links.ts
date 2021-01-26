@@ -1,18 +1,18 @@
-import {Nlink} from '../interfaces/Navigation';
+import { Nlink } from "../interfaces/Navigation";
 
-const links:Nlink[] = [
+const links: Nlink[] = [
   {
-    href: '/',
-    title: 'Home'
+    href: "/",
+    title: "Home",
   },
   {
-    href: '/projects',
-    title: 'Projects'
+    href: "/projects",
+    title: "Projects",
   },
   {
-    href: '/contact',
-    title: 'Contact'
-  }
-]
+    href: "/contact",
+    title: "Contact",
+  },
+];
 
-export default links
+export default links;

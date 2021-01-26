@@ -1,11 +1,11 @@
-import {IconInfo} from '../interfaces/Footer'
+import { IconInfo } from "../interfaces/Footer";
 
-const icons:IconInfo[] = [
+const icons: IconInfo[] = [
   {
-    href: 'https://www.linkedin.com/in/devin-jackson-b06208152/',
-    filename: 'linkedin-logo',
-    name: 'LinkedIn'
+    href: "https://www.linkedin.com/in/devin-jackson-b06208152/",
+    filename: "linkedin-logo",
+    name: "LinkedIn",
   },
-]
+];
 
-export default icons
+export default icons;

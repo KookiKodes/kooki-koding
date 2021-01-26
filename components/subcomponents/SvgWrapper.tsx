@@ -1,24 +1,26 @@
 //* Packages
-import React from 'react';
-import {motion} from 'framer-motion'
-import dynamic from 'next/dynamic'
-import { useThemedContext } from 'kooki-components';
+import React from "react";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { useThemedContext } from "kooki-components";
 
 //* Styles
-import footer from '../../styles/Footer.module.sass'
+import footer from "../../styles/Footer.module.sass";
 
 //* Variants
-import iconVariants from '@components/variants/iconVariants';
+import iconVariants from "@components/variants/iconVariants";
 
 type Props = {
   href: string;
   filename: string;
   name: string;
-}
+};
 
-export default function SvgWrapper(props:Props) {
-  const SvgComponent = dynamic(() => import(`../icons/${props.filename}.svg`).then((mod) => mod.ReactComponent))
-  const {colors} = useThemedContext();
+export default function SvgWrapper(props: Props) {
+  const SvgComponent = dynamic(() =>
+    import(`../icons/${props.filename}.svg`).then((mod) => mod.ReactComponent)
+  );
+  const { colors } = useThemedContext();
 
   return (
     <motion.a
@@ -31,12 +33,12 @@ export default function SvgWrapper(props:Props) {
         border: `.15em solid ${colors.bkPrim.color}`,
         background: colors.bkPrim.color,
         transition: {
-          duration: .2,
-          ease: 'easeIn',
-        }
+          duration: 0.2,
+          ease: "easeIn",
+        },
       }}
     >
       <SvgComponent />
     </motion.a>
-  )
+  );
 }

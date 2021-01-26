@@ -1,58 +1,57 @@
 //* Packages
-import React from 'react';
-import {motion, useAnimation, useCycle} from 'framer-motion';
-import {useThemedContext} from 'kooki-components'
+import React from "react";
+import { motion, useAnimation, useCycle } from "framer-motion";
 
 //* Variants
-import links from './static/links';
-import navbarVariants from './variants/navbarVariants';
+import links from "./static/links";
+import navbarVariants from "./variants/navbarVariants";
 
 //* Components
-import MenuBtn from './subcomponents/MenuBtn';
-import NavlinkContainer from './subcomponents/NavlinkContainer'
+import MenuBtn from "./subcomponents/MenuBtn";
+import NavlinkContainer from "./subcomponents/NavlinkContainer";
+
+//* Context
+import { useThemedContext } from "kooki-components";
 
 //* Style
-import navigation from '../styles/Navbar.module.sass';
-
+import navigation from "../styles/Navigation.module.sass";
 
 export default function Navbar() {
+  const { themeName, colors } = useThemedContext();
   const container = useAnimation();
-  const [navView, setNavView] = useCycle(false, true);
+  const [navbarView, toggleNavbarView] = useCycle(false, true);
   const [disable, toggleDisable] = React.useState(false);
-  const {colors, themeName} = useThemedContext();
 
   React.useEffect(() => {
-    if (navView) container.start('open');
-    else container.start('closed');
-  }, [navView])
+    if (navbarView) container.start("open");
+    else container.start("closed");
+  }, [navbarView]);
 
   React.useEffect(() => {
-    container.start('theme')
-  }, [themeName])
+    container.start("theme");
+  }, [themeName]);
 
   return (
     <motion.div
-      className={navigation.navbar} 
+      layout
+      className={navigation.navbar}
       animate={container}
       variants={navbarVariants(colors)}
-      initial='theme'
+      initial="closed"
       transition={{
         duration: 1,
         damping: 16,
-        type: 'spring'
+        type: "spring",
       }}
       onAnimationStart={() => toggleDisable(true)}
       onAnimationComplete={() => toggleDisable(false)}
     >
-      <MenuBtn 
-        toggleNavbar={() => setNavView()} 
-        isDisabled={disable}
-      />
-      <NavlinkContainer 
-        links={links} 
-        toggleNavbar={() => setNavView()}
-        isOpen={navView}
+      <MenuBtn toggleNavbar={() => toggleNavbarView()} isDisabled={disable} />
+      <NavlinkContainer
+        links={links}
+        toggleNavbar={() => toggleNavbarView()}
+        isOpen={navbarView}
       />
     </motion.div>
-  )
+  );
 }

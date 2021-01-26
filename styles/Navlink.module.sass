@@ -5,8 +5,10 @@
   width: 100%
   height: 100%
   list-style: none
-  +dFlex(flex-start, center, column)
   font-weight: lighter
+  margin: 2em 0 0 0
+  padding: 0
+  +dFlex(flex-start, center, column)
 
 .link
   position: relative
@@ -26,10 +28,11 @@
 .active__selector
   position: absolute
   width: 5em
-  height: 50%
+  height: 1.2em
   box-sizing: border-box
   border: .05em solid
   border-color: inherit
+  top: .85em
   border-radius: .1em
   z-index: 2
 
@@ -38,12 +41,10 @@
 
 .selector
   position: absolute
-  display: flex
-  justify-content: center
-  align-items: center
   width: 100%
   min-width: 400px
-  height: 60%
+  height: 1.3em
+  top: .8em
   // border: 5px solid $prim
   border-radius: 10px
   z-index: 1

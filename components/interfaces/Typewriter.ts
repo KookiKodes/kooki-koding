@@ -1,21 +1,21 @@
 export interface LetterProps {
-    letter: string;
-    colors: object;
+  letter: string;
+  colors: object;
 }
 
 export interface CursorProps {
-    isTyping: boolean;
+  isTyping: boolean;
 }
 
 export interface WordProps {
-    word: string;
-    wordIndex: number;
-    colors: object;
-    start?: number;
-    animComplete(): void;
+  word: string;
+  wordIndex: number;
+  colors: object;
+  start?: number;
+  animComplete(): void;
 }
 
 export interface TypewriterProps {
-    words: string[]
-    start?: number;
+  words: string[];
+  start?: number;
 }

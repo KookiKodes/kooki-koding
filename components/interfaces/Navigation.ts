@@ -1,4 +1,4 @@
-import {Variants} from 'framer-motion';
+import { Variants } from "framer-motion";
 
 type voidFn = () => void;
 
@@ -18,10 +18,10 @@ export interface NlinkContainer {
 }
 
 export interface BarProps {
-  variants(colors): Variants
+  variants(colors: object): Variants;
 }
 
 export interface MenuBtnProps {
   toggleNavbar: voidFn;
-  isDisabled: boolean
+  isDisabled: boolean;
 }
