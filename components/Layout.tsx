@@ -13,8 +13,8 @@ import layoutVariants from "./variants/layoutVariants";
 
 interface LayoutProps {
   children: JSX.Element | JSX.Element[];
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
 }
 
 function Layout({ children, width, height }: LayoutProps) {
