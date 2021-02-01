@@ -9,15 +9,12 @@ import variants from "../variants/menubtnVariants";
 //* Interfaces
 import { BarProps, MenuBtnProps } from "../interfaces/Navigation";
 
-//* Styles
-import menu from "../../styles/MenuBtn.module.sass";
-
 const MenuBar = (props: BarProps) => {
   const { colors } = useThemedContext();
 
   return (
     <motion.div
-      className={menu.bar}
+      className="h-2 my-1 rounded w-14"
       variants={props.variants(colors)}
       transition={{
         duration: 0.8,
@@ -33,7 +30,7 @@ export default function MenuBtn({ toggleNavbar, isDisabled }: MenuBtnProps) {
   return (
     <motion.button
       layout="position"
-      className={menu.btn}
+      className="absolute z-20 flex flex-col items-center justify-center flex-initial w-20 h-20 mt-2 ml-2 scale-100 shadow-lg rounded-3xl focus:outline-none"
       onClick={toggleNavbar}
       whileHover={{ scale: 0.8 }}
       disabled={isDisabled}

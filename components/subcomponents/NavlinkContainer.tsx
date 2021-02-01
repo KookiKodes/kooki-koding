@@ -13,9 +13,6 @@ import { NlinkContainer } from "../interfaces/Navigation";
 //* Static
 import navlinkVariants from "../variants/navlinkVariants";
 
-//* Styles
-import navlink from "../../styles/Navlink.module.sass";
-
 export default function NavlinkContainer(props: NlinkContainer) {
   const router = useRouter();
   const { colors } = useThemedContext();
@@ -36,7 +33,7 @@ export default function NavlinkContainer(props: NlinkContainer) {
   return (
     <AnimateSharedLayout>
       <motion.ul
-        className={navlink.container}
+        className="flex flex-col justify-start relative w-full h-full list-none mt-20 p-0"
         variants={navlinkVariants.container(colors)}
       >
         <AnimatePresence>

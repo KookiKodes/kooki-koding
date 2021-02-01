@@ -12,7 +12,8 @@ import Layout from '@components/Layout'
 import themes from '@components/static/themes';
 
 //* Style
-import '../styles/global.sass'
+import "tailwindcss/tailwind.css"
+import "../styles/globals.sass"
 
 function MyApp({ Component: Route, pageProps }:AppProps) {
   const router = useRouter();

@@ -1,13 +1,10 @@
 //* Packages
 import React from "react";
 import { motion, useAnimation } from "framer-motion";
+import { useThemedContext } from "kooki-components";
 
 //* Variants
 import typewriterVariants from "@components/variants/typewriterVariants";
-
-//* Styles
-import typewriter from "../../styles/Typewriter.module.sass";
-import { useThemedContext } from "kooki-components";
 
 //* Interfaces
 import { CursorProps } from "../interfaces/Typewriter";
@@ -27,7 +24,7 @@ export default function InsertionCursor(props: CursorProps) {
 
   return (
     <motion.div
-      className={typewriter.insertion_cursor}
+      className="inline-block w-0.5 h-7 rounded-full"
       variants={typewriterVariants.cursor(colors)}
       animate={container}
     />

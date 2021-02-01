@@ -31,7 +31,7 @@ export default function Page({ children }: Props) {
       {present && (
         <motion.div
           initial="initial"
-          className={general.page_container}
+          className="relative flex flex-col p-0 w-full h-full text-center items-center"
           variants={variants(colors)}
           animate={container}
           exit="hidden"

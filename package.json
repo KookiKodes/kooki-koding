@@ -8,17 +8,22 @@
     "start": "next start"
   },
   "dependencies": {
-    "@newhighsco/next-plugin-svgr": "^3.0.11",
+    "@newhighsco/next-plugin-svgr": "^3.0.14",
+    "autoprefixer": "^10.2.4",
     "framer-motion": "^2.9.5",
     "kooki-components": "^1.0.4",
-    "next": "^10.0.0",
+    "next": "^10.0.6",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "sass": "^1.30.0"
+    "react-resize-detector": "^6.3.1",
+    "sass": "^1.32.5",
+    "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
-    "@types/node": "^14.14.13",
+    "@types/node": "^14.14.22",
     "@types/react": "^17.0.0",
+    "postcss": "^8.2.4",
+    "postcss-nested": "^5.0.3",
     "typescript": "^4.1.3"
   }
 }

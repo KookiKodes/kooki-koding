@@ -6,9 +6,6 @@ import { useThemedContext } from "kooki-components";
 //* Components
 import IconContainer from "./subcomponents/IconContainer";
 
-//* Styles
-import footer from "../styles/Footer.module.sass";
-
 //* Static
 import icons from "./static/icons";
 import footerVariants from "./variants/footerVariants";
@@ -22,13 +19,13 @@ export default function Footer() {
   }, [themeName]);
 
   return (
-    <motion.div
+    <motion.footer
       animate={container}
-      className={footer.container}
+      className="relative bottom-0 z-10 flex flex-col items-center self-end justify-center w-full p-6 text-lg"
       variants={footerVariants.footer(colors)}
-    >
+    > 
       <IconContainer icons={icons} />
       <h5>&copy; Devin Jackson 2020</h5>
-    </motion.div>
+    </motion.footer>
   );
 }

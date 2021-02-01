@@ -4,13 +4,10 @@ import { motion } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Component
-import SvgWrapper from "./SvgWrapper";
+import SvgLinkWrapper from "./SvgLinkWrapper";
 
 //* Variants
 import iconVariants from "@components/variants/iconVariants";
-
-//* Styles
-import footer from "../../styles/Footer.module.sass";
 
 //* Interfaces
 import { IconInfo } from "../interfaces/Footer";
@@ -25,11 +22,11 @@ export default function SvgContainer(props: Props) {
   return (
     <motion.div
       variants={iconVariants.container(colors)}
-      className={footer.svg_container}
+      className="flex items-center justify-center my-2 w-full"
     >
       {props.icons.map((icon, index) => {
         return (
-          <SvgWrapper
+          <SvgLinkWrapper
             href={icon.href}
             filename={icon.filename}
             key={index}

@@ -18,7 +18,7 @@ export default function Navlink(props: Nlink) {
 
   return (
     <motion.li
-      className={`${navlink.link}`}
+      className="relative flex flex-col items-center justify-center w-full h-32 my-6"
       variants={navlinkVariants.link(colors)}
       animate={{
         color: props.isHovering ? colors.bkDark.color : colors.sec.color,
@@ -33,7 +33,7 @@ export default function Navlink(props: Nlink) {
           layoutId="selector"
           layout
           variants={navlinkVariants.hoverSelector(colors)}
-          className={navlink.selector}
+          className="absolute z-10 w-full h-full shadow-lg top-2"
           transition={{
             type: "spring",
             duration: 0.5,
@@ -45,7 +45,7 @@ export default function Navlink(props: Nlink) {
           layoutId="active"
           layout
           variants={navlinkVariants.activeSelector(colors)}
-          className={navlink.active__selector}
+          className="box-border absolute z-30 border-2 border-current rounded-md shadow-md w-96 h-28 top-4"
           transition={{
             type: "spring",
             duration: 0.3,
@@ -55,9 +55,9 @@ export default function Navlink(props: Nlink) {
       <Link href={props.href}>
         <a
           onClick={props.isActive ? () => {} : props.onClick}
-          className={props.isActive ? navlink.active : ""}
+      className={`z-20 focus:outline-none lg:text-8xl md:text-6xl sm:text-4xl text-4xl ${props.isActive ? 'cursor-default' : ''}`}
         >
-          {props.title}
+          {props.title} 
         </a>
       </Link>
     </motion.li>

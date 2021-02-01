@@ -6,6 +6,11 @@ const icons: IconInfo[] = [
     filename: "linkedin-logo",
     name: "LinkedIn",
   },
+  {
+    href: "https://www.twitter.com",
+    filename: "twitter-logo",
+    name: "Twitter"
+  },
 ];
 
 export default icons;

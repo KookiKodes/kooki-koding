@@ -9,9 +9,6 @@ import typewriterVariants from "@components/variants/typewriterVariants";
 import TypewriterLetter from "./TypewritterLetter";
 import InsertionCursor from "./InsertionCursor";
 
-//* Styles
-import typewriter from "../../styles/Typewriter.module.sass";
-
 //* Interfaces
 import { WordProps } from "../interfaces/Typewriter";
 
@@ -31,7 +28,7 @@ export default function TypewriterWord(props: WordProps) {
 
   return (
     <motion.div
-      className={typewriter.word}
+    className="w-full h-full text-center whitespace-pre-wrap"
       variants={typewriterVariants.container(props.colors)}
       animate={["write", "theme"]}
       exit="erase"
@@ -39,9 +36,9 @@ export default function TypewriterWord(props: WordProps) {
       onAnimationComplete={end}
     >
       {props.start && (
-        <motion.span className={typewriter.letter}>
+        <motion.p className="inline text-4xl font-medium">
           {props.word.substring(0, props.start)}
-        </motion.span>
+        </motion.p>
       )}
       {animWord.map((letter, index) => {
         let key = index + props.wordIndex * 1000;

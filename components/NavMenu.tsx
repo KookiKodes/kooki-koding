@@ -1,10 +1,10 @@
 //* Packages
 import React from "react";
-import { motion, useAnimation, useCycle } from "framer-motion";
+import { motion, useAnimation, useCycle, AnimatePresence, useIsPresent } from "framer-motion";
 
 //* Variants
 import links from "./static/links";
-import navbarVariants from "./variants/navbarVariants";
+import navbarVariants from "./variants/navmenuVariants";
 
 //* Components
 import MenuBtn from "./subcomponents/MenuBtn";
@@ -13,11 +13,9 @@ import NavlinkContainer from "./subcomponents/NavlinkContainer";
 //* Context
 import { useThemedContext } from "kooki-components";
 
-//* Style
-import navigation from "../styles/Navigation.module.sass";
-
-export default function Navbar() {
+export default function NavMenu() {
   const { themeName, colors } = useThemedContext();
+  const isPresent = useIsPresent();
   const container = useAnimation();
   const [navbarView, toggleNavbarView] = useCycle(false, true);
   const [disable, toggleDisable] = React.useState(false);
@@ -32,9 +30,8 @@ export default function Navbar() {
   }, [themeName]);
 
   return (
-    <motion.div
-      layout
-      className={navigation.navbar}
+    <motion.nav
+      className="fixed z-10 flex flex-col self-start w-4 h-screen"
       animate={container}
       variants={navbarVariants(colors)}
       initial="closed"
@@ -45,6 +42,7 @@ export default function Navbar() {
       }}
       onAnimationStart={() => toggleDisable(true)}
       onAnimationComplete={() => toggleDisable(false)}
+      exit="exit"
     >
       <MenuBtn toggleNavbar={() => toggleNavbarView()} isDisabled={disable} />
       <NavlinkContainer
@@ -52,6 +50,6 @@ export default function Navbar() {
         toggleNavbar={() => toggleNavbarView()}
         isOpen={navbarView}
       />
-    </motion.div>
+    </motion.nav>
   );
 }

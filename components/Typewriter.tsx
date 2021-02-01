@@ -6,9 +6,6 @@ import { motion, useCycle, AnimatePresence, useAnimation } from "framer-motion";
 //* Components
 import TypewriterWord from "@components/subcomponents/TypewritterWord";
 
-//* Styles
-import typewriter from "../styles/Typewriter.module.sass";
-
 //* Interfaces
 import { TypewriterProps } from "./interfaces/Typewriter";
 
@@ -17,7 +14,7 @@ export default function Typewriter(props: TypewriterProps) {
   const [wordCycle, nextWordCycle] = useCycle(...props.words);
 
   return (
-    <motion.div className={typewriter.container}>
+    <motion.div className="flex items-center justify-center h-40 w-96">
       <AnimatePresence exitBeforeEnter>
         {props.words.map((word, index) => {
           return (

@@ -1,34 +1,39 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useThemedContext } from "kooki-components";
+import { withResizeDetector } from "react-resize-detector";
 
 //* Components
 import Footer from "./Footer";
-import Navigation from "./Navigation";
+import NavMenu from "./NavMenu";
 
 //* Variants
 import layoutVariants from "./variants/layoutVariants";
 
-//* Styles
-import styles from "../styles/Layout.module.sass";
 
 interface LayoutProps {
   children: JSX.Element | JSX.Element[];
+  width: number;
+  height: number;
 }
 
-export default function Layout({ children }: LayoutProps) {
+function Layout({ children, width, height }: LayoutProps) {
   const { colors } = useThemedContext();
 
   return (
     <motion.main
-      className={styles.layout}
+      layout
+      className="flex flex-col w-screen h-screen overflow-x-hidden"
       initial="theme"
       animate="theme"
       variants={layoutVariants(colors)}
     >
-      <Navigation />
+      <NavMenu />
       {children}
       <Footer />
     </motion.main>
   );
 }
+
+
+export default Layout;
