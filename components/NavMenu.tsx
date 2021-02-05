@@ -19,7 +19,7 @@ import NavlinkContainer from "./subcomponents/NavlinkContainer";
 //* Context
 import { useThemedContext } from "kooki-components";
 
-export default function NavMenu(props: Props) {
+export default function NavMenu() {
   const { themeName, colors } = useThemedContext();
   const isPresent = useIsPresent();
   const container = useAnimation();
