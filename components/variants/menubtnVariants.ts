@@ -68,7 +68,7 @@ const bars = [
     },
   },
   {
-    variants(colors) {
+    variants(colors): Variants {
       return {
         open: {
           rotateZ: -225,
