@@ -2,10 +2,8 @@
 import React from "react";
 import Head from "next/head";
 import {
-  AnimatePresence,
   motion,
   useAnimation,
-  useIsPresent,
 } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 

@@ -13,7 +13,7 @@ import themes from "@components/static/themes";
 
 //* Style
 import "tailwindcss/tailwind.css";
-import "../styles/globals.sass";
+import "../styles/default.sass"
 
 function MyApp({ Component: Route, pageProps }: AppProps) {
 	const router = useRouter();
