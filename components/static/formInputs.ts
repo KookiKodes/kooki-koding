@@ -4,7 +4,6 @@ const Inputs: FInput[] = [
   {
     name: "name",
     label: "Name",
-    colSpan: "1",
     inputHeight: "14",
     inputInfo: "input",
     type: "text",
@@ -12,7 +11,6 @@ const Inputs: FInput[] = [
   {
     name: "email",
     label: "Email",
-    colSpan: "1",
     inputHeight: "14",
     inputInfo: "input",
     type: "email",
@@ -20,7 +18,6 @@ const Inputs: FInput[] = [
   {
     name: "message",
     label: "Message",
-    colSpan: "full",
     inputHeight: "40",
     inputInfo: "textarea",
     type: "",
