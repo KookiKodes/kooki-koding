@@ -1,6 +1,6 @@
 //* Packages
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useThemedContext } from "kooki-components";
 
@@ -17,23 +17,24 @@ export default function SvgLinkWrapper(props: Props) {
   const SvgComponent = dynamic(() =>
     import(`../icons/${props.filename}.svg`).then((mod) => mod.ReactComponent)
   );
-  const { colors } = useThemedContext();
+  const { colors, themeName } = useThemedContext();
+  const container = useAnimation();
+
+  React.useEffect(() => {
+    container.start("theme");
+  }, [themeName]);
 
   return (
     <motion.a
+      initial="initial"
+      animate={container}
       href={props.href}
       className="flex items-center justify-center w-12 h-12 p-2.5 rounded-full mx-2 focus:outline-none"
       target="_blank"
       variants={iconVariants.wrapper(colors)}
-      whileHover={{
-        color: colors.bkDark.color,
-        border: `.15em solid ${colors.bkPrim.color}`,
-        background: colors.bkPrim.color,
-        transition: {
-          duration: 0.2,
-          ease: "easeIn",
-        },
-      }}
+      whileHover="hover"
+      onFocus={() => container.start("hover")}
+      onBlur={() => container.start("initial")}
     >
       <SvgComponent />
     </motion.a>

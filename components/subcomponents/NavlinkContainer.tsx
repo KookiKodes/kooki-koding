@@ -33,7 +33,7 @@ export default function NavlinkContainer(props: NlinkContainer) {
   return (
     <AnimateSharedLayout>
       <motion.ul
-        className="flex flex-col justify-start relative w-full h-full list-none mt-20 p-0"
+        className="relative flex flex-col justify-start w-full h-full p-0 mt-20 list-none"
         variants={navlinkVariants.container(colors)}
       >
         <AnimatePresence>
@@ -41,7 +41,7 @@ export default function NavlinkContainer(props: NlinkContainer) {
             props.links.map((link, index) => {
               return (
                 <Navlink
-                  href={link.href}
+                  href={active === link.href ? " " : link.href}
                   title={link.title}
                   key={index}
                   isHovering={hovering === link.title}

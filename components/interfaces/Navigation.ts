@@ -18,10 +18,11 @@ export interface NlinkContainer {
 }
 
 export interface BarProps {
-  variants(colors: object): Variants;
+  variants: (colors: object) => Variants;
 }
 
 export interface MenuBtnProps {
   toggleNavbar: voidFn;
   isDisabled: boolean;
+  isOpen: boolean;
 }

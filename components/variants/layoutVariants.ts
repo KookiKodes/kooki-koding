@@ -4,7 +4,7 @@ import themeTrasitionVariant from "./themeTransitionVariant";
 const layout = (colors): Variants => {
   return {
     theme: {
-      background: colors.bkDark.color,
+      background: colors.bkDark.darken(1).color,
       ...themeTrasitionVariant,
     },
   };

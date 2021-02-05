@@ -23,7 +23,7 @@ export default function Footer() {
       animate={container}
       className="relative bottom-0 z-10 flex flex-col items-center self-end justify-center w-full p-6 text-lg"
       variants={footerVariants.footer(colors)}
-    > 
+    >
       <IconContainer icons={icons} />
       <h5>&copy; Devin Jackson 2020</h5>
     </motion.footer>

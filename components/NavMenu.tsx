@@ -1,6 +1,12 @@
 //* Packages
 import React from "react";
-import { motion, useAnimation, useCycle, AnimatePresence, useIsPresent } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useCycle,
+  AnimatePresence,
+  useIsPresent,
+} from "framer-motion";
 
 //* Variants
 import links from "./static/links";
@@ -13,7 +19,7 @@ import NavlinkContainer from "./subcomponents/NavlinkContainer";
 //* Context
 import { useThemedContext } from "kooki-components";
 
-export default function NavMenu() {
+export default function NavMenu(props: Props) {
   const { themeName, colors } = useThemedContext();
   const isPresent = useIsPresent();
   const container = useAnimation();
@@ -31,7 +37,7 @@ export default function NavMenu() {
 
   return (
     <motion.nav
-      className="fixed z-10 flex flex-col self-start w-4 h-screen"
+      className="fixed z-20 flex flex-col self-start w-4 h-screen"
       animate={container}
       variants={navbarVariants(colors)}
       initial="closed"
@@ -44,7 +50,11 @@ export default function NavMenu() {
       onAnimationComplete={() => toggleDisable(false)}
       exit="exit"
     >
-      <MenuBtn toggleNavbar={() => toggleNavbarView()} isDisabled={disable} />
+      <MenuBtn
+        toggleNavbar={() => toggleNavbarView()}
+        isDisabled={disable}
+        isOpen={navbarView}
+      />
       <NavlinkContainer
         links={links}
         toggleNavbar={() => toggleNavbarView()}

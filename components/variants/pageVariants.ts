@@ -8,7 +8,7 @@ const variants = (colors): Variants => {
       zIndex: 1,
       opacity: 0,
       color: colors.prim.color,
-      background: colors.bkSec.color,
+      background: colors.bkDark.darken(1).color,
     },
     visible: {
       x: 0,
@@ -30,7 +30,7 @@ const variants = (colors): Variants => {
     },
     theme: {
       color: colors.prim.color,
-      background: colors.bkSec.color,
+      background: colors.bkDark.darken(1).color,
       ...themeTrasitionVariant,
     },
   };

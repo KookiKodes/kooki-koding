@@ -14,7 +14,7 @@ export default function Typewriter(props: TypewriterProps) {
   const [wordCycle, nextWordCycle] = useCycle(...props.words);
 
   return (
-    <motion.div className="flex items-center justify-center h-40 w-96">
+    <motion.div className="flex items-center justify-center h-40 select-none w-96">
       <AnimatePresence exitBeforeEnter>
         {props.words.map((word, index) => {
           return (

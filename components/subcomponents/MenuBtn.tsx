@@ -14,7 +14,7 @@ const MenuBar = (props: BarProps) => {
 
   return (
     <motion.div
-      className="h-2 my-1 rounded w-14"
+      className="flex-shrink w-4/6 h-1.5 lg:h-2 my-0.5 lg:my-1 rounded"
       variants={props.variants(colors)}
       transition={{
         duration: 0.8,
@@ -24,17 +24,34 @@ const MenuBar = (props: BarProps) => {
   );
 };
 
-export default function MenuBtn({ toggleNavbar, isDisabled }: MenuBtnProps) {
-  const { colors } = useThemedContext();
+export default function MenuBtn({
+  isOpen,
+  toggleNavbar,
+  isDisabled,
+}: MenuBtnProps) {
+  const { colors, themeName } = useThemedContext();
+  const container = useAnimation();
+
+  React.useEffect(() => {
+    container.start("theme");
+  }, [themeName]);
+
+  React.useEffect(() => {
+    if (isOpen) container.start("open");
+    else container.start("closed");
+  }, [isOpen]);
 
   return (
     <motion.button
+      animate={container}
       layout="position"
-      className="absolute z-20 flex flex-col items-center justify-center flex-initial w-20 h-20 mt-2 ml-2 scale-100 shadow-lg rounded-3xl focus:outline-none"
+      className="box-border absolute z-20 flex flex-col items-center justify-center mt-2 ml-2 scale-100 rounded-full shadow-lg w-14 h-14 focus:outline-none focus:ring-4 focus:ring-current lg:h-20 lg:w-20"
       onClick={toggleNavbar}
-      whileHover={{ scale: 0.8 }}
+      whileHover="hover"
       disabled={isDisabled}
       variants={variants.button(colors)}
+      onFocus={() => container.start("focus")}
+      onBlur={() => container.start("initial")}
     >
       {variants.bars.map((bar, index) => {
         return <MenuBar variants={bar.variants} key={index} />;
