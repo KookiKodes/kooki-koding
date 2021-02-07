@@ -1,14 +1,17 @@
 //* Packages
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import Head from "next/head";
 import {
+  AnimateSharedLayout,
   motion,
   useAnimation,
+  useCycle,
 } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Components
 import FormInput from "../components/subcomponents/FormInput";
+import FormBtn from '@components/subcomponents/FormBtn';
 
 //* Variants
 import formVariants from "@components/variants/formVariants";
@@ -18,8 +21,9 @@ import FInputs from "@components/static/formInputs";
 
 export default function Contact() {
   const { colors, themeName } = useThemedContext();
+  const [isDisabled, toggleIsDisabled] = useCycle(true, false);
+  const [formInfo, setFormInfo] = React.useState(defFormInfo);
   const container = useAnimation();
-  const child = useAnimation();
 
   React.useEffect(() => {
     container.start("visible");
@@ -28,6 +32,44 @@ export default function Contact() {
   React.useEffect(() => {
     container.start("theme");
   }, [themeName]);
+
+  function defFormInfo() {
+    return FInputs.reduce((state, {name, type}) => {
+      state[name] = {
+        type,
+        error: '',
+        isValid: true,
+      };
+      return state;
+    }, {})
+  }
+
+  function updateFormValue(name: string, value: any, valName: string) {
+    setFormInfo((formInfo) => {
+      console.log('test')
+      const newFormValue = {...formInfo[name], [valName]: value};
+      return Object.assign(formInfo, {...formInfo, [name]:newFormValue});
+    })
+  }
+
+  function formValidation(event: React.FormEvent) {
+    const t = event.target as HTMLTextAreaElement | HTMLInputElement;
+    const {value, name, type} = t;
+
+    switch (type) {
+      case 'email':
+        const isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
+        const error = isValid ? '' : 'Please provide a valid email address';
+        updateFormValue(name, isValid, 'isValid');
+        updateFormValue(name, error, 'error');
+        break;
+      default:
+        break;
+    }
+
+
+  }
+
 
   return (
     <>
@@ -44,25 +86,18 @@ export default function Contact() {
         variants={formVariants.form(colors)}
         animate={container}
         className="relative grid w-5/6 grid-cols-1 grid-rows-4 mt-12 mb-12 xl:gap-y-5 xl:gap-x-10 xl:grid-rows-3 h-4/6 xl:h-auto md:w-3/6 xl:grid-cols-2 lg:grid-rows-2"
-      >
-        {FInputs.map((info, index) => {
-          return <FormInput key={index} {...info} />;
-        })}
-        <motion.div
-          className="flex items-center justify-center w-full h-auto row-start-4 xl:row-start-3 col-span-full"
-          variants={formVariants.inputContainer(colors)}
-        >
-          <motion.button
-            animate={child}
-            variants={formVariants.submit(colors)}
-            whileHover="hover"
-            onFocus={() => child.start("hover")}
-            onBlur={() => child.start("theme")}
-            className="w-full text-2xl font-semibold border-2 rounded-full xl:w-2/6 h-14 focus:shadow-lg focus:outline-none"
-          >
-            Submit
-          </motion.button>
-        </motion.div>
+      >  
+        <AnimateSharedLayout>
+          {FInputs.map((props, index) => {
+            props = {...props, validation: formValidation}
+            return (
+              <>
+                <FormInput key={index} {...props} />
+              </>
+            )
+          })}
+        </AnimateSharedLayout>
+        <FormBtn isDisabled={isDisabled} />
       </motion.form>
     </>
   );
