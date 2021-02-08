@@ -3,12 +3,15 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     minHeight: {
-      "px-600": "600px",
+      "px-800": "800px",
     },
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ["disabled"],
+      cursor: ["disabled"],
+    },
   },
   plugins: [],
 };

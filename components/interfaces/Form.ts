@@ -3,4 +3,10 @@ export interface FInput {
   label: string;
   inputInfo: "input" | "textarea";
   name: string;
+  error?: string;
+  validation?(event: React.FormEvent): void;
+}
+
+export interface FBtn {
+  isDisabled: boolean;
 }

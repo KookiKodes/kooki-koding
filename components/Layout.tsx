@@ -27,7 +27,7 @@ function Layout({ children }: LayoutProps) {
   return (
     <motion.main
       layout
-      className="flex flex-col items-center min-h-px-600 justify-start w-screen h-screen overflow-x-hidden min-w-min"
+      className="flex flex-col items-center justify-start w-screen h-screen overflow-x-hidden min-h-px-800 min-w-min"
       initial="theme"
       animate={container}
       variants={layoutVariants(colors)}

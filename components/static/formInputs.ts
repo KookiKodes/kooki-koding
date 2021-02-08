@@ -17,7 +17,7 @@ const Inputs: FInput[] = [
     name: "message",
     label: "Message",
     inputInfo: "textarea",
-    type: "",
+    type: "textarea",
   },
 ];
 

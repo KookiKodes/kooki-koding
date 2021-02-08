@@ -5,6 +5,7 @@ const themes = {
     bkSec: `rgba(169,169,169,1)`,
     bkPrim: `rgba(128,128,128,1)`,
     bkDark: `rgba(0,0,0,1)`,
+    error: "rgba(169,169,169,1)",
   },
   default: {
     prim: `rgba(172,193,138,1)`,
@@ -19,6 +20,7 @@ const themes = {
     bkPrim: "#DA4167",
     bkSec: "#FFFD82",
     bkDark: "#2D3047",
+    error: "#DA4167",
   },
 };
 

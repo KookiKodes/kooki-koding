@@ -65,6 +65,32 @@ const submit = (colors): Variants => {
   };
 };
 
+const error = (colors): Variants => {
+  return {
+    initial: {
+      color: colors.bkSec.darken(1).color,
+      background: colors.error.darken(1).color,
+      borderColor: colors.prim.color,
+      opacity: 0,
+      y: -25,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+    },
+    hidden: {
+      opacity: 0,
+      y: -25,
+    },
+    theme: {
+      color: colors.bkSec.darken(1).color,
+      background: colors.error.darken(1).color,
+      borderColor: colors.prim.color,
+      ...themeTransitionVariant,
+    },
+  };
+};
+
 const inputContainer = (colors): Variants => {
   return {
     theme: {
@@ -94,4 +120,5 @@ export default {
   input,
   inputContainer,
   submit,
+  error,
 };
