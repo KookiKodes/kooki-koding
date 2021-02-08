@@ -98,7 +98,7 @@ function ErrorMessage(props: Props) {
       initial="initial"
       animate={container}
       variants={formVariants.error(props.colors)}
-      className="box-border absolute flex items-end justify-center w-full h-10 font-semibold border-b border-l border-r rounded-lg rounded-t-none text-md -bottom-6"
+      className="box-border absolute flex items-end justify-center w-full h-10 text-sm border-b border-l border-r rounded-lg rounded-t-none xl:font-semibold xl:text-md -bottom-6"
       exit="hidden"
     >
       <motion.p>{props.message}</motion.p>

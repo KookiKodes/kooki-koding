@@ -72,7 +72,7 @@ const error = (colors): Variants => {
       background: colors.error.darken(1).color,
       borderColor: colors.prim.color,
       opacity: 0,
-      y: -25,
+      y: -10,
     },
     visible: {
       opacity: 1,
@@ -80,7 +80,7 @@ const error = (colors): Variants => {
     },
     hidden: {
       opacity: 0,
-      y: -25,
+      y: -10,
     },
     theme: {
       color: colors.bkSec.darken(1).color,
