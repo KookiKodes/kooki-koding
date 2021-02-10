@@ -20,12 +20,12 @@ export default function FormInput(props: FInput) {
         variants={formVariants.inputContainer(colors)}
         className="relative flex flex-col self-center justify-center w-full h-auto col-span-1 xl:justify-end"
       >
-        <motion.label className="self-start mb-4 text-2xl" htmlFor={props.name}>
+        <motion.label className="self-start mb-4 text-2xl" htmlFor={props.uid}>
           {props.label}
         </motion.label>
         <motion.input
-          name={props.name}
-          id={props.name}
+          name={props.uid}
+          id={props.uid}
           autoComplete={props.autocomplete}
           animate={container}
           type={props.type}
@@ -43,7 +43,7 @@ export default function FormInput(props: FInput) {
         <AnimatePresence>
           {props.error && (
             <ErrorMessage
-              key={props.name}
+              key={props.uid}
               message={props.error}
               colors={colors}
             />
@@ -58,12 +58,12 @@ export default function FormInput(props: FInput) {
         variants={formVariants.inputContainer(colors)}
         className="relative flex flex-col self-center justify-center w-full h-auto xl:justify-end col-span-full"
       >
-        <motion.label className="self-start mb-4 text-2xl" htmlFor={props.name}>
+        <motion.label className="self-start mb-4 text-2xl" htmlFor={props.uid}>
           {props.label}
         </motion.label>
         <motion.textarea
-          name={props.name}
-          id={props.name}
+          name={props.uid}
+          id={props.uid}
           animate={container}
           autoComplete={props.autocomplete}
           initial="initial"

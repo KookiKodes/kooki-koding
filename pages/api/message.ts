@@ -22,7 +22,7 @@ const send = async ({ email, name, message }: Email) => {
     from: USER,
     to: USER,
     subject: `Message from ${email}`,
-    text: `${name},\n${message}`,
+    text: `Name: ${name},\n${message}`,
   };
 
   return new Promise((resolve, reject) => {

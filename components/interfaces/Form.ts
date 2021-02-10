@@ -3,6 +3,7 @@ export interface FInput {
   label: string;
   inputInfo: "input" | "textarea";
   name: string;
+  uid?: string;
   error?: string;
   placeholder: string;
   autocomplete: string;

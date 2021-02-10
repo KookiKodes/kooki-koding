@@ -18,6 +18,8 @@ import { PostData } from "@components/interfaces/Form";
 //* Static
 import FInputs from "@components/static/formInputs";
 
+//!Need to update this as it's causing a lot of issues when a person visits the page leaves and then comes back. The html is not updating in react to reflect the update serverside.
+
 export async function getServerSideProps() {
   const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
   return { props: { uids } };
@@ -154,14 +156,14 @@ export default function Contact(props: { uids: string[] }) {
       >
         {FInputs.map((cProps, index) => {
           const uid = props.uids[index];
-          if (!cProps.name.includes(uid)) cProps.name = uid;
 
           return (
             <FormInput
               key={index}
               validation={formValidation}
               onChange={() => formChange()}
-              error={formInfo[cProps.name].error}
+              error={formInfo[uid].error}
+              uid={uid}
               {...cProps}
             />
           );
