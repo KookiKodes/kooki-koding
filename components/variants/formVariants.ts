@@ -80,7 +80,6 @@ const error = (colors): Variants => {
     },
     hidden: {
       opacity: 0,
-      y: -10,
     },
     theme: {
       color: colors.bkSec.darken(1).color,

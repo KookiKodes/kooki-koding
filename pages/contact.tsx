@@ -1,14 +1,9 @@
 //* Packages
-import React, { SyntheticEvent } from "react";
+import React from "react";
 import Head from "next/head";
-import {
-  AnimatePresence,
-  AnimateSharedLayout,
-  motion,
-  useAnimation,
-  useCycle,
-} from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
+import cuid from "cuid";
 
 //* Components
 import FormInput from "../components/subcomponents/FormInput";
@@ -17,10 +12,18 @@ import FormBtn from "@components/subcomponents/FormBtn";
 //* Variants
 import formVariants from "@components/variants/formVariants";
 
+//* Interfaces
+import { PostData } from "@components/interfaces/Form";
+
 //* Static
 import FInputs from "@components/static/formInputs";
 
-export default function Contact() {
+export async function getServerSideProps() {
+  const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
+  return { props: { uids } };
+}
+
+export default function Contact(props: { uids: string[] }) {
   const { colors, themeName } = useThemedContext();
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [formInfo, setFormInfo] = React.useState(defFormInfo);
@@ -34,6 +37,33 @@ export default function Contact() {
     container.start("theme");
   }, [themeName]);
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const fieldInfo: PostData[] = [];
+
+    for (let field of event.target) {
+      if (field.type !== "submit") {
+        const { name, value } = field;
+        let newName: string;
+
+        if (props.uids.includes(name)) newName = formInfo[name].name;
+        else newName = "honeypot";
+
+        fieldInfo.push({ name: newName, value });
+      }
+    }
+
+    const res = await fetch("/api/message", {
+      body: JSON.stringify(fieldInfo),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    console.log(await res.text());
+  }
+
   function checkAllValid(): boolean {
     const keys = Object.keys(formInfo);
     const totalFields = keys.length;
@@ -45,9 +75,9 @@ export default function Contact() {
   }
 
   function defFormInfo() {
-    return FInputs.reduce((state, { name, type }) => {
-      state[name] = {
-        type,
+    return FInputs.reduce((state, { name }, index) => {
+      state[`${props.uids[index]}`] = {
+        name,
         error: "",
         isValid: false,
       };
@@ -55,43 +85,53 @@ export default function Contact() {
     }, {});
   }
 
-  function updateFormValue(name: string, value: any, valName: string) {
-    setFormInfo((formInfo) => {
-      const newFormValue = { ...formInfo[name], [valName]: value };
-      return { ...formInfo, [name]: newFormValue };
-    });
-  }
-
-  function updateFormValues(name: string, values: { type; isValid; error }) {
+  function updateFormValues(
+    name: string,
+    values: { isValid: boolean; error: string }
+  ) {
     setFormInfo((formInfo) => {
       return {
         ...formInfo,
-        [name]: values,
+        [name]: Object.assign(formInfo[name], values),
       };
     });
   }
 
-  function formValidation(event: React.FormEvent) {
+  async function formChange() {
+    if (checkAllValid()) {
+      setIsDisabled(false);
+    } else setIsDisabled(true);
+  }
+
+  async function formValidation(event: React.FormEvent) {
     const t = event.target as HTMLTextAreaElement | HTMLInputElement;
     const { value, name, type } = t;
+    let isValid = false;
+    let error: string;
 
     switch (true) {
       case type === "email":
-        const isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
-        const error = isValid ? "" : "Please provide a valid email address";
-        updateFormValues(name, { type, error, isValid });
+        isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
+        error = isValid ? "" : "Please provide a valid email address";
+        updateFormValues(name, {
+          error,
+          isValid,
+        });
         break;
       case type === "text" || type === "textarea":
-        const valid = value.length > 0;
-        const message = valid ? "" : "Please fill the above input field";
-        updateFormValues(name, { type, error: message, isValid: valid });
+        isValid = value.length > 0;
+        error = isValid ? "" : "Please fill the above input field";
+        updateFormValues(name, {
+          error,
+          isValid,
+        });
         break;
       default:
         break;
     }
 
-    if (checkAllValid()) {
-      setIsDisabled(false);
+    if (isValid) {
+      formChange();
     } else setIsDisabled(true);
   }
 
@@ -110,19 +150,32 @@ export default function Contact() {
         variants={formVariants.form(colors)}
         animate={container}
         className="relative grid w-5/6 grid-cols-1 grid-rows-4 px-6 mt-12 mb-12 gap-y-5 xl:gap-x-10 xl:grid-rows-3 h-4/6 xl:h-auto md:w-3/6 xl:grid-cols-2 lg:grid-rows-2"
+        onSubmit={handleSubmit}
       >
-        {FInputs.map((props, index) => {
-          props = { ...props };
+        {FInputs.map((cProps, index) => {
+          const uid = props.uids[index];
+          if (!cProps.name.includes(uid)) cProps.name = uid;
+
           return (
             <FormInput
               key={index}
               validation={formValidation}
-              error={formInfo[props.name].error}
-              {...props}
+              onChange={() => formChange()}
+              error={formInfo[cProps.name].error}
+              {...cProps}
             />
           );
         })}
         <FormBtn isDisabled={isDisabled} />
+        <label />
+        <input
+          className="absolute top-0 left-0 z-0 w-0 h-0 opacity-0"
+          type="text"
+          name="name"
+          autoComplete="off"
+          id="name"
+          placeholder="your name here..."
+        />
       </motion.form>
     </>
   );

@@ -12,6 +12,7 @@ import { FInput } from "@components/interfaces/Form";
 export default function FormInput(props: FInput) {
   const { colors } = useThemedContext();
   const container = useAnimation();
+
   if (props.inputInfo === "input") {
     return (
       <motion.div
@@ -24,16 +25,20 @@ export default function FormInput(props: FInput) {
         </motion.label>
         <motion.input
           name={props.name}
+          id={props.name}
+          autoComplete={props.autocomplete}
           animate={container}
           type={props.type}
           initial="initial"
           variants={formVariants.input(colors)}
+          placeholder={props.placeholder}
           whileHover="hover"
-          onChange={props.validation}
+          onChange={props.onChange}
           onKeyUp={props.validation}
           onFocus={() => container.start("focus")}
           onBlur={() => container.start("initial")}
-          className="z-10 w-full h-8 p-4 text-xl border rounded-lg lg:text-3xl focus:outline-none lg:h-14 focus:shadow-lg"
+          className="z-10 w-full h-8 p-4 text-xl placeholder-current border rounded-lg placeholder-opacity-30 lg:text-3xl focus:outline-none lg:h-14 focus:shadow-lg"
+          required
         />
         <AnimatePresence>
           {props.error && (
@@ -58,15 +63,19 @@ export default function FormInput(props: FInput) {
         </motion.label>
         <motion.textarea
           name={props.name}
+          id={props.name}
           animate={container}
+          autoComplete={props.autocomplete}
           initial="initial"
+          placeholder={props.placeholder}
           variants={formVariants.input(colors)}
           whileHover="hover"
-          onChange={props.validation}
+          onInput={props.validation}
           onKeyUp={props.validation}
           onFocus={() => container.start("focus")}
           onBlur={() => container.start("initial")}
-          className="z-10 w-full p-4 text-xl border rounded-lg resize-none lg:text-3xl focus:outline-none h-30 lg:h-40 focus:shadow-md"
+          className="z-10 w-full p-4 text-xl placeholder-current placeholder-opacity-0 border rounded-lg resize-none lg:text-3xl focus:outline-none h-30 lg:h-40 focus:shadow-md"
+          required
         />
         <AnimatePresence>
           {props.error && (
@@ -93,6 +102,7 @@ function ErrorMessage(props: Props) {
   React.useEffect(() => {
     container.start("visible");
   });
+
   return (
     <motion.div
       initial="initial"
