@@ -8,6 +8,7 @@ import cuid from "cuid";
 //* Components
 import FormInput from "../components/subcomponents/FormInput";
 import FormBtn from "@components/subcomponents/FormBtn";
+import MessageModal from "@components/MessageModal";
 
 //* Variants
 import formVariants from "@components/variants/formVariants";
@@ -55,7 +56,7 @@ export default function Contact(props: { uids: string[] }) {
       }
     }
 
-    const res = await fetch("/api/message", {
+    const res = await fetch("/api/email", {
       body: JSON.stringify(fieldInfo),
       headers: {
         "Content-Type": "application/json",
@@ -179,6 +180,7 @@ export default function Contact(props: { uids: string[] }) {
           placeholder="your name here..."
         />
       </motion.form>
+      <MessageModal message={"Testing"} />
     </>
   );
 }

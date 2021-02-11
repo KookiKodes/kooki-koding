@@ -3,8 +3,4 @@ module.exports = withSvgr({
   svgrOptions: {
     /* config options here */
   },
-  env: {
-    user: "devinbjackson@gmail.com",
-    pass: "cgpsvvofygoueirs",
-  },
 });

@@ -1,3 +1,4 @@
+import { ResolveOptions } from "dns";
 import nodemailer from "nodemailer";
 
 const USER = process.env.user;
@@ -22,24 +23,22 @@ const send = async ({ email, name, message }: Email) => {
     from: USER,
     to: USER,
     subject: `Message from ${email}`,
-    text: `Name: ${name},\n${message}`,
+    text: `Name: ${name},\n\n${message}`,
   };
 
   return new Promise((resolve, reject) => {
     transporter.sendMail(mailOptions, (error, info) => {
-      if (error) reject(error);
+      if (error) return reject(error);
       else
-        resolve(
+        return resolve(
           `Thank you, ${name}, for reaching out to me. I'll respond as soon as possible.`
         );
     });
   });
 };
 
-export default async function handler(req, res) {
-  const fields = req.body;
+const handleEmail = async (fields) => {
   let error = "";
-
   const result = fields.reduce((messageObj: Email, field) => {
     let isValid = false;
 
@@ -65,14 +64,36 @@ export default async function handler(req, res) {
     return messageObj;
   }, {});
 
-  if (error) res.status(406).send(error);
+  if (error)
+    return new Promise((resolve, reject) => {
+      reject(error);
+    });
   else {
-    await send(result)
-      .then((answer) => {
-        res.status(200).send(answer);
-      })
-      .catch((error) => {
-        res.status(500).send(error);
+    try {
+      const message = await send(result);
+      return new Promise((resolve, reject) => {
+        resolve(message);
       });
+    } catch (error) {
+      return new Promise((resolve, reject) => {
+        reject(error);
+      });
+    }
+  }
+};
+
+export default async function handler(req, res) {
+  switch (true) {
+    case req.method === "POST":
+      await handleEmail(req.body)
+        .then((message) => {
+          res.status(200).send(message);
+        })
+        .catch((err) => {
+          res.status(406).send(err);
+        });
+      break;
+    case req.method === "GET":
+      res.status(500).send("No route for provided get method.");
   }
 }
