@@ -3,14 +3,14 @@ import React from "react";
 import { motion, useIsPresent } from "framer-motion";
 
 //* Variants
-import typewriterVariants from "@components/variants/typewriterVariants";
+import typewriterVariants from "@components/Typewriter/typewriterVariants";
 
 //* Components
-import TypewriterLetter from "./TypewritterLetter";
+import TypewriterLetter from "./TypewriterLetter";
 import InsertionCursor from "./InsertionCursor";
 
 //* Interfaces
-import { WordProps } from "../interfaces/Typewriter";
+import { WordProps } from "./TypewriterInterface";
 
 export default function TypewriterWord(props: WordProps) {
   const [isTyping, setIsTyping] = React.useState(true);
@@ -28,7 +28,7 @@ export default function TypewriterWord(props: WordProps) {
 
   return (
     <motion.div
-    className="w-full h-full text-center whitespace-pre-wrap"
+      className="w-full h-full text-center whitespace-pre-wrap"
       variants={typewriterVariants.container(props.colors)}
       animate={["write", "theme"]}
       exit="erase"

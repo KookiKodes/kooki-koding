@@ -8,10 +8,10 @@ import { useThemedContext } from "kooki-components";
 import Navlink from "./Navlink";
 
 //* Interfaces
-import { NlinkContainer } from "../interfaces/Navigation";
+import { NlinkContainer } from "./NavMenuInterface";
 
 //* Static
-import navlinkVariants from "../variants/navlinkVariants";
+import navlinkVariants from "./navlinkVariants";
 
 export default function NavlinkContainer(props: NlinkContainer) {
   const router = useRouter();

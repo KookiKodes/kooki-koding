@@ -1,5 +1,5 @@
 import { Variants } from "framer-motion";
-import themeTransitionVariant from "./themeTransitionVariant";
+import themeTransitionVariant from "../variants/themeTransitionVariant";
 
 const container = (colors): Variants => {
   return {

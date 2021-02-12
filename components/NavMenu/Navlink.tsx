@@ -5,10 +5,10 @@ import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Interfaces
-import { Nlink } from "../interfaces/Navigation";
+import { Nlink } from "./NavMenuInterface";
 
 //* Variants
-import navlinkVariants from "../variants/navlinkVariants";
+import navlinkVariants from "./navlinkVariants";
 
 //* Style
 import navlink from "../../styles/Navlink.module.sass";

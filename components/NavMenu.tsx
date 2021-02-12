@@ -10,11 +10,11 @@ import {
 
 //* Variants
 import links from "./static/links";
-import navbarVariants from "./variants/navmenuVariants";
+import navbarVariants from "./NavMenu/navmenuVariants";
 
 //* Components
-import MenuBtn from "./subcomponents/MenuBtn";
-import NavlinkContainer from "./subcomponents/NavlinkContainer";
+import MenuBtn from "./NavMenu/MenuBtn";
+import NavlinkContainer from "./NavMenu/NavlinkContainer";
 
 //* Context
 import { useThemedContext } from "kooki-components";

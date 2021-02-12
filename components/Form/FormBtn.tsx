@@ -4,10 +4,10 @@ import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Variants
-import formVariants from "../variants/formVariants";
+import formVariants from "./formVariants";
 
 //* Interfaces
-import { FBtn } from "../interfaces/Form";
+import { FBtn } from "./FormInterface";
 
 export default function FormBtn(props: FBtn) {
   const container = useAnimation();
@@ -32,6 +32,7 @@ export default function FormBtn(props: FBtn) {
         whileHover={`${props.isDisabled ? " " : "hover"}`}
         onFocus={() => container.start(props.isDisabled ? " " : "hover")}
         onBlur={() => container.start(props.isDisabled ? " " : "theme")}
+        onClick={() => container.start("theme")}
       >
         Submit
       </motion.button>

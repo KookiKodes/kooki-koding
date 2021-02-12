@@ -4,11 +4,11 @@ import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Components
-import IconContainer from "./subcomponents/IconContainer";
+import IconContainer from "./Footer/IconContainer";
 
 //* Static
 import icons from "./static/icons";
-import footerVariants from "./variants/footerVariants";
+import footerVariants from "./Footer/footerVariants";
 
 export default function Footer() {
   const container = useAnimation();

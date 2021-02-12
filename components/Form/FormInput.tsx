@@ -4,10 +4,10 @@ import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Variants
-import formVariants from "../variants/formVariants";
+import formVariants from "./formVariants";
 
 //* Interfaces
-import { FInput } from "@components/interfaces/Form";
+import { FInput } from "@components/Form/FormInterface";
 
 export default function FormInput(props: FInput) {
   const { colors } = useThemedContext();

@@ -1,20 +1,20 @@
 //* Packages
 import React from "react";
 import Head from "next/head";
-import { motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 import cuid from "cuid";
 
 //* Components
-import FormInput from "../components/subcomponents/FormInput";
-import FormBtn from "@components/subcomponents/FormBtn";
+import FormInput from "../components/Form/FormInput";
+import FormBtn from "@components/Form/FormBtn";
 import MessageModal from "@components/MessageModal";
 
 //* Variants
-import formVariants from "@components/variants/formVariants";
+import formVariants from "@components/Form/formVariants";
 
 //* Interfaces
-import { PostData } from "@components/interfaces/Form";
+import { PostData } from "@components/Form/FormInterface";
 
 //* Static
 import FInputs from "@components/static/formInputs";
@@ -30,6 +30,7 @@ export default function Contact(props: { uids: string[] }) {
   const { colors, themeName } = useThemedContext();
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [formInfo, setFormInfo] = React.useState(defFormInfo);
+  const [sentMessage, setSentMessage] = React.useState("");
   const container = useAnimation();
 
   React.useEffect(() => {
@@ -42,6 +43,7 @@ export default function Contact(props: { uids: string[] }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    setIsDisabled(true);
     const fieldInfo: PostData[] = [];
 
     for (let field of event.target) {
@@ -49,12 +51,16 @@ export default function Contact(props: { uids: string[] }) {
         const { name, value } = field;
         let newName: string;
 
-        if (props.uids.includes(name)) newName = formInfo[name].name;
-        else newName = "honeypot";
+        if (props.uids.includes(name)) {
+          newName = formInfo[name].name;
+          field.value = "";
+        } else newName = "honeypot";
 
         fieldInfo.push({ name: newName, value });
       }
     }
+
+    setFormInfo(defFormInfo());
 
     const res = await fetch("/api/email", {
       body: JSON.stringify(fieldInfo),
@@ -64,7 +70,12 @@ export default function Contact(props: { uids: string[] }) {
       method: "POST",
     });
 
-    console.log(await res.text());
+    const message = await res.text();
+    setSentMessage(message);
+
+    setTimeout(() => {
+      setSentMessage("");
+    }, 3500);
   }
 
   function checkAllValid(): boolean {
@@ -133,9 +144,7 @@ export default function Contact(props: { uids: string[] }) {
         break;
     }
 
-    if (isValid) {
-      formChange();
-    } else setIsDisabled(true);
+    formChange();
   }
 
   return (
@@ -180,7 +189,15 @@ export default function Contact(props: { uids: string[] }) {
           placeholder="your name here..."
         />
       </motion.form>
-      <MessageModal message={"Testing"} />
+      <AnimatePresence>
+        {sentMessage && (
+          <MessageModal
+            key={sentMessage}
+            message={sentMessage}
+            removeMessage={() => setSentMessage("")}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 }

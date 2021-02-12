@@ -1,4 +1,4 @@
-import { Nlink } from "../interfaces/Navigation";
+import { Nlink } from "../NavMenu/NavMenuInterface";
 
 const links: Nlink[] = [
   {

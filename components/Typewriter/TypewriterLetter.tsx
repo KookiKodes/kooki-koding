@@ -3,10 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 
 //* Variants
-import typewriterVariants from "@components/variants/typewriterVariants";
+import typewriterVariants from "@components/Typewriter/typewriterVariants";
 
 //* Interfaces
-import { LetterProps } from "../interfaces/Typewriter";
+import { LetterProps } from "./TypewriterInterface";
 
 export default function TypewriterLetter(props: LetterProps) {
   return (

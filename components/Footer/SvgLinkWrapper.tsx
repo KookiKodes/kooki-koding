@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useThemedContext } from "kooki-components";
 
 //* Variants
-import iconVariants from "@components/variants/iconVariants";
+import iconVariants from "@components/Footer/iconVariants";
 
 type Props = {
   href: string;

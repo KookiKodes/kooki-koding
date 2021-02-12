@@ -1,4 +1,4 @@
-import { IconInfo } from "../interfaces/Footer";
+import { IconInfo } from "../Footer/FooterInterface";
 
 const icons: IconInfo[] = [
   {
@@ -9,7 +9,7 @@ const icons: IconInfo[] = [
   {
     href: "https://www.twitter.com",
     filename: "twitter-logo",
-    name: "Twitter"
+    name: "Twitter",
   },
 ];
 

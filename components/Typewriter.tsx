@@ -4,10 +4,10 @@ import { useThemedContext } from "kooki-components";
 import { motion, useCycle, AnimatePresence, useAnimation } from "framer-motion";
 
 //* Components
-import TypewriterWord from "@components/subcomponents/TypewritterWord";
+import TypewriterWord from "./Typewriter/TypewriterWord";
 
 //* Interfaces
-import { TypewriterProps } from "./interfaces/Typewriter";
+import { TypewriterProps } from "./Typewriter/TypewriterInterface";
 
 export default function Typewriter(props: TypewriterProps) {
   const { colors } = useThemedContext();
