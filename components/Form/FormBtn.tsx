@@ -3,6 +3,9 @@ import React from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
+//* Components
+import LoadingDots from "../LoadingDots";
+
 //* Variants
 import formVariants from "./formVariants";
 
@@ -19,12 +22,18 @@ export default function FormBtn(props: FBtn) {
     container.start("theme");
   }, [themeName]);
 
+  React.useEffect(() => {
+    if (props.isLoading) container.start("loading");
+    else container.start("initial");
+  }, [props.isLoading]);
+
   return (
     <motion.div
       variants={formVariants.inputContainer(colors)}
       className="flex items-center justify-center w-full h-auto row-start-4 xl:row-start-3 col-span-full"
     >
       <motion.button
+        initial="intial"
         animate={container}
         variants={formVariants.submit(colors)}
         disabled={props.isDisabled}
@@ -34,7 +43,7 @@ export default function FormBtn(props: FBtn) {
         onBlur={() => container.start(props.isDisabled ? " " : "theme")}
         onClick={() => container.start("theme")}
       >
-        Submit
+        {!props.isLoading ? "Submit" : <LoadingDots num={3} />}
       </motion.button>
     </motion.div>
   );

@@ -49,6 +49,11 @@ const input = (colors): Variants => {
 
 const submit = (colors): Variants => {
   return {
+    initial: {
+      background: colors.bkDark.darken(1).color,
+      color: colors.prim.color,
+      borderColor: colors.prim.color,
+    },
     theme: {
       background: colors.bkDark.darken(1).color,
       color: colors.prim.color,

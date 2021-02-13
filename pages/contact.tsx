@@ -1,7 +1,7 @@
 //* Packages
 import React from "react";
 import Head from "next/head";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, useAnimation, useCycle } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 import cuid from "cuid";
 
@@ -31,6 +31,7 @@ export default function Contact(props: { uids: string[] }) {
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [formInfo, setFormInfo] = React.useState(defFormInfo);
   const [sentMessage, setSentMessage] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
   const container = useAnimation();
 
   React.useEffect(() => {
@@ -44,6 +45,7 @@ export default function Contact(props: { uids: string[] }) {
   async function handleSubmit(event) {
     event.preventDefault();
     setIsDisabled(true);
+    setIsLoading(true);
     const fieldInfo: PostData[] = [];
 
     for (let field of event.target) {
@@ -72,6 +74,7 @@ export default function Contact(props: { uids: string[] }) {
 
     const message = await res.text();
     setSentMessage(message);
+    setIsLoading(false);
 
     setTimeout(() => {
       setSentMessage("");
@@ -178,7 +181,7 @@ export default function Contact(props: { uids: string[] }) {
             />
           );
         })}
-        <FormBtn isDisabled={isDisabled} />
+        <FormBtn isDisabled={isDisabled} isLoading={isLoading} />
         <label />
         <input
           className="absolute top-0 left-0 z-0 w-0 h-0 opacity-0"

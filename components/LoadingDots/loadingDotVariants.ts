@@ -1,0 +1,41 @@
+import { Variants } from "framer-motion";
+import themeTransitionVariant from "../variants/themeTransitionVariant";
+
+const container = (colors): Variants => {
+  return {
+    theme: {
+      ...themeTransitionVariant,
+    },
+    initial: {
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.05,
+      },
+    },
+    loading: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+};
+
+const dot = (colors): Variants => {
+  return {
+    theme: {
+      background: colors.prim.color,
+      ...themeTransitionVariant,
+    },
+    initial: {
+      y: "50%",
+    },
+    loading: {
+      y: "-50%",
+    },
+  };
+};
+
+export default {
+  container,
+  dot,
+};

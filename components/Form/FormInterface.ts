@@ -18,4 +18,5 @@ export interface PostData {
 
 export interface FBtn {
   isDisabled: boolean;
+  isLoading: boolean;
 }
