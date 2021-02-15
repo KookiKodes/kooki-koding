@@ -13,8 +13,8 @@ import MessageModal from "@components/MessageModal";
 //* Variants
 import formVariants from "@components/Form/formVariants";
 
-//* Interfaces
-import { PostData } from "@components/Form/FormInterface";
+//* Helper Fns
+import { getFieldInfo, defFormInfo } from "@components/Form/helperFns";
 
 //* Static
 import FInputs from "@components/static/formInputs";
@@ -29,8 +29,8 @@ export async function getServerSideProps() {
 export default function Contact(props: { uids: string[] }) {
   const { colors, themeName } = useThemedContext();
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const [formInfo, setFormInfo] = React.useState(defFormInfo);
-  const [sentMessage, setSentMessage] = React.useState("");
+  const [formInfo, setFormInfo] = React.useState(defFormInfo(props.uids));
+  const [sentMessage, setSentMessage] = React.useState(["", ""]);
   const [isLoading, setIsLoading] = React.useState(false);
   const container = useAnimation();
 
@@ -46,23 +46,10 @@ export default function Contact(props: { uids: string[] }) {
     event.preventDefault();
     setIsDisabled(true);
     setIsLoading(true);
-    const fieldInfo: PostData[] = [];
 
-    for (let field of event.target) {
-      if (field.type !== "submit") {
-        const { name, value } = field;
-        let newName: string;
+    const fieldInfo = getFieldInfo({ event, uids: props.uids, formInfo });
 
-        if (props.uids.includes(name)) {
-          newName = formInfo[name].name;
-          field.value = "";
-        } else newName = "honeypot";
-
-        fieldInfo.push({ name: newName, value });
-      }
-    }
-
-    setFormInfo(defFormInfo());
+    setFormInfo(defFormInfo(props.uids));
 
     const res = await fetch("/api/email", {
       body: JSON.stringify(fieldInfo),
@@ -72,12 +59,13 @@ export default function Contact(props: { uids: string[] }) {
       method: "POST",
     });
 
-    const message = await res.text();
-    setSentMessage(message);
+    const { message, error } = await res.json();
+    setSentMessage([message, error]);
+    console.log(`Message: ${message}, Error: ${error}`);
     setIsLoading(false);
 
     setTimeout(() => {
-      setSentMessage("");
+      setSentMessage(["", ""]);
     }, 3500);
   }
 
@@ -89,17 +77,6 @@ export default function Contact(props: { uids: string[] }) {
       return total;
     }, 0);
     return totalFields === totalValid;
-  }
-
-  function defFormInfo() {
-    return FInputs.reduce((state, { name }, index) => {
-      state[`${props.uids[index]}`] = {
-        name,
-        error: "",
-        isValid: false,
-      };
-      return state;
-    }, {});
   }
 
   function updateFormValues(
@@ -193,11 +170,11 @@ export default function Contact(props: { uids: string[] }) {
         />
       </motion.form>
       <AnimatePresence>
-        {sentMessage && (
+        {(sentMessage[0] || sentMessage[1]) && (
           <MessageModal
-            key={sentMessage}
+            key={sentMessage[0] || sentMessage[1]}
             message={sentMessage}
-            removeMessage={() => setSentMessage("")}
+            removeMessage={() => setSentMessage(["", ""])}
           />
         )}
       </AnimatePresence>

@@ -50,11 +50,13 @@ const handleEmail = async (fields) => {
       switch (true) {
         case field.name === "email":
           isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(field.value);
-          error += isValid ? "" : "Invalid email address format\n";
+          error += isValid ? "" : "Invalid email address format\n\n";
           break;
         case field.name === "name" || field.name === "message":
           isValid = field.value.length > 0;
-          error += isValid ? "" : `No value provided for ${field.name} field\n`;
+          error += isValid
+            ? ""
+            : `No value provided for ${field.name} field\n\n`;
           break;
         default:
           break;
@@ -87,10 +89,10 @@ export default async function handler(req, res) {
     case req.method === "POST":
       await handleEmail(req.body)
         .then((message) => {
-          res.status(200).send(message);
+          res.status(200).json({ message, error: "" });
         })
-        .catch((err) => {
-          res.status(406).send(err);
+        .catch((error) => {
+          res.status(406).json({ message: "", error });
         });
       break;
     case req.method === "GET":

@@ -7,13 +7,14 @@ import { useThemedContext } from "kooki-components";
 import messageModalVariants from "./MessageModal/messageModalVariants";
 
 interface Props {
-  message: string;
+  message: string[];
   removeMessage(): void;
 }
 
 export default function MessageModal({ message, removeMessage }: Props) {
   const { colors, themeName } = useThemedContext();
   const container = useAnimation();
+  const [mess, error] = message;
 
   React.useEffect(() => {
     container.start("theme");
@@ -36,10 +37,10 @@ export default function MessageModal({ message, removeMessage }: Props) {
         X
       </motion.button>
       <motion.h1 className="relative flex items-center self-start justify-start w-full px-8 text-3xl font-semibold border-b border-current shadow-sm lg:text-4xl h-2/6">
-        Message Received
+        {error ? "Message Unsuccessful!" : "Message Sent!"}
       </motion.h1>
       <motion.h3 className="w-full px-8 text-2xl font-light text-left lg:text-4xl h-1/2">
-        {message}
+        {error || mess}
       </motion.h3>
       <motion.div
         className="w-full h-12 border-t border-current rounded-b-xl"

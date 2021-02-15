@@ -28,9 +28,11 @@ const dot = (colors): Variants => {
     },
     initial: {
       y: "50%",
+      opacity: 0.6,
     },
     loading: {
       y: "-50%",
+      opacity: 1,
     },
   };
 };
