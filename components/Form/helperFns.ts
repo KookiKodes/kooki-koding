@@ -1,12 +1,14 @@
 import { PostData } from "./FormInterface";
 import FInputs from "../static/formInputs";
 
+interface FormValidObj {
+  name: string;
+  error: string;
+  isValid: boolean; 
+}
+
 interface FormInfo {
-  [key: string]: {
-    name: string;
-    error: string;
-    isValid: boolean;
-  };
+  [key: string]: FormValidObj
 }
 
 interface GetFieldInfo {
@@ -15,11 +17,12 @@ interface GetFieldInfo {
   formInfo: FormInfo;
 }
 
-export function getFieldInfo({
+
+export async function getFieldInfo({
   event,
   uids,
   formInfo,
-}: GetFieldInfo): PostData[] {
+}: GetFieldInfo): Promise<PostData[]> {
   const fieldInfo: PostData[] = [];
   for (let field of event.target) {
     if (field.type !== "submit") {
@@ -45,4 +48,35 @@ export function defFormInfo(uids: string[]): FormInfo {
     };
     return state;
   }, {});
+}
+
+export async function checkAllValid(formInfo: FormInfo): Promise<boolean> {
+  const keys = Object.keys(formInfo);
+  const totalFields = keys.length;
+  const totalValid = keys.reduce((total, name) => {
+    if (formInfo[name].isValid) total++;
+    return total;
+  }, 0)
+  return totalFields === totalValid;
+}
+
+export async function formValidation(event: React.FormEvent):Promise<FormValidObj> {
+    const t = event.target as HTMLTextAreaElement | HTMLInputElement;
+    const { value, name, type } = t;
+    let isValid = false;
+    let error = ""
+
+    switch (true) {
+      case type === "email":
+        isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
+        error = isValid ? "" : "Please provide a valid email address";
+        break;
+      case type === "text" || type === "textarea":
+        isValid = value.length > 0;
+        error = isValid ? "" : "Please fill the above input field";
+        break;
+      default:
+        break;
+    }
+    return {name, error, isValid}
 }

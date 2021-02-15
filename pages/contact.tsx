@@ -1,7 +1,7 @@
 //* Packages
 import React from "react";
 import Head from "next/head";
-import { AnimatePresence, motion, useAnimation, useCycle } from "framer-motion";
+import { AnimatePresence, motion, useAnimation} from "framer-motion";
 import { useThemedContext } from "kooki-components";
 import cuid from "cuid";
 
@@ -14,12 +14,10 @@ import MessageModal from "@components/MessageModal";
 import formVariants from "@components/Form/formVariants";
 
 //* Helper Fns
-import { getFieldInfo, defFormInfo } from "@components/Form/helperFns";
+import { getFieldInfo, defFormInfo, checkAllValid, formValidation } from "@components/Form/helperFns";
 
 //* Static
 import FInputs from "@components/static/formInputs";
-
-//!Need to update this as it's causing a lot of issues when a person visits the page leaves and then comes back. The html is not updating in react to reflect the update serverside.
 
 export async function getServerSideProps() {
   const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
@@ -47,7 +45,7 @@ export default function Contact(props: { uids: string[] }) {
     setIsDisabled(true);
     setIsLoading(true);
 
-    const fieldInfo = getFieldInfo({ event, uids: props.uids, formInfo });
+    const fieldInfo = await getFieldInfo({ event, uids: props.uids, formInfo });
 
     setFormInfo(defFormInfo(props.uids));
 
@@ -61,22 +59,11 @@ export default function Contact(props: { uids: string[] }) {
 
     const { message, error } = await res.json();
     setSentMessage([message, error]);
-    console.log(`Message: ${message}, Error: ${error}`);
     setIsLoading(false);
 
     setTimeout(() => {
       setSentMessage(["", ""]);
     }, 3500);
-  }
-
-  function checkAllValid(): boolean {
-    const keys = Object.keys(formInfo);
-    const totalFields = keys.length;
-    const totalValid = keys.reduce((total, name) => {
-      if (formInfo[name].isValid) total++;
-      return total;
-    }, 0);
-    return totalFields === totalValid;
   }
 
   function updateFormValues(
@@ -92,38 +79,15 @@ export default function Contact(props: { uids: string[] }) {
   }
 
   async function formChange() {
-    if (checkAllValid()) {
-      setIsDisabled(false);
-    } else setIsDisabled(true);
+    const valid = await checkAllValid(formInfo);
+
+    if (valid) setIsDisabled(false); 
+    else setIsDisabled(true);
   }
 
-  async function formValidation(event: React.FormEvent) {
-    const t = event.target as HTMLTextAreaElement | HTMLInputElement;
-    const { value, name, type } = t;
-    let isValid = false;
-    let error: string;
-
-    switch (true) {
-      case type === "email":
-        isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
-        error = isValid ? "" : "Please provide a valid email address";
-        updateFormValues(name, {
-          error,
-          isValid,
-        });
-        break;
-      case type === "text" || type === "textarea":
-        isValid = value.length > 0;
-        error = isValid ? "" : "Please fill the above input field";
-        updateFormValues(name, {
-          error,
-          isValid,
-        });
-        break;
-      default:
-        break;
-    }
-
+  async function validate(event: React.FormEvent) {
+    const {name, error, isValid} = await formValidation(event);
+    updateFormValues(name, {error, isValid});
     formChange();
   }
 
@@ -150,7 +114,7 @@ export default function Contact(props: { uids: string[] }) {
           return (
             <FormInput
               key={index}
-              validation={formValidation}
+              validation={validate}
               onChange={() => formChange()}
               error={formInfo[uid].error}
               uid={uid}
@@ -181,4 +145,3 @@ export default function Contact(props: { uids: string[] }) {
     </>
   );
 }
-// This comment is here just to update Vercel
