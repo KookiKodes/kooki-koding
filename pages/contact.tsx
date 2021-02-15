@@ -48,16 +48,20 @@ export default function Contact(props: { uids: string[] }) {
     const fieldInfo = await getFieldInfo({ event, uids: props.uids, formInfo });
 
     setFormInfo(defFormInfo(props.uids));
+    
+    let res;
 
-    const res = await fetch("/api/email", {
-      body: JSON.stringify(fieldInfo),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-    });
+    if (!fieldInfo.find(field => field.name === 'honeypot' && field.value)) {
+      res = await fetch("/api/email", {
+        body: JSON.stringify(fieldInfo),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+      });
+    }
+    const { message, error } = res ? await res.json() : {message: '', error: "Message was unsuccessful due to the following reasons:\nInvalid information provided\n"};
 
-    const { message, error } = await res.json();
     setSentMessage([message, error]);
     setIsLoading(false);
 
