@@ -32,6 +32,7 @@ export async function getServerSideProps({req, res}) {
     cookies.set('uid', cuid(), {
       maxAge: 3600,
       sameSite: true,
+      httpOnly: false,
     })
   }
   const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
