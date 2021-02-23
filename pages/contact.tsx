@@ -33,6 +33,8 @@ export async function getServerSideProps({req, res}) {
       maxAge: 3600,
       sameSite: true,
       httpOnly: false,
+      path: "/contact",
+      secure: true,
     })
   }
   const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);

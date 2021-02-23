@@ -90,10 +90,11 @@ export default async function handler(req, res) {
   
   if (!cookies.get('limit') && uid) {
     cookies.set('limit', uid, {
-      path: '/contact',
+      maxAge: 120,
       sameSite: true,
-      maxAge: 60,
-      httpOnly: false
+      httpOnly: false,
+      path: "/contact",
+      secure: true,
     })
   }
   
