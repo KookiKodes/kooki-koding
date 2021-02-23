@@ -1,4 +1,4 @@
-import { FInput } from "../Form/FormInterface";
+import { FInput } from "../../components/Form/FormInterface";
 
 const Inputs: FInput[] = [
   {

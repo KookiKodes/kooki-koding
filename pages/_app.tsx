@@ -9,13 +9,13 @@ import Page from "@components/Page";
 import Layout from "@components/Layout";
 
 //* Static
-import themes from "@components/static/themes";
+import themes from "lib/static/themes";
 
 //* Style
 import "tailwindcss/tailwind.css";
 import "../styles/default.sass"
 
-function MyApp({ Component: Route, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 
 	return (
@@ -23,7 +23,7 @@ function MyApp({ Component: Route, pageProps }: AppProps) {
 			<Layout>
 				<AnimatePresence initial={false}>
 					<Page key={router.route}>
-						<Route {...pageProps} />
+						<Component {...pageProps} />
 					</Page>
 				</AnimatePresence>
 			</Layout>

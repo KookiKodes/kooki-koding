@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 
 //* Variants
-import links from "./static/links";
+import links from "../lib/static/links";
 import navbarVariants from "./NavMenu/navmenuVariants";
 
 //* Components

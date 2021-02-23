@@ -1,5 +1,5 @@
-import { ResolveOptions } from "dns";
 import nodemailer from "nodemailer";
+import Cookies from 'cookies';
 
 const USER = process.env.user;
 const PASSWORD = process.env.pass;
@@ -85,7 +85,21 @@ const handleEmail = async (fields) => {
 };
 
 export default async function handler(req, res) {
+  const cookies = new Cookies(req, res);
+  const uid = cookies.get('uid');
+  
+  if (!cookies.get('limit') && uid) {
+    cookies.set('limit', uid, {
+      path: '/contact',
+      sameSite: true,
+      maxAge: 60,
+      httpOnly: false
+    })
+  }
+  
   switch (true) {
+    case typeof cookies.get('limit') === 'string':
+      res.status(406).json({message: "", error: "Sorry, you have sent too many request, try again later."})
     case req.method === "POST":
       await handleEmail(req.body)
         .then((message) => {

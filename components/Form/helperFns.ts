@@ -1,5 +1,5 @@
 import { PostData } from "./FormInterface";
-import FInputs from "../static/formInputs";
+import FInputs from "../../lib/static/formInputs";
 
 interface FormValidObj {
   name: string;
@@ -32,7 +32,6 @@ export async function getFieldInfo({
         newName = formInfo[name].name;
         field.value = "";
       } else newName = "honeypot";
-
       fieldInfo.push({ name: newName, value });
     }
   }

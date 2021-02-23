@@ -37,7 +37,7 @@ export default function FormInput(props: FInput) {
           onKeyUp={props.validation}
           onFocus={() => container.start("focus")}
           onBlur={() => container.start("initial")}
-          className="z-10 w-full h-8 p-4 text-xl placeholder-current border rounded-lg placeholder-opacity-30 lg:text-3xl focus:outline-none lg:h-14 focus:shadow-lg"
+          className="z-10 w-full h-8 p-4 text-xl placeholder-current border rounded-lg lg:text-3xl focus:outline-none lg:h-14 focus:shadow-lg"
           required
         />
         <AnimatePresence>
@@ -75,7 +75,6 @@ export default function FormInput(props: FInput) {
           onFocus={() => container.start("focus")}
           onBlur={() => container.start("initial")}
           className="z-10 w-full p-4 text-xl placeholder-current placeholder-opacity-0 border rounded-lg resize-none lg:text-3xl focus:outline-none h-30 lg:h-40 focus:shadow-md"
-          required
         />
         <AnimatePresence>
           {props.error && (

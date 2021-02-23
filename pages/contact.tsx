@@ -4,6 +4,8 @@ import Head from "next/head";
 import { AnimatePresence, motion, useAnimation} from "framer-motion";
 import { useThemedContext } from "kooki-components";
 import cuid from "cuid";
+import Cookies from 'cookies';
+import cookieCutter from 'cookie-cutter';
 
 //* Components
 import FormInput from "../components/Form/FormInput";
@@ -17,21 +19,33 @@ import formVariants from "@components/Form/formVariants";
 import { getFieldInfo, defFormInfo, checkAllValid, formValidation } from "@components/Form/helperFns";
 
 //* Static
-import FInputs from "@components/static/formInputs";
+import FInputs from "lib/static/formInputs";
 
-export async function getServerSideProps() {
-  const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
-  return { props: { uids } };
+interface Props {
+  uids: string[];
+  
 }
 
-export default function Contact(props: { uids: string[] }) {
+export async function getServerSideProps({req, res}) {
+  const cookies = new Cookies(req, res);
+  if (!cookies.get('uid')) {
+    cookies.set('uid', cuid(), {
+      maxAge: 3600,
+      sameSite: true,
+    })
+  }
+  const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
+  return { props: {uids} };
+}
+
+const Contact = ({ uids}: Props) => {
   const { colors, themeName } = useThemedContext();
   const [isDisabled, setIsDisabled] = React.useState(true);
-  const [formInfo, setFormInfo] = React.useState(defFormInfo(props.uids));
+  const [formInfo, setFormInfo] = React.useState(defFormInfo(uids));
   const [sentMessage, setSentMessage] = React.useState(["", ""]);
   const [isLoading, setIsLoading] = React.useState(false);
   const container = useAnimation();
-
+  
   React.useEffect(() => {
     container.start("visible");
   }, []);
@@ -45,9 +59,9 @@ export default function Contact(props: { uids: string[] }) {
     setIsDisabled(true);
     setIsLoading(true);
 
-    const fieldInfo = await getFieldInfo({ event, uids: props.uids, formInfo });
+    const fieldInfo = await getFieldInfo({ event, uids: uids, formInfo });
 
-    setFormInfo(defFormInfo(props.uids));
+    setFormInfo(defFormInfo(uids));
     
     let res;
 
@@ -56,10 +70,13 @@ export default function Contact(props: { uids: string[] }) {
         body: JSON.stringify(fieldInfo),
         headers: {
           "Content-Type": "application/json",
+          Accept: 'application/json',
+          credentials: 'same-origin'
         },
         method: "POST",
       });
     }
+    
     const { message, error } = res ? await res.json() : {message: '', error: "Message was unsuccessful due to the following reasons:\nInvalid information provided\n"};
 
     setSentMessage([message, error]);
@@ -94,7 +111,7 @@ export default function Contact(props: { uids: string[] }) {
     updateFormValues(name, {error, isValid});
     formChange();
   }
-
+  
   return (
     <>
       <Head>
@@ -113,7 +130,7 @@ export default function Contact(props: { uids: string[] }) {
         onSubmit={handleSubmit}
       >
         {FInputs.map((cProps, index) => {
-          const uid = props.uids[index];
+          const uid = uids[index];
 
           return (
             <FormInput
@@ -149,3 +166,5 @@ export default function Contact(props: { uids: string[] }) {
     </>
   );
 }
+
+export default Contact;

@@ -1,6 +1,6 @@
 //* Packages
 import React from "react";
-import { motion, Transition, useAnimation, Variant } from "framer-motion";
+import { motion, useAnimation} from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Components
@@ -25,15 +25,15 @@ export default function loadingDots(props: LoadingDotProps) {
   });
 
   return (
-    <motion.div
+    <motion.span
       initial="initial"
       animate={container}
       variants={loadingDotVariants.container(colors)}
-      className="flex items-center justify-center w-full h-full"
+      className="flex items-center justify-center w-full h-full self-end"
     >
       {new Array(props.num).fill(1).map((dot, index) => {
-        return <Dot key={index} colors={colors} />;
+        return <Dot key={index} colors={colors} size={props.size} />;
       })}
-    </motion.div>
+    </motion.span>
   );
 }

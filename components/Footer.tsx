@@ -7,7 +7,7 @@ import { useThemedContext } from "kooki-components";
 import IconContainer from "./Footer/IconContainer";
 
 //* Static
-import icons from "./static/icons";
+import icons from "../lib/static/icons";
 import footerVariants from "./Footer/footerVariants";
 
 export default function Footer() {

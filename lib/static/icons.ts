@@ -1,4 +1,4 @@
-import { IconInfo } from "../Footer/FooterInterface";
+import { IconInfo } from "../../components/Footer/FooterInterface";
 
 const icons: IconInfo[] = [
   {

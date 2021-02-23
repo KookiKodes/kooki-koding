@@ -1,11 +1,12 @@
+//* Packages
 import React from "react";
 import { motion, useAnimation, useIsPresent } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Variants
-import variants from "../components/variants/pageVariants";
+import variants from "../lib/variants/pageVariants";
 
-//* Syles
+//* Styles
 import general from "../styles/general.module.sass";
 
 interface Props {
@@ -29,15 +30,15 @@ export default function Page({ children }: Props) {
   return (
     <>
       {present && (
-        <motion.div
-          initial="initial"
-          className="relative flex flex-col items-center w-full h-full p-0 mb-12 text-center"
-          variants={variants(colors)}
-          animate={container}
-          exit="hidden"
-        >
-          {children}
-        </motion.div>
+          <motion.div
+            initial="initial"
+            className="relative flex flex-col items-center w-full h-full p-0 mb-12 text-center"
+            variants={variants(colors)}
+            animate={container}
+            exit="hidden"
+          >
+            {children}
+          </motion.div>
       )}
     </>
   );

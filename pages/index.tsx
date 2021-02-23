@@ -8,7 +8,7 @@ import { motion, Variants } from "framer-motion";
 import Typewriter from "@components/Typewriter";
 
 //* Variants
-import themeTransitionVariant from "@components/variants/themeTransitionVariant";
+import themeTransitionVariant from "lib/variants/themeTransitionVariant";
 
 //TODO Update stylesheets to work with mobile view -> use em and percentages to update accordingly so it will always be displayed correctly on any screen size/
 

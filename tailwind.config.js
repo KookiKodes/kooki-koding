@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       opacity: ["disabled"],
       cursor: ["disabled"],
+      placeholderOpacity: ["hover"],
     },
   },
   plugins: [],

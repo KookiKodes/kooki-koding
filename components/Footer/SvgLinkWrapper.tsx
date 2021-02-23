@@ -15,7 +15,7 @@ type Props = {
 
 export default function SvgLinkWrapper(props: Props) {
   const SvgComponent = dynamic(() =>
-    import(`../icons/${props.filename}.svg`).then((mod) => mod.ReactComponent)
+    import(`../../lib/icons/${props.filename}.svg`).then((mod) => mod.ReactComponent)
   );
   const { colors, themeName } = useThemedContext();
   const container = useAnimation();
