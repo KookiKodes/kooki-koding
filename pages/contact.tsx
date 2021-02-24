@@ -34,7 +34,7 @@ export async function getServerSideProps({req, res}) {
       sameSite: true,
       httpOnly: false,
       path: "/contact",
-      domain: "https://devinjackson.me/contact",
+      domain: "devinjackson.me",
       secure: false
     })
   }
