@@ -43,7 +43,7 @@ export default function FormBtn(props: FBtn) {
         onBlur={() => container.start(props.isDisabled ? " " : "theme")}
         onClick={() => container.start("theme")}
       >
-        {!props.isLoading ? "Submit" : <LoadingDots num={3} size={4} />}
+        {!props.isLoading ? "Submit" : <LoadingDots num={3} size={.75} />}
       </motion.button>
     </motion.div>
   );

@@ -20,7 +20,7 @@ const container = (colors): Variants => {
   };
 };
 
-const dot = (colors): Variants => {
+const dot = (colors, size: number): Variants => {
   return {
     theme: {
       background: colors.prim.color,
@@ -29,6 +29,8 @@ const dot = (colors): Variants => {
     initial: {
       y: "50%",
       opacity: 0.6,
+      width: `${size}em`,
+      height: `${size}em`
     },
     loading: {
       y: "-50%",

@@ -12,8 +12,8 @@ export default function Dot({ colors, size }: DotInterface) {
   return (
     <motion.span
       initial="initial"
-      variants={loadingDotVariants.dot(colors)}
-      className={`w-${size} h-${size} m-2 rounded-full`}
+      variants={loadingDotVariants.dot(colors, size)}
+      className={`m-2 rounded-full`}
       transition={{
         duration: 0.4,
         ease: "easeInOut",
