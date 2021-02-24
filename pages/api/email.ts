@@ -94,7 +94,8 @@ export default async function handler(req, res) {
       sameSite: true,
       httpOnly: false,
       path: "/contact",
-      secure: false
+      secure: false,
+      domain: "https://devinjackson.me/contact"
     })
   }
   
