@@ -1,5 +1,7 @@
 import nodemailer from "nodemailer";
-import Cookies from 'cookies';
+import {NextApiResponse, NextApiRequest} from 'next';
+import { serialize } from 'cookie'
+import cuid from 'cuid';
 
 const USER = process.env.user;
 const PASSWORD = process.env.pass;
@@ -84,24 +86,20 @@ const handleEmail = async (fields) => {
   }
 };
 
-export default async function handler(req, res) {
-  const cookies = new Cookies(req, res);
-  const uid = cookies.get('uid');
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   
-  if (!cookies.get('limit') && uid) {
-    cookies.set('limit', uid, {
+  if (!req.cookies.limit) {
+    res.setHeader('Set-Cookie', serialize('limit', String(cuid()), {
       maxAge: 120,
-      sameSite: true,
-      httpOnly: false,
-      path: "/contact",
-      secure: false,
-      domain: "https://devinjackson.me/contact"
-    })
+      domain: 'devinjackson.me',
+      path: "/"
+    }))
   }
   
   switch (true) {
-    case typeof cookies.get('limit') === 'string':
-      res.status(406).json({message: "", error: "Sorry, you have sent too many request, try again later."})
+    case req.cookies.limit !== undefined:
+      res.status(406).json({message: "", error: "The time between each email is limited, please try again later."});
+      break;
     case req.method === "POST":
       await handleEmail(req.body)
         .then((message) => {
@@ -113,5 +111,6 @@ export default async function handler(req, res) {
       break;
     case req.method === "GET":
       res.status(500).send("No route for provided get method.");
+      break;
   }
 }

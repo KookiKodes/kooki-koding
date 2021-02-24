@@ -1,11 +1,10 @@
 //* Packages
 import React from "react";
+import {NextPage} from 'next';
 import Head from "next/head";
 import { AnimatePresence, motion, useAnimation} from "framer-motion";
 import { useThemedContext } from "kooki-components";
 import cuid from "cuid";
-import Cookies from 'cookies';
-import cookieCutter from 'cookie-cutter';
 
 //* Components
 import FormInput from "../components/Form/FormInput";
@@ -22,27 +21,10 @@ import { getFieldInfo, defFormInfo, checkAllValid, formValidation } from "@compo
 import FInputs from "lib/static/formInputs";
 
 interface Props {
-  uids: string[];
-  
+  uids: string[]
 }
 
-export async function getServerSideProps({req, res}) {
-  const cookies = new Cookies(req, res);
-  if (!cookies.get('uid')) {
-    cookies.set('uid', cuid(), {
-      maxAge: 3600,
-      sameSite: true,
-      httpOnly: false,
-      path: "/contact",
-      domain: "devinjackson.me",
-      secure: false
-    })
-  }
-  const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
-  return { props: {uids} };
-}
-
-const Contact = ({ uids}: Props) => {
+const Contact: NextPage<Props> = ({ uids }: Props) => {
   const { colors, themeName } = useThemedContext();
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [formInfo, setFormInfo] = React.useState(defFormInfo(uids));
@@ -74,13 +56,12 @@ const Contact = ({ uids}: Props) => {
         body: JSON.stringify(fieldInfo),
         headers: {
           "Content-Type": "application/json",
-          Accept: 'application/json',
-          credentials: 'same-origin'
+          domain: "devinjackson.me",
+          path: "/",
         },
         method: "POST",
       });
     }
-    
     const { message, error } = res ? await res.json() : {message: '', error: "Message was unsuccessful due to the following reasons:\nInvalid information provided\n"};
 
     setSentMessage([message, error]);
@@ -170,5 +151,11 @@ const Contact = ({ uids}: Props) => {
     </>
   );
 }
+
+export async function getServerSideProps(req, res) {
+  const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
+  return { props: {uids} };
+}
+
 
 export default Contact;
