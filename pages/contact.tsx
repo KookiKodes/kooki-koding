@@ -34,7 +34,7 @@ export async function getServerSideProps({req, res}) {
       sameSite: true,
       httpOnly: false,
       path: "/contact",
-      secure: true,
+      secure: false
     })
   }
   const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
