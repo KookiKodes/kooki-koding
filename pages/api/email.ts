@@ -94,7 +94,7 @@ export default async function handler(req, res) {
       sameSite: true,
       httpOnly: false,
       path: "/contact",
-      secure: true,
+      secure: false,
     })
   }
   
