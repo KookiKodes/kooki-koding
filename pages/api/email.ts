@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
-import {NextApiResponse, NextApiRequest} from 'next';
-import { serialize } from 'cookie'
-import cuid from 'cuid';
+import { NextApiResponse, NextApiRequest } from "next";
+import { serialize } from "cookie";
+import cuid from "cuid";
 
 const USER = process.env.user;
 const PASSWORD = process.env.pass;
@@ -86,19 +86,30 @@ const handleEmail = async (fields) => {
   }
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (!req.cookies.limit) {
-    res.setHeader('Set-Cookie', serialize('limit', String(cuid()), {
-      maxAge: 120,
-      domain: 'devinjackson.me',
-      path: "/"
-    }))
+    res.setHeader(
+      "Set-Cookie",
+      serialize("limit", String(cuid()), {
+        maxAge: 120,
+        domain: "devinjackson.me",
+        path: "/",
+      })
+    );
   }
-  
+
   switch (true) {
     case req.cookies.limit !== undefined:
-      res.status(406).json({message: "", error: "The time between each email is limited, please try again later."});
+      res
+        .status(406)
+        .json({
+          message: "",
+          error:
+            "The time between each email is limited, please try again later.",
+        });
       break;
     case req.method === "POST":
       await handleEmail(req.body)

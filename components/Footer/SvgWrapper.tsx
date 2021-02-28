@@ -5,7 +5,6 @@ import React from "react";
 
 interface Props {
   path: string;
-  size: number;
   variants?: Variants;
   animate?: string;
   initial?: string;
@@ -13,12 +12,17 @@ interface Props {
 
 export default function SvgWrapper(props: Props) {
   const SvgComponent = dynamic(() =>
-    import(`../../lib/icons/${props.path}.svg`).then((mod) => mod.ReactComponent)
+    import(`../../lib/icons/${props.path}.svg`).then(
+      (mod) => mod.ReactComponent
+    )
   );
 
-  
   return (
-    <motion.div className={`h-${props.size} w-${props.size}`} initial={props.initial} animate={props.animate} variants={props.variants}>
+    <motion.div
+      initial={props.initial}
+      animate={props.animate}
+      variants={props.variants}
+    >
       <SvgComponent />
     </motion.div>
   );

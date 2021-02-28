@@ -30,15 +30,15 @@ export default function Page({ children }: Props) {
   return (
     <>
       {present && (
-          <motion.div
-            initial="initial"
-            className="relative flex flex-col items-center w-full h-full p-0 mb-12 text-center"
-            variants={variants(colors)}
-            animate={container}
-            exit="hidden"
-          >
-            {children}
-          </motion.div>
+        <motion.div
+          initial="initial"
+          className="relative flex flex-col items-center w-full h-full p-0 mb-12 text-center"
+          variants={variants(colors)}
+          animate={container}
+          exit="hidden"
+        >
+          {children}
+        </motion.div>
       )}
     </>
   );

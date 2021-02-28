@@ -13,7 +13,7 @@ export default function Dot({ colors, size }: DotInterface) {
     <motion.span
       initial="initial"
       variants={loadingDotVariants.dot(colors, size)}
-      className={`m-2 rounded-full`}
+      className="m-2 rounded-full"
       transition={{
         duration: 0.4,
         ease: "easeInOut",

@@ -1,3 +1,4 @@
 export interface LoadingSpinnerProps {
-  total: number;
+  spinnerSize: number;
+  dotSize: number;
 }

@@ -30,7 +30,7 @@ const dot = (colors, size: number): Variants => {
       y: "50%",
       opacity: 0.6,
       width: `${size}em`,
-      height: `${size}em`
+      height: `${size}em`,
     },
     loading: {
       y: "-50%",

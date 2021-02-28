@@ -13,22 +13,27 @@ import themes from "lib/static/themes";
 
 //* Style
 import "tailwindcss/tailwind.css";
-import "../styles/default.sass"
+import "../styles/default.sass";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const router = useRouter();
+  const router = useRouter();
+  const pathname = router.pathname;
 
-	return (
-		<Themed themes={themes} defaultTheme={"colorful"}>
-			<Layout>
-				<AnimatePresence initial={false}>
-					<Page key={router.route}>
-						<Component {...pageProps} />
-					</Page>
-				</AnimatePresence>
-			</Layout>
-		</Themed>
-	);
+  if (pathname.includes("/projects/[...projectTitle]")) {
+    return <Component {...pageProps} />;
+  }
+
+  return (
+    <Themed themes={themes} defaultTheme={"colorful"}>
+      <Layout>
+        <AnimatePresence initial={false}>
+          <Page key={router.route}>
+            <Component {...pageProps} />
+          </Page>
+        </AnimatePresence>
+      </Layout>
+    </Themed>
+  );
 }
 
 export default MyApp;

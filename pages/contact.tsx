@@ -1,8 +1,8 @@
 //* Packages
 import React from "react";
-import {NextPage} from 'next';
+import { NextPage } from "next";
 import Head from "next/head";
-import { AnimatePresence, motion, useAnimation} from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 import cuid from "cuid";
 
@@ -15,13 +15,18 @@ import MessageModal from "@components/MessageModal";
 import formVariants from "@components/Form/formVariants";
 
 //* Helper Fns
-import { getFieldInfo, defFormInfo, checkAllValid, formValidation } from "@components/Form/helperFns";
+import {
+  getFieldInfo,
+  defFormInfo,
+  checkAllValid,
+  formValidation,
+} from "@components/Form/helperFns";
 
 //* Static
 import FInputs from "lib/static/formInputs";
 
 interface Props {
-  uids: string[]
+  uids: string[];
 }
 
 const Contact: NextPage<Props> = ({ uids }: Props) => {
@@ -31,7 +36,7 @@ const Contact: NextPage<Props> = ({ uids }: Props) => {
   const [sentMessage, setSentMessage] = React.useState(["", ""]);
   const [isLoading, setIsLoading] = React.useState(false);
   const container = useAnimation();
-  
+
   React.useEffect(() => {
     container.start("visible");
   }, []);
@@ -48,10 +53,10 @@ const Contact: NextPage<Props> = ({ uids }: Props) => {
     const fieldInfo = await getFieldInfo({ event, uids: uids, formInfo });
 
     setFormInfo(defFormInfo(uids));
-    
+
     let res;
 
-    if (!fieldInfo.find(field => field.name === 'honeypot' && field.value)) {
+    if (!fieldInfo.find((field) => field.name === "honeypot" && field.value)) {
       res = await fetch("/api/email", {
         body: JSON.stringify(fieldInfo),
         headers: {
@@ -62,7 +67,13 @@ const Contact: NextPage<Props> = ({ uids }: Props) => {
         method: "POST",
       });
     }
-    const { message, error } = res ? await res.json() : {message: '', error: "Message was unsuccessful due to the following reasons:\nInvalid information provided\n"};
+    const { message, error } = res
+      ? await res.json()
+      : {
+          message: "",
+          error:
+            "Message was unsuccessful due to the following reasons:\nInvalid information provided\n",
+        };
 
     setSentMessage([message, error]);
     setIsLoading(false);
@@ -87,16 +98,16 @@ const Contact: NextPage<Props> = ({ uids }: Props) => {
   async function formChange() {
     const valid = await checkAllValid(formInfo);
 
-    if (valid) setIsDisabled(false); 
+    if (valid) setIsDisabled(false);
     else setIsDisabled(true);
   }
 
   async function validate(event: React.FormEvent) {
-    const {name, error, isValid} = await formValidation(event);
-    updateFormValues(name, {error, isValid});
+    const { name, error, isValid } = await formValidation(event);
+    updateFormValues(name, { error, isValid });
     formChange();
   }
-  
+
   return (
     <>
       <Head>
@@ -150,12 +161,11 @@ const Contact: NextPage<Props> = ({ uids }: Props) => {
       </AnimatePresence>
     </>
   );
-}
+};
 
-export async function getServerSideProps(req, res) {
+Contact.getInitialProps = async ({ req, res }) => {
   const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
-  return { props: {uids} };
-}
-
+  return { uids };
+};
 
 export default Contact;

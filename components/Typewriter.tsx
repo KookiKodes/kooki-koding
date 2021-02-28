@@ -1,7 +1,7 @@
 //* Packages
 import React from "react";
 import { useThemedContext } from "kooki-components";
-import { motion, useCycle, AnimatePresence, useAnimation } from "framer-motion";
+import { motion, useCycle, AnimatePresence } from "framer-motion";
 
 //* Components
 import TypewriterWord from "./Typewriter/TypewriterWord";

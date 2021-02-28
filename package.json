@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "export": "next build && next export"
   },
   "dependencies": {
     "@types/cookie": "^0.4.0",
@@ -15,12 +16,15 @@
     "cross-env": "^7.0.3",
     "cuid": "^2.1.8",
     "framer-motion": "^2.9.5",
+    "github-api": "^3.4.0",
+    "html-react-parser": "^1.2.4",
     "kooki-components": "^1.0.5",
     "next": "^10.0.6",
     "nodemailer": "^6.4.17",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-resize-detector": "^6.3.3",
+    "react-shadow": "^19.0.2",
     "sass": "^1.32.6",
     "tailwindcss": "^2.0.2"
   },

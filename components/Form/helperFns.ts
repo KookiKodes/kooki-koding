@@ -4,11 +4,11 @@ import FInputs from "../../lib/static/formInputs";
 interface FormValidObj {
   name: string;
   error: string;
-  isValid: boolean; 
+  isValid: boolean;
 }
 
 interface FormInfo {
-  [key: string]: FormValidObj
+  [key: string]: FormValidObj;
 }
 
 interface GetFieldInfo {
@@ -16,7 +16,6 @@ interface GetFieldInfo {
   uids: string[];
   formInfo: FormInfo;
 }
-
 
 export async function getFieldInfo({
   event,
@@ -55,27 +54,29 @@ export async function checkAllValid(formInfo: FormInfo): Promise<boolean> {
   const totalValid = keys.reduce((total, name) => {
     if (formInfo[name].isValid) total++;
     return total;
-  }, 0)
+  }, 0);
   return totalFields === totalValid;
 }
 
-export async function formValidation(event: React.FormEvent):Promise<FormValidObj> {
-    const t = event.target as HTMLTextAreaElement | HTMLInputElement;
-    const { value, name, type } = t;
-    let isValid = false;
-    let error = ""
+export async function formValidation(
+  event: React.FormEvent
+): Promise<FormValidObj> {
+  const t = event.target as HTMLTextAreaElement | HTMLInputElement;
+  const { value, name, type } = t;
+  let isValid = false;
+  let error = "";
 
-    switch (true) {
-      case type === "email":
-        isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
-        error = isValid ? "" : "Please provide a valid email address";
-        break;
-      case type === "text" || type === "textarea":
-        isValid = value.length > 0;
-        error = isValid ? "" : "Please fill the above input field";
-        break;
-      default:
-        break;
-    }
-    return {name, error, isValid}
+  switch (true) {
+    case type === "email":
+      isValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
+      error = isValid ? "" : "Please provide a valid email address";
+      break;
+    case type === "text" || type === "textarea":
+      isValid = value.length > 0;
+      error = isValid ? "" : "Please fill the above input field";
+      break;
+    default:
+      break;
+  }
+  return { name, error, isValid };
 }

@@ -1,6 +1,6 @@
 //* Packages
 import React from "react";
-import { motion, useAnimation} from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Components
