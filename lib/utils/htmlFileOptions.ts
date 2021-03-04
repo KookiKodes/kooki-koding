@@ -1,9 +1,8 @@
 //* Packages
-import { HTMLReactParserOptions, domToReact } from "html-react-parser";
+import { HTMLReactParserOptions, domToReact, Element } from "html-react-parser";
 import React, { MutableRefObject } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import { Element } from "node_modules/domhandler/lib/node";
 
 //* Utils
 import { reactEventList } from "../static/reactEventList";
