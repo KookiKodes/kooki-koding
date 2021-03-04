@@ -21,6 +21,7 @@ export default function ErrorPage() {
     if (router.asPath !== "/404") {
       router.push("/404");
     }
+    router.prefetch("/");
   }, [router]);
 
   return (
