@@ -7,10 +7,10 @@ import { useThemedContext } from "kooki-components";
 import SvgLinkWrapper from "./SvgLinkWrapper";
 
 //* Variants
-import iconVariants from "@components/Footer/iconVariants";
+import iconVariants from "@variants/iconVariants";
 
 //* Interfaces
-import { IconInfo } from "./FooterInterface";
+import { IconInfo } from "@interfaces/FooterInterface";
 
 type Props = {
   icons: IconInfo[];

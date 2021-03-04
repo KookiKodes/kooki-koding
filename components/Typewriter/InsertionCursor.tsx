@@ -4,10 +4,10 @@ import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Variants
-import typewriterVariants from "@components/Typewriter/typewriterVariants";
+import typewriterVariants from "@variants/typewriterVariants";
 
 //* Interfaces
-import { CursorProps } from "./TypewriterInterface";
+import { CursorProps } from "@interfaces/TypewriterInterface";
 
 export default function InsertionCursor(props: CursorProps) {
   const container = useAnimation();

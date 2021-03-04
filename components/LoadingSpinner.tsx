@@ -8,10 +8,10 @@ import SvgWrapper from "./Footer/SvgWrapper";
 import LoadingDots from "./LoadingDots";
 
 //* Variants
-import loadingVariants from "./LoadingSpinner/LoadingSpinnerVariants";
+import loadingVariants from "@variants/LoadingSpinnerVariants";
 
 //* Interfaces
-import { LoadingSpinnerProps } from "./LoadingSpinner/LoadingSpinnerInterface";
+import { LoadingSpinnerProps } from "@interfaces/LoadingSpinnerInterface";
 
 export default function LoadingSpinner(props: LoadingSpinnerProps) {
   const { colors, themeName } = useThemedContext();

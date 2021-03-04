@@ -4,13 +4,13 @@ import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Components
-import LoadingDots from "../LoadingDots";
+import LoadingDots from "@components/LoadingDots";
 
 //* Variants
-import formVariants from "./formVariants";
+import formVariants from "@variants/formVariants";
 
 //* Interfaces
-import { FBtn } from "./FormInterface";
+import { FBtn } from "@interfaces/FormInterface";
 
 export default function FormBtn(props: FBtn) {
   const container = useAnimation();

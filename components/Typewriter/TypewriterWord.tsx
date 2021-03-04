@@ -3,14 +3,14 @@ import React from "react";
 import { motion, useIsPresent } from "framer-motion";
 
 //* Variants
-import typewriterVariants from "@components/Typewriter/typewriterVariants";
+import typewriterVariants from "@variants/typewriterVariants";
 
 //* Components
 import TypewriterLetter from "./TypewriterLetter";
 import InsertionCursor from "./InsertionCursor";
 
 //* Interfaces
-import { WordProps } from "./TypewriterInterface";
+import { WordProps } from "@interfaces/TypewriterInterface";
 
 export default function TypewriterWord(props: WordProps) {
   const [isTyping, setIsTyping] = React.useState(true);

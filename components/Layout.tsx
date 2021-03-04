@@ -8,7 +8,7 @@ import Footer from "./Footer";
 import NavMenu from "./NavMenu";
 
 //* Variants
-import layoutVariants from "../lib/variants/layoutVariants";
+import layoutVariants from "@variants/layoutVariants";
 
 interface LayoutProps {
   children: JSX.Element | JSX.Element[];

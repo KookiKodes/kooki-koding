@@ -7,7 +7,7 @@ import { motion, useCycle, AnimatePresence } from "framer-motion";
 import TypewriterWord from "./Typewriter/TypewriterWord";
 
 //* Interfaces
-import { TypewriterProps } from "./Typewriter/TypewriterInterface";
+import { TypewriterProps } from "@interfaces/TypewriterInterface";
 
 export default function Typewriter(props: TypewriterProps) {
   const { colors } = useThemedContext();

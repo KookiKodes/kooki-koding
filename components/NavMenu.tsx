@@ -1,16 +1,10 @@
 //* Packages
 import React from "react";
-import {
-  motion,
-  useAnimation,
-  useCycle,
-  AnimatePresence,
-  useIsPresent,
-} from "framer-motion";
+import { motion, useAnimation, useCycle, useIsPresent } from "framer-motion";
 
 //* Variants
-import links from "../lib/static/links";
-import navbarVariants from "./NavMenu/navmenuVariants";
+import links from "@static/links";
+import navbarVariants from "@variants/navmenuVariants";
 
 //* Components
 import MenuBtn from "./NavMenu/MenuBtn";

@@ -1,8 +1,6 @@
 //* Packages
-import React from "react";
-import Head from "next/head";
+import React, { MutableRefObject } from "react";
 import root from "react-shadow";
-import { NextPage } from "next";
 import { useRouter } from "next/router";
 import parse from "html-react-parser";
 
@@ -11,10 +9,20 @@ import { htmlFileOptions } from "../../lib/utils/htmlFileOptions";
 
 interface Props {
   htmlFile: string;
+  availPaths: MutableRefObject<string[]>;
 }
 
-const Project: NextPage<Props> = ({ htmlFile }: Props) => {
+const Project = ({ htmlFile, availPaths }: Props) => {
   const router = useRouter();
+  const availPath = availPaths.current.includes(router.asPath);
+
+  React.useEffect(() => {
+    router.prefetch("/404");
+    if (!availPath) {
+      router.push("/404");
+    }
+  }, []);
+
   const { projectTitle } = router.query;
   let title: string, path: string;
 
@@ -26,11 +34,18 @@ const Project: NextPage<Props> = ({ htmlFile }: Props) => {
     path = projectTitle as string;
   }
 
-  return <root.main>{parse(htmlFile, htmlFileOptions(title, path))}</root.main>;
+  return (
+    <>
+      {availPath && (
+        <root.main>
+          {parse(htmlFile, htmlFileOptions({ title, path, availPaths }))}
+        </root.main>
+      )}
+    </>
+  );
 };
 
-Project.getInitialProps = async function ({ req, res }) {
-  console.log(req?.url);
+export async function getServerSideProps(context) {
   // const data = await fetch("http://localhost:3000/api/file", {
   //   method: "GET",
   //   headers: {
@@ -43,7 +58,7 @@ Project.getInitialProps = async function ({ req, res }) {
   let htmlFile = `<!DOCTYPE html>
           <html>
             <head>
-              <title>You're Mine</title>
+              <title>Test Page</title>
               <style>
                 h1 {
                   margin: 0;
@@ -67,6 +82,7 @@ Project.getInitialProps = async function ({ req, res }) {
               <main>
                 <h1 onmouseover="() => console.log('hello')">Hello World</h1>
                 <a href="/about">click me</a>
+                <a href="/">Home</a>
                 <button onclick="function (e) {
                   const hello = (e) => console.log(e);
                   hello(e);
@@ -81,7 +97,7 @@ Project.getInitialProps = async function ({ req, res }) {
           </html>
         `;
 
-  return { htmlFile };
-};
+  return { props: { htmlFile } };
+}
 
 export default Project;

@@ -6,8 +6,8 @@ import React from "react";
 interface Props {
   path: string;
   variants?: Variants;
-  animate?: string;
-  initial?: string;
+  animate?: string | object;
+  initial?: string | object;
 }
 
 export default function SvgWrapper(props: Props) {
@@ -18,12 +18,12 @@ export default function SvgWrapper(props: Props) {
   );
 
   return (
-    <motion.div
+    <motion.span
       initial={props.initial}
       animate={props.animate}
       variants={props.variants}
     >
       <SvgComponent />
-    </motion.div>
+    </motion.span>
   );
 }

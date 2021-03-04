@@ -1,6 +1,6 @@
 //* Packages
 import { HTMLReactParserOptions, domToReact } from "html-react-parser";
-import React, { ReactElement } from "react";
+import React, { MutableRefObject } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import { Element } from "node_modules/domhandler/lib/node";
@@ -9,6 +9,13 @@ import { Element } from "node_modules/domhandler/lib/node";
 import { reactEventList } from "../static/reactEventList";
 
 type ReactProp = Record<string, string | Function>;
+
+interface HtmlFileOptions {
+  title: string;
+  path: string;
+  availPaths: MutableRefObject<string[]>;
+}
+
 interface ToReactEvent {
   obj: object;
   propName: string;
@@ -72,8 +79,7 @@ const attribsToReactProps = (attribs: object): ReactProp => {
 };
 
 export const htmlFileOptions = (
-  projectTitle: string,
-  path: string
+  options: HtmlFileOptions
 ): HTMLReactParserOptions => {
   return {
     replace: (domNode) => {
@@ -97,13 +103,13 @@ export const htmlFileOptions = (
           Main = React.createElement(
             React.Fragment,
             props,
-            domToReact(dom.children, htmlFileOptions(projectTitle, path))
+            domToReact(dom.children, htmlFileOptions(options))
           );
         } else {
           Main = React.createElement(
             name,
             props,
-            domToReact(dom.children, htmlFileOptions(projectTitle, path))
+            domToReact(dom.children, htmlFileOptions(options))
           );
         }
 
@@ -111,7 +117,12 @@ export const htmlFileOptions = (
           case includeInHead.includes(name):
             return React.createElement(Head, null, Main);
           case dom.name === "a" && Reflect.has(props as object, "href"):
-            link = `/projects/${projectTitle}${dom.attribs.href}`;
+            link = `/projects/${options.title}${dom.attribs.href}`;
+
+            if (!options.availPaths.current.includes(link)) {
+              options.availPaths.current.push(link);
+            }
+
             Reflect.set(props as object, "href", link);
             delete Main.href;
             return React.createElement(Link, { href: link }, Main);

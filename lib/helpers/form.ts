@@ -1,5 +1,5 @@
-import { PostData } from "./FormInterface";
-import FInputs from "../../lib/static/formInputs";
+import { PostData } from "@interfaces/FormInterface";
+import FInputs from "@static/formInputs";
 
 interface FormValidObj {
   name: string;

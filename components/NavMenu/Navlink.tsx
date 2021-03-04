@@ -1,17 +1,14 @@
 //* Packages
 import React from "react";
 import Link from "next/link";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Interfaces
-import { Nlink } from "./NavMenuInterface";
+import { Nlink } from "@interfaces/NavMenuInterface";
 
 //* Variants
-import navlinkVariants from "./navlinkVariants";
-
-//* Style
-import navlink from "../../styles/Navlink.module.sass";
+import navlinkVariants from "@variants/navlinkVariants";
 
 export default function Navlink(props: Nlink) {
   const { colors } = useThemedContext();

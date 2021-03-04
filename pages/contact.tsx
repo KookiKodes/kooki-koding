@@ -7,12 +7,12 @@ import { useThemedContext } from "kooki-components";
 import cuid from "cuid";
 
 //* Components
-import FormInput from "../components/Form/FormInput";
+import FormInput from "@components/Form/FormInput";
 import FormBtn from "@components/Form/FormBtn";
 import MessageModal from "@components/MessageModal";
 
 //* Variants
-import formVariants from "@components/Form/formVariants";
+import formVariants from "@variants/formVariants";
 
 //* Helper Fns
 import {
@@ -20,7 +20,7 @@ import {
   defFormInfo,
   checkAllValid,
   formValidation,
-} from "@components/Form/helperFns";
+} from "@helper/form";
 
 //* Static
 import FInputs from "lib/static/formInputs";

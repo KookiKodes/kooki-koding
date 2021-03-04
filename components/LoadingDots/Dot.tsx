@@ -3,10 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 
 //* Variants
-import loadingDotVariants from "./loadingDotVariants";
+import loadingDotVariants from "@variants/loadingDotVariants";
 
 //* Interfaces
-import { DotInterface } from "./LoadingDotsInterface";
+import { DotInterface } from "@interfaces/LoadingDotsInterface";
 
 export default function Dot({ colors, size }: DotInterface) {
   return (

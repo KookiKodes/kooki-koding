@@ -1,5 +1,5 @@
 //* Packages
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
@@ -7,14 +7,14 @@ import { useThemedContext } from "kooki-components";
 import IconContainer from "./Footer/IconContainer";
 
 //* Static
-import icons from "../lib/static/icons";
-import footerVariants from "./Footer/footerVariants";
+import icons from "@static/icons";
+import footerVariants from "@variants/footerVariants";
 
 export default function Footer() {
   const container = useAnimation();
   const { colors, themeName } = useThemedContext();
 
-  React.useEffect(() => {
+  useEffect(() => {
     container.start("theme");
   }, [themeName]);
 

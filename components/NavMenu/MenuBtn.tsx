@@ -4,10 +4,10 @@ import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Static
-import variants from "./menubtnVariants";
+import variants from "@variants/menubtnVariants";
 
 //* Interfaces
-import { BarProps, MenuBtnProps } from "./NavMenuInterface";
+import { BarProps, MenuBtnProps } from "@interfaces/NavMenuInterface";
 
 const MenuBar = (props: BarProps) => {
   const { colors } = useThemedContext();

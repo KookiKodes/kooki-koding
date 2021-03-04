@@ -4,7 +4,7 @@ import { motion, useAnimation } from "framer-motion";
 import { useThemedContext } from "kooki-components";
 
 //* Variants
-import messageModalVariants from "./MessageModal/messageModalVariants";
+import messageModalVariants from "@variants/messageModalVariants";
 
 interface Props {
   message: string[];

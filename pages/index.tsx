@@ -1,19 +1,21 @@
 //* Packages
-import React from "react";
+import React, { useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useThemedContext } from "kooki-components";
-import { motion, Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 //* Components
 import Typewriter from "@components/Typewriter";
 
-//* Variants
-import themeTransitionVariant from "lib/variants/themeTransitionVariant";
-
-//TODO Update stylesheets to work with mobile view -> use em and percentages to update accordingly so it will always be displayed correctly on any screen size/
-
 export default function Index() {
   const { updateTheme, themeName } = useThemedContext();
+  const router = useRouter();
+
+  useEffect(() => {
+    router.prefetch("/contact");
+  });
+
   return (
     <>
       <Head>

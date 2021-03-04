@@ -7,10 +7,10 @@ import { useThemedContext } from "kooki-components";
 import Dot from "./LoadingDots/Dot";
 
 //* Variants
-import loadingDotVariants from "./LoadingDots/loadingDotVariants";
+import loadingDotVariants from "@variants/loadingDotVariants";
 
 //* Interfaces
-import { LoadingDotProps } from "./LoadingDots/LoadingDotsInterface";
+import { LoadingDotProps } from "@interfaces/LoadingDotsInterface";
 
 export default function loadingDots(props: LoadingDotProps) {
   const { colors, themeName } = useThemedContext();
