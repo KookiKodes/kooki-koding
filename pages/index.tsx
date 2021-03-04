@@ -1,7 +1,6 @@
 //* Packages
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useThemedContext } from "kooki-components";
 import { motion } from "framer-motion";
 
@@ -10,11 +9,6 @@ import Typewriter from "@components/Typewriter";
 
 export default function Index() {
   const { updateTheme, themeName } = useThemedContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    router.prefetch("/contact");
-  });
 
   return (
     <>

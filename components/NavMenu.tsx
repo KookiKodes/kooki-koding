@@ -1,6 +1,7 @@
 //* Packages
-import React from "react";
-import { motion, useAnimation, useCycle, useIsPresent } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { motion, useAnimation, useCycle } from "framer-motion";
 
 //* Variants
 import links from "@static/links";
@@ -15,17 +16,26 @@ import { useThemedContext } from "kooki-components";
 
 export default function NavMenu() {
   const { themeName, colors } = useThemedContext();
-  const isPresent = useIsPresent();
+  const router = useRouter();
   const container = useAnimation();
   const [navbarView, toggleNavbarView] = useCycle(false, true);
-  const [disable, toggleDisable] = React.useState(false);
+  const [disable, toggleDisable] = useState(false);
 
-  React.useEffect(() => {
-    if (navbarView) container.start("open");
-    else container.start("closed");
-  }, [navbarView]);
+  useEffect(() => {
+    if (navbarView) {
+      container.start("open");
+      const availRoutes = ["/contact", "/", "/projects"];
+      if (availRoutes.includes(router.route)) {
+        availRoutes.forEach((route) => {
+          if (route !== router.route) {
+            router.prefetch(route);
+          }
+        });
+      }
+    } else container.start("closed");
+  }, [navbarView, router.route]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     container.start("theme");
   }, [themeName]);
 
