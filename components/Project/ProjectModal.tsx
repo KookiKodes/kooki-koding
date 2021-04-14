@@ -10,79 +10,84 @@ import { useThemedContext } from "kooki-components";
 import { DefaultModalSize, ProjectModalProps } from "@interfaces/ProjectModal";
 
 export default function ProjectModal({
-	title,
-	desc,
-	img,
-	isViewing,
-	setIsViewing,
-	viewingTitle,
+  title,
+  desc,
+  img,
+  isViewing,
+  wasViewing,
+  setIsViewing,
+  viewingTitle,
 }: ProjectModalProps) {
-	const container = useAnimation();
-	// const { colors } = useThemedContext();
-	const viewRef = useRef<HTMLImageElement>(null);
-	const defaultModalSize = useRef<DefaultModalSize>({ width: 0, height: 0 });
+  const container = useAnimation();
+  // const { colors } = useThemedContext();
+  const viewRef = useRef<HTMLImageElement>(null);
+  const defaultModalSize = useRef<DefaultModalSize>({ width: 0, height: 0 });
 
-	useEffect(() => {
-		const width = viewRef?.current?.width as number;
-		const height = viewRef?.current?.height as number;
-		defaultModalSize.current = { width, height };
-	}, []);
+  useEffect(() => {
+    const width = viewRef?.current?.width as number;
+    const height = viewRef?.current?.height as number;
+    defaultModalSize.current = { width, height };
+  }, []);
 
-	useEffect(() => {
-		initView();
-	}, [isViewing]);
+  useEffect(() => {
+    initView();
+  }, [isViewing]);
 
-	async function initView() {
-		const { width, height } = defaultModalSize.current;
-		if (isViewing) {
-			await container.start({
-				height: height * 2,
-			});
-		}
-	}
+  async function initView() {
+    const { width, height } = defaultModalSize.current;
+    if (isViewing) {
+      await container.start({
+        height: height * 2,
+      });
+    }
+  }
 
-	function focusOnSelected() {
-		viewRef?.current?.scrollIntoView({
-			behavior: "smooth",
-			block: "center",
-			inline: "center",
-		});
-	}
+  function focusOnRef() {
+    viewRef?.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "center",
+    });
+  }
 
-	return (
-		<motion.li
-			layout
-			className='box-border relative flex flex-col items-center justify-end gap-12 overflow-hidden rounded-md cursor-pointer flex-basis-96 h-96 hover:shadow-lg'
-			onClick={() => setIsViewing(isViewing ? "" : title)}
-			animate={container}
-			transition={{ duration: 0.5 }}
-			onAnimationComplete={() => {
-				if (isViewing) focusOnSelected();
-				if (viewingTitle === "") focusOnSelected();
-			}}>
-			<motion.div
-				className='relative z-10 flex flex-col items-center self-end justify-center order-2 w-full py-4 text-2xl bg-black border-4 border-black h-1/6'
-				layout>
-				<motion.h1>
-					{title.substring(0, 1).toUpperCase() + title.substring(1)}
-				</motion.h1>
-				<AnimatePresence>
-					{isViewing && (
-						<motion.p className='relative z-10 order-2' exit={{ opacity: 0 }}>
-							{desc}
-						</motion.p>
-					)}
-				</AnimatePresence>
-			</motion.div>
-			{img && (
-				<motion.img
-					ref={viewRef}
-					layout
-					className='absolute order-1 object-cover object-top w-full h-full'
-					src={img}
-					alt={`${title} placeholder`}
-				/>
-			)}
-		</motion.li>
-	);
+  useEffect(() => {
+    setTimeout(() => {
+      if (viewingTitle === "" && wasViewing === title) focusOnRef();
+    }, 400);
+  }, [wasViewing]);
+
+  return (
+    <motion.li
+      layout
+      className="box-border relative flex flex-col items-center justify-end gap-12 overflow-hidden rounded-md cursor-pointer flex-basis-96 h-96 hover:shadow-lg"
+      onClick={() => setIsViewing(isViewing ? "" : title)}
+      animate={container}
+      transition={{ duration: 0.5 }}
+      onAnimationComplete={() => {
+        if (isViewing) focusOnRef();
+      }}
+    >
+      <motion.div className="relative z-10 flex flex-col items-center self-end justify-center order-2 w-full py-4 text-2xl bg-black border-4 border-black h-1/6">
+        <motion.h1>
+          {title.substring(0, 1).toUpperCase() + title.substring(1)}
+        </motion.h1>
+        <AnimatePresence>
+          {isViewing && (
+            <motion.p className="relative z-10 order-2" exit={{ opacity: 0 }}>
+              {desc}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </motion.div>
+      {img && (
+        <motion.img
+          layout
+          ref={viewRef}
+          className="absolute order-1 object-cover object-top w-full h-full"
+          src={img}
+          alt={`${title} placeholder`}
+        />
+      )}
+    </motion.li>
+  );
 }
