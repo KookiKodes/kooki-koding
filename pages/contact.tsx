@@ -29,7 +29,7 @@ interface Props {
   uids: string[];
 }
 
-const Contact: NextPage<Props> = ({ uids }: Props) => {
+const ContactPage: NextPage<Props> = ({ uids }: Props) => {
   const { colors, themeName } = useThemedContext();
   const [isDisabled, setIsDisabled] = React.useState(true);
   const [formInfo, setFormInfo] = React.useState(defFormInfo(uids));
@@ -114,7 +114,7 @@ const Contact: NextPage<Props> = ({ uids }: Props) => {
         <title>Devin Jackson | Send me a message</title>
       </Head>
       <header className="flex self-center justify-center w-5/6 mt-16 h-30 xl:w-3/6">
-        <h1 className="text-4xl xl:text-6xl">
+        <h1 className="text-4xl xl:text-6xl text-center">
           Thanks for stopping by. How may I help you?
         </h1>
       </header>
@@ -163,9 +163,9 @@ const Contact: NextPage<Props> = ({ uids }: Props) => {
   );
 };
 
-Contact.getInitialProps = async ({ req, res }) => {
+ContactPage.getInitialProps = async ({ req, res }) => {
   const uids = FInputs.reduce((arr: string[], item) => [...arr, cuid()], []);
   return { uids };
 };
 
-export default Contact;
+export default ContactPage;

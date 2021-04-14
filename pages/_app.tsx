@@ -1,5 +1,5 @@
 //* Packages
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
@@ -9,6 +9,9 @@ import { Themed } from "kooki-components";
 import Page from "@components/Page";
 import Layout from "@components/Layout";
 
+//* Interfaces
+import { Projects } from "@interfaces/ProjectFileInterface";
+
 //* Static
 import themes from "lib/static/themes";
 
@@ -16,9 +19,10 @@ import themes from "lib/static/themes";
 import "tailwindcss/tailwind.css";
 import "../styles/default.sass";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const availPaths = useRef<string[]>([]);
+  const projects = useRef<Projects>({});
 
   if (
     router.pathname === "/projects/[...projectTitle]" &&
@@ -34,6 +38,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </Themed>
     );
+  }
+
+  if (router.pathname === "/projects") {
+    Reflect.set(pageProps, "projects", projects);
   }
 
   if (router.pathname === "/404") {
@@ -61,4 +69,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default App;

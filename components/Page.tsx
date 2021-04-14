@@ -10,36 +10,35 @@ import variants from "../lib/variants/pageVariants";
 import general from "../styles/general.module.sass";
 
 interface Props {
-  children: JSX.Element[] | JSX.Element;
+	children: JSX.Element[] | JSX.Element;
 }
 
 export default function Page({ children }: Props) {
-  const present = useIsPresent();
-  const container = useAnimation();
-  const { colors, themeName } = useThemedContext();
+	const present = useIsPresent();
+	const container = useAnimation();
+	const { colors, themeName } = useThemedContext();
 
-  React.useEffect(() => {
-    if (present) container.start("visible");
-    else container.start("hidden");
-  }, [present]);
+	React.useEffect(() => {
+		if (present) container.start("visible");
+		else container.start("hidden");
+	}, [present]);
 
-  React.useEffect(() => {
-    container.start("theme");
-  }, [themeName]);
+	React.useEffect(() => {
+		container.start("theme");
+	}, [themeName]);
 
-  return (
-    <>
-      {present && (
-        <motion.div
-          initial="initial"
-          className="relative flex flex-col items-center w-full h-full p-0 mb-12 text-center"
-          variants={variants(colors)}
-          animate={container}
-          exit="hidden"
-        >
-          {children}
-        </motion.div>
-      )}
-    </>
-  );
+	return (
+		<>
+			{present && (
+				<motion.div
+					initial='initial'
+					className='relative flex flex-col items-center justify-center w-screen h-auto min-h-screen p-0 mb-12'
+					variants={variants(colors)}
+					animate={container}
+					exit='hidden'>
+					{children}
+				</motion.div>
+			)}
+		</>
+	);
 }

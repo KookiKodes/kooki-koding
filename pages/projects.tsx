@@ -1,39 +1,67 @@
 //* Packages
-import React from "react";
+import React, { useEffect, MutableRefObject, useState } from "react";
 import Head from "next/head";
-import Link from "next/link";
 import { useThemedContext } from "kooki-components";
-import { motion } from "framer-motion";
+import ProjectGrid from "@components/Project";
+import { motion, AnimateSharedLayout } from "framer-motion";
 
 //* Components
 import LoadingSpinner from "@components/LoadingSpinner";
 
-export async function getServerSideProps(context) {
-  return {
-    props: {},
-  };
+//* Interfaces
+import { Projects } from "@interfaces/ProjectFileInterface";
+
+interface Props {
+	projects: MutableRefObject<Projects>;
 }
 
-export default function Project() {
-  const { colors, themeName } = useThemedContext();
-  const [isLoading, setIsLoading] = React.useState(false);
+export default function ProjectsPage({ projects }: Props) {
+	const { colors, themeName } = useThemedContext();
+	const [isLoading, setIsLoading] = useState(true);
+	const [isViewing, setIsViewing] = useState("");
 
-  return (
-    <>
-      <Head>
-        <title>Devin Jackson | Projects</title>
-      </Head>
-      <header className="w-full h-1/6 flex flex-col items-center justify-center">
-        <h1 className="text-6xl">My Projects</h1>
-      </header>
-      <motion.section className="w-full h-5/6">
-        <Link href="/projects/nothing">
-          <a className="text-2xl block">Go to Test Page</a>
-        </Link>
+	async function getData() {
+		const data = await fetch("/api/projects", {
+			method: "GET",
+			headers: {
+				"Content-Disposition": "attachment;",
+			},
+		});
+		const files = await data.json();
+		projects.current = Object.assign(projects.current, files);
+		setIsLoading(false);
+	}
 
-        {/* {isLoading && <LoadingSpinner spinnerSize={8} dotSize={0.5} />}
-        <button onClick={() => setIsLoading(!isLoading)}>Load</button> */}
-      </motion.section>
-    </>
-  );
+	useEffect(() => {
+		if (Object.keys(projects.current).length === 0) {
+			getData();
+		} else setIsLoading(false);
+	}, []);
+
+	return (
+		<>
+			<Head>
+				<title>Devin Jackson | Projects</title>
+			</Head>
+			<header className='flex flex-col items-center justify-start w-full mb-10 h-1/6'>
+				<h1 className='text-6xl'>My Projects</h1>
+			</header>
+			<motion.section
+				className='relative flex items-start justify-center w-full h-5/6'
+				layout>
+				{isLoading && <LoadingSpinner spinnerSize={8} dotSize={0.5} />}
+				{Object.keys(projects.current).length > 0 && (
+					<AnimateSharedLayout>
+						<ProjectGrid
+							isViewing={isViewing}
+							setIsViewing={setIsViewing}
+							valueArray={Object.values(projects.current).concat(
+								Object.values(projects.current)
+							)}
+						/>
+					</AnimateSharedLayout>
+				)}
+			</motion.section>
+		</>
+	);
 }

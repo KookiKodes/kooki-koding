@@ -31,11 +31,11 @@ export default function NavlinkContainer(props: NlinkContainer) {
   }, [router.route]);
 
   return (
-    <AnimateSharedLayout>
-      <motion.ul
-        className="relative flex flex-col justify-start w-full h-full p-0 mt-20 list-none"
-        variants={navlinkVariants.container(colors)}
-      >
+    <motion.ul
+      className="relative flex flex-col justify-start w-full h-full p-0 mt-20 list-none"
+      variants={navlinkVariants.container(colors)}
+    >
+      <AnimateSharedLayout>
         <AnimatePresence>
           {props.isOpen &&
             props.links.map((link, index) => {
@@ -52,7 +52,7 @@ export default function NavlinkContainer(props: NlinkContainer) {
               );
             })}
         </AnimatePresence>
-      </motion.ul>
-    </AnimateSharedLayout>
+      </AnimateSharedLayout>
+    </motion.ul>
   );
 }

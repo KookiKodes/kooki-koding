@@ -15,6 +15,7 @@ export default function Navlink(props: Nlink) {
 
   return (
     <motion.li
+      layout
       className="relative flex flex-col items-center justify-center w-full h-20 my-2 md:my-4 md:h-32"
       variants={navlinkVariants.link(colors)}
       animate={{
@@ -29,7 +30,6 @@ export default function Navlink(props: Nlink) {
       {props.isHovering && (
         <motion.div
           layoutId="selector"
-          layout
           initial="theme"
           variants={navlinkVariants.hoverSelector(colors)}
           className="absolute z-10 w-full h-full shadow-lg top-1 md:top-2"
@@ -42,7 +42,6 @@ export default function Navlink(props: Nlink) {
       {props.isActive && (
         <motion.div
           layoutId="active"
-          layout
           variants={navlinkVariants.activeSelector(colors)}
           className="box-border absolute z-30 w-40 h-16 border-2 border-current rounded-md shadow-md top-3 md:w-96 md:h-28 md:top-4"
           transition={{
