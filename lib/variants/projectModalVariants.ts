@@ -5,9 +5,6 @@ const container = (colors): Variants => {
 		viewing: {
 			zIndex: 10,
 		},
-		notViewing: {
-			zIndex: 1,
-		},
 	};
 };
 
