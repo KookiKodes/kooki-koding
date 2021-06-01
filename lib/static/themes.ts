@@ -1,27 +1,94 @@
-const themes = {
-  test: {
-    prim: `rgba(255,255,255,1)`,
-    sec: `rgba(240,240,240,1)`,
-    bkSec: `rgba(169,169,169,1)`,
-    bkPrim: `rgba(128,128,128,1)`,
-    bkDark: `rgba(0,0,0,1)`,
-    error: "rgba(169,169,169,1)",
-  },
-  default: {
-    prim: `rgba(172,193,138,1)`,
-    sec: `rgba(141,169,196,1)`,
-    bkPrim: `rgba(172,193,138)`,
-    bkSec: `rgba(41,112,69,1)`,
-    bkDark: `rgba(33,39,56,1)`,
-  },
-  colorful: {
-    prim: "#1B998B",
-    sec: "#E59F71",
-    bkPrim: "#DA4167",
-    bkSec: "#FFFD82",
-    bkDark: "#2D3047",
-    error: "#DA4167",
-  },
-};
+//* Packages
+import { extendTheme } from "@chakra-ui/react";
 
-export default themes;
+//* Static
+import { Menu } from "@static/themes/navigation/menu";
+import { Navigation } from "@static/themes/navigation/navigation";
+import { NavlinkContainer } from "@static/themes/navigation/navlinkContainer";
+import { Page } from "@static/themes/layout/page";
+import { Layout } from "@static/themes/layout/layout";
+
+//* Helper Functions
+import { objFromRgba } from "@helper/objFromRgba";
+
+export default extendTheme({
+	styles: {
+		global: {
+			"#tsparticles": {
+				position: "absolute",
+				width: "100%",
+				height: "100%",
+				zIndex: 1,
+				top: 0,
+				left: 0,
+			},
+		},
+	},
+	components: {
+		Navigation,
+		NavlinkContainer,
+		Menu,
+		Page,
+		Layout,
+	},
+	config: {
+		initialColorMode: "dark",
+		useSystemColorMode: false,
+	},
+	fonts: {
+		heading: "'Fira Code', monospace",
+		body: "'Fira Code', monospace",
+	},
+	colors: {
+		primary: {
+			50: objFromRgba("rgba(228, 251, 236, 1)"),
+			100: objFromRgba("rgba(196, 234, 212, 1)"),
+			200: objFromRgba("rgba(162, 219, 186, 1)"),
+			300: objFromRgba("rgba(128, 203, 159, 1)"),
+			400: objFromRgba("rgba(93, 188, 133, 1)"),
+			500: objFromRgba("rgba(67, 162, 107, 1)"),
+			600: objFromRgba("rgba(50, 126, 82, 1)"),
+			700: objFromRgba("rgba(34, 90, 59, 1)"),
+			800: objFromRgba("rgba(16, 55, 34, 1)"),
+			900: objFromRgba("rgba(0, 21, 7, 1)"),
+		},
+		neutral: {
+			50: objFromRgba("rgba(237, 240, 253, 1)"),
+			100: objFromRgba("rgba(206, 209, 229, 1)"),
+			200: objFromRgba("rgba(176, 179, 207, 1)"),
+			300: objFromRgba("rgba(144, 148, 186, 1)"),
+			400: objFromRgba("rgba(113, 118, 166, 1)"),
+			500: objFromRgba("rgba(88, 92, 141, 1)"),
+			600: objFromRgba("rgba(68, 72, 110, 1)"),
+			700: objFromRgba("rgba(50, 53, 82, 1)"),
+			800: objFromRgba("rgba(28, 31, 50, 1)"),
+			900: objFromRgba("rgba(9, 9, 22, 1)"),
+		},
+		complementary: {
+			50: objFromRgba("rgba(255, 234, 234, 1)"),
+			100: objFromRgba("rgba(237, 200, 200, 1)"),
+			200: objFromRgba("rgba(219, 163, 166, 1)"),
+			300: objFromRgba("rgba(203, 128, 130, 1)"),
+			400: objFromRgba("rgba(188, 93, 94, 1)"),
+			500: objFromRgba("rgba(162, 67, 69, 1)"),
+			600: objFromRgba("rgba(127, 52, 53, 1)"),
+			700: objFromRgba("rgba(92, 36, 38, 1)"),
+			800: objFromRgba("rgba(56, 20, 22, 1)"),
+			900: objFromRgba("rgba(26, 3, 5, 1)"),
+		},
+		accent: {
+			50: objFromRgba("rgba(223, 251, 247, 1)"),
+			100: objFromRgba("rgba(192, 237, 229, 1)"),
+			200: objFromRgba("rgba(157, 222, 212, 1)"),
+			300: objFromRgba("rgba(122, 208, 195, 1)"),
+			400: objFromRgba("rgba(86, 194, 177, 1)"),
+			500: objFromRgba("rgba(61, 169, 152, 1)"),
+			600: objFromRgba("rgba(44, 131, 118, 1)"),
+			700: objFromRgba("rgba(28, 95, 84, 1)"),
+			800: objFromRgba("rgba(8, 57, 51, 1)"),
+			900: objFromRgba("rgba(0, 22, 17, 1)"),
+		},
+		light: objFromRgba("rgba(245, 245, 252, 1)"),
+		dark: objFromRgba("rgba(26, 28, 43, 1)"),
+	},
+});
