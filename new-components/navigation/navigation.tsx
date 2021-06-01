@@ -25,7 +25,7 @@ interface Props {
 export function Navigation({ containerRef, hideLinks }: Props) {
 	const router = useRouter();
 	const [isOpen, setIsOpen] = useBoolean(false);
-	const [disabled, setDisabled] = useBoolean(false);
+	// const [disabled, setDisabled] = useBoolean(false);
 
 	React.useEffect(() => {
 		if (hideLinks) setIsOpen.off();

@@ -6,7 +6,7 @@ import { Portal, useMultiStyleConfig } from "@chakra-ui/react";
 import { MotionVStack, MotionBox } from "../framer";
 
 //* Variants
-import { bars, menuBtnVariant } from "@variants/menubtnVariants";
+import { bars } from "@variants/menubtnVariants";
 
 interface Props {
 	state: string;
