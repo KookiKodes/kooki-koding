@@ -1,5 +1,5 @@
 //* Packages
-import React, { useEffect, MutableRefObject, useState } from "react";
+import React, { MutableRefObject } from "react";
 import Head from "next/head";
 
 import { Projects } from "@interfaces/ProjectFileInterface";

@@ -2,15 +2,15 @@
 import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import cuid from "cuid";
+// import cuid from "cuid";
 
 //* Helper Fns
-import {
-	getFieldInfo,
-	defFormInfo,
-	checkAllValid,
-	formValidation,
-} from "@helper/form";
+// import {
+// 	getFieldInfo,
+// 	defFormInfo,
+// 	checkAllValid,
+// 	formValidation,
+// } from "@helper/form";
 
 interface Props {
 	uids: string[];
