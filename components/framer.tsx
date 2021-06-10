@@ -8,6 +8,7 @@ import {
 	Flex,
 	VStack,
 	LinkOverlay,
+	Icon,
 	Portal,
 } from "@chakra-ui/react";
 import { motion, MotionProps, isValidMotionProp } from "framer-motion";
@@ -52,4 +53,8 @@ export const MotionMain = forwardRef((props, ref) => (
 
 export const MotionNav = forwardRef((props, ref) => (
 	<MotionBox as='nav' ref={ref} {...props} />
+));
+
+export const MotionIcon = forwardRef((props, ref) => (
+	<MotionBox as={Icon} ref={ref} {...props} />
 ));

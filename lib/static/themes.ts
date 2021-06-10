@@ -2,11 +2,10 @@
 import { extendTheme } from "@chakra-ui/react";
 
 //* Static
-import { Menu } from "@static/themes/navigation/menu";
 import { Navigation } from "@static/themes/navigation/navigation";
-import { NavlinkContainer } from "@static/themes/navigation/navlinkContainer";
 import { Page } from "@static/themes/layout/page";
 import { Layout } from "@static/themes/layout/layout";
+import { Footer } from "@static/themes/footer/footer";
 
 //* Helper Functions
 import { objFromRgba } from "@helper/objFromRgba";
@@ -14,6 +13,9 @@ import { objFromRgba } from "@helper/objFromRgba";
 export default extendTheme({
 	styles: {
 		global: {
+			html: {
+				overflowX: "hidden",
+			},
 			"#tsparticles": {
 				position: "absolute",
 				width: "100%",
@@ -26,10 +28,9 @@ export default extendTheme({
 	},
 	components: {
 		Navigation,
-		NavlinkContainer,
-		Menu,
 		Page,
 		Layout,
+		Footer,
 	},
 	config: {
 		initialColorMode: "dark",

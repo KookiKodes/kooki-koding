@@ -1,35 +1,45 @@
 import { ComponentStyleConfig, theme } from "@chakra-ui/react";
 
 export const Navigation: ComponentStyleConfig = {
-	parts: ["container", "position", "title", "linkContainer", "link"],
+	parts: [
+		"container",
+		"position",
+		"title",
+		"linkContainer",
+		"link",
+		"hamburgerBtn",
+		"hamburgerBar",
+		"hoverLinkSelector",
+		"activeLinkSelector",
+		"focusHoverSelector",
+	],
 	baseStyle: ({ colorMode }) => {
 		const dark = colorMode === "dark";
 		return {
 			container: {
 				display: "flex",
 				position: "fixed",
-				p: "1rem",
 				backdropFilter: "blur(3px)",
 				zIndex: 20,
 				perspective: "100rem",
+				transition: "color .5s ease",
 				top: 0,
 				left: 0,
 			},
-			position: {},
+			position: {
+				p: "1rem 2rem",
+				position: "relative",
+			},
 			title: {
 				fontWeight: "light",
 				userSelect: "none",
 				_hover: { color: "primary.400.solid" },
 			},
-			linkContainer: {
-				position: "relative",
-			},
 			link: {
 				display: "flex",
 				position: "relative",
 				cursor: "pointer",
-				zIndex: 10,
-				transition: "all .3s",
+				textShadow: "0 0 1rem currentColor",
 				_hover: {
 					color: "primary.400.solid",
 				},
@@ -37,15 +47,38 @@ export const Navigation: ComponentStyleConfig = {
 			activeLinkSelector: {
 				position: "absolute",
 				bg: "transparent",
-				zIndex: 5,
+			},
+			focusHoverSelector: {
+				position: "absolute",
+				w: "100vw",
+				h: "100vh",
+				bgGradient: "radial(circle, neutral.600.solid -20%, neutral.800.0 30%)",
+				opacity: "1",
+				pointerEvents: "none",
 			},
 			hoverLinkSelector: {
 				position: "absolute",
 				w: "100%",
-				h: "100%",
 				zIndex: "6",
 				backdropFilter: "blur(2px)",
-				bg: "transparent",
+				bg: "currentColor",
+			},
+			hamburgerBtn: {
+				w: "3.5rem",
+				h: "2.5rem",
+				justifyContent: "center",
+				alignItems: "center",
+				cursor: "pointer",
+				position: "relative",
+				_hover: { color: "complementary.500.solid" },
+				transition: "color .3s ease",
+			},
+			hamburgerBar: {
+				w: "100%",
+				h: ".4rem",
+				borderRadius: ".2rem",
+				boxShadow: "0 0 .3rem currentColor",
+				bg: "currentColor",
 			},
 		};
 	},
@@ -64,6 +97,9 @@ export const Navigation: ComponentStyleConfig = {
 				px: 6,
 				w: "auto",
 			},
+			hoverLinkSelector: {
+				h: "100%",
+			},
 		},
 		isOpen: {
 			title: {
@@ -77,8 +113,11 @@ export const Navigation: ComponentStyleConfig = {
 				fontSize: ["4xl", "6xl"],
 				fontWeight: 100,
 				w: "100%",
-				py: 1,
-				my: 8,
+				py: 12,
+				// my: 8,
+			},
+			hoverLinkSelector: {
+				h: "60%",
 			},
 		},
 	},
@@ -88,6 +127,7 @@ export const Navigation: ComponentStyleConfig = {
 			return {
 				container: {
 					bg: dark ? "neutral.800.80" : "neutral.400.80",
+					borderBottom: ".2rem solid currentColor",
 					color: dark ? "neutral.700.solid" : "neutral.200.solid",
 					w: "100vw",
 					h: "min-content",
@@ -97,6 +137,7 @@ export const Navigation: ComponentStyleConfig = {
 					},
 					alignItems: "center",
 					justifyContent: "center",
+					userSelect: "none",
 				},
 				position: {
 					justifyContent: "space-between",
@@ -110,9 +151,16 @@ export const Navigation: ComponentStyleConfig = {
 					alignItems: "center",
 					justifyContent: "space-around",
 				},
+				hoverLinkSelector: {
+					boxShadow: "0 0 1rem currentColor",
+					borderRadius: ".3rem",
+				},
 				link: {
 					justifyContent: "center",
 					alignItems: "center",
+				},
+				hamburgerBtn: {
+					color: "neutral.700.solid",
 				},
 			};
 		},
@@ -120,8 +168,8 @@ export const Navigation: ComponentStyleConfig = {
 			const dark = colorMode === "dark";
 			return {
 				container: {
-					bg: dark ? "neutral.700.80" : "neutral.400.80",
-					color: dark ? "neutral.600.solid" : "neutral.200.solid",
+					bg: dark ? "neutral.800.80" : "neutral.400.80",
+					color: dark ? "neutral.400.solid" : "neutral.200.solid",
 					w: "100%",
 					h: "100vh",
 					alignItems: "center",
@@ -143,6 +191,13 @@ export const Navigation: ComponentStyleConfig = {
 				link: {
 					justifyContent: "center",
 					alignItems: "center",
+					transition: "color .4s ease",
+				},
+				hamburgerBtn: {
+					color: "neutral.500.solid",
+				},
+				title: {
+					transition: "color .3s ease",
 				},
 			};
 		},

@@ -1,8 +1,6 @@
 // const fs = require("fs");
 // const path = require("path");
 // const glob = require("glob");
-const withSvgr = require("@newhighsco/next-plugin-svgr");
-
 // const genImportThemeConfig = async () => {
 // 	const srcDir = path.resolve("lib", "static", "themes");
 // 	outputDir = path.resolve("lib", "configs");
@@ -25,8 +23,13 @@ const withSvgr = require("@newhighsco/next-plugin-svgr");
 
 // genImportThemeConfig();
 
-module.exports = withSvgr({
-	svgrOptions: {
-		/* config options here */
+module.exports = {
+	webpack(config) {
+		config.module.rules.push({
+			test: /\.svg$/,
+			use: ["@svgr/webpack"],
+		});
+
+		return config;
 	},
-});
+};

@@ -1,6 +1,6 @@
 //* Packages
 import * as React from "react";
-import { Portal, useMultiStyleConfig } from "@chakra-ui/react";
+import { useStyles } from "@chakra-ui/react";
 
 //* Components
 import { MotionVStack, MotionBox } from "../framer";
@@ -14,11 +14,11 @@ interface Props {
 }
 
 export function MenuBtn({ toggleOpen, state }: Props) {
-	const styles = useMultiStyleConfig("Menu", {});
+	const styles = useStyles();
 
 	return (
 		<MotionVStack
-			sx={styles.btnHamburger}
+			sx={styles.hamburgerBtn}
 			onClick={toggleOpen}
 			initial={{ x: 100, opacity: 0 }}
 			animate={{ x: 0, opacity: 1 }}

@@ -5,9 +5,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
 //* Components
-import { Page } from "../new-components/layout/page";
-import { Layout } from "../new-components/layout/layout";
-import { Fonts } from "../new-components/fonts";
+import { Page } from "@components/layout/page";
+import { Layout } from "@components/layout/layout";
+import { Fonts } from "@components/fonts";
 
 //* Static
 import theme from "@static/themes";

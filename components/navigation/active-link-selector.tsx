@@ -12,13 +12,13 @@ export function ActiveLinkSelector({ charLeft, charRight, link }: Props) {
 	const style = useStyles();
 
 	return (
-		<MotionBox
+		<MotionSpan
 			sx={style.activeLinkSelector}
 			layoutId='activeLink'
 			transition={{ type: "spring", damping: 13 }}>
 			{charLeft}
 			{<MotionSpan visibility='hidden'>{link}</MotionSpan>}
 			{charRight}
-		</MotionBox>
+		</MotionSpan>
 	);
 }

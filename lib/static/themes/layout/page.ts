@@ -9,12 +9,12 @@ export const Page: ComponentStyleConfig = {
 			alignItems: "center",
 			justifyContent: "center",
 			pointerEvents: "none",
-			zIndex: "5",
+			zIndex: "10",
 		};
 	},
 	sizes: {
 		auto: {
-			h: "auto",
+			h: "min-content",
 			w: "100vw",
 			minH: "100vh",
 		},

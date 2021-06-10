@@ -19,13 +19,14 @@ export function BgOverlay() {
 			<Box
 				zIndex='2'
 				position='absolute'
-				w='100vw'
-				h='100vh'
+				w='100%'
+				h='100%'
 				bgGradient='linear(to-b, dark.70 50%, neutral.800.70) 80%'
 				backdropFilter='blur(3px)'
 				pointerEvents='none'
 				top='0'
 				left='0'
+				overflowX='hidden'
 			/>
 			<Particles
 				id='tsparticles'
@@ -92,14 +93,19 @@ export function BgOverlay() {
 					},
 					particles: {
 						color: {
-							value: theme.colors.accent["300"].solid,
+							value: [
+								// theme.colors.accent["500"].solid,
+								theme.colors.accent["400"].solid,
+								theme.colors.accent["500"].solid,
+								theme.colors.accent["600"].solid,
+							],
 						},
 						links: {
 							color: theme.colors.accent["700"].solid,
 							distance: 150,
 							enable: true,
 							opacity: 0.8,
-							width: 5,
+							width: 1,
 						},
 						collisions: {
 							enable: true,
