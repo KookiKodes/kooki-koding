@@ -4,7 +4,11 @@ import { useTheme, Box } from "@chakra-ui/react";
 import themes from "@static/themes";
 import { useReducedMotion } from "framer-motion";
 
-export function BgOverlay() {
+interface Props {
+	isMobile: boolean;
+}
+
+export function BgOverlay({ isMobile }: Props) {
 	const particlesInit = React.useRef();
 	const particlesLoaded = React.useRef();
 	const isReduced = useReducedMotion();
@@ -25,7 +29,7 @@ export function BgOverlay() {
 				left='0'
 				overflowX='hidden'
 			/>
-			{!isReduced && (
+			{!isMobile && (
 				<Particles
 					id='tsparticles'
 					init={particlesInit.current}
