@@ -1,7 +1,7 @@
 //* Packages
 import * as React from "react";
 import NextLink from "next/link";
-import { useStyles } from "@chakra-ui/react";
+import { useStyles, useBreakpoint } from "@chakra-ui/react";
 
 //* Components
 import { MotionLinkOverlay, MotionSpan } from "../framer";
@@ -25,6 +25,7 @@ export function Navlink({
 	onClick,
 }: NavlinkProps) {
 	const styles = useStyles();
+	const breakpoint = useBreakpoint();
 
 	return (
 		<NextLink href={to}>
@@ -45,7 +46,7 @@ export function Navlink({
 					<ActiveLinkSelector link={name} charLeft='[' charRight=']' />
 				)}
 				<MotionSpan zIndex='20'>{name}</MotionSpan>
-				{hoverSelector && (
+				{hoverSelector && !["base", "sm"].includes(breakpoint as string) && (
 					<HoverLinkSelector
 						hasHoveredLink={hoverSelector}
 						hovering={hovering}

@@ -11,7 +11,6 @@ interface Props {
 export function BgOverlay({ isMobile }: Props) {
 	const particlesInit = React.useRef();
 	const particlesLoaded = React.useRef();
-	const isReduced = useReducedMotion();
 
 	const theme = useTheme();
 

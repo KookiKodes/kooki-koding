@@ -9,7 +9,7 @@ export default function HomePage() {
 			<Head>
 				<title>Devin Jackson | Front-end Developer</title>
 			</Head>
-			<header className='flex flex-col items-center justify-center w-full text-6xl h-96'>
+			<header>
 				<Heading
 					className='mb-8'
 					onClick={() => console.log("hello world")}
