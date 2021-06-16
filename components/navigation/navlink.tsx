@@ -25,7 +25,6 @@ export function Navlink({
 	onClick,
 }: NavlinkProps) {
 	const styles = useStyles();
-	const breakpoint = useBreakpoint();
 
 	return (
 		<NextLink href={to}>
@@ -46,7 +45,7 @@ export function Navlink({
 					<ActiveLinkSelector link={name} charLeft='[' charRight=']' />
 				)}
 				<MotionSpan zIndex='20'>{name}</MotionSpan>
-				{hoverSelector && !["base", "sm"].includes(breakpoint as string) && (
+				{hoverSelector && (
 					<HoverLinkSelector
 						hasHoveredLink={hoverSelector}
 						hovering={hovering}

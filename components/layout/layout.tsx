@@ -28,9 +28,7 @@ export function Layout({ children }: Props) {
 					{children}
 					<Footer />
 				</AnimateSharedLayout>
-				<BgOverlay
-					isMobile={["base", "sm", "md"].includes(breakpoint as string)}
-				/>
+				<BgOverlay isMobile={["base", "sm"].includes(breakpoint as string)} />
 			</MotionMain>
 		</>
 	);
