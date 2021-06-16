@@ -1,24 +1,25 @@
+//* Packages
 import * as React from "react";
-import { ChakraComponent, ChakraProps, useStyles } from "@chakra-ui/react";
-import { MotionBoxProps, MotionSpan } from "../framer";
+import { useStyles } from "@chakra-ui/react";
 
-interface Props {
-	hasHoveredLink: boolean;
-	hovering: boolean;
-	layoutId: string;
-}
+//* Components
+import { MotionSpan } from "../framer";
+
+//* Interfaces
+import HoverLinkSelectorProps from "@interfaces/navigation/HoverLinkSelector";
 
 export function HoverLinkSelector({
 	hasHoveredLink,
 	hovering,
 	layoutId,
-}: Props) {
+	color,
+}: HoverLinkSelectorProps) {
 	const styles = useStyles();
 
 	return (
 		<MotionSpan
 			__css={styles.hoverLinkSelector}
-			color={hovering && hasHoveredLink ? "accent.400.50" : "transparent"}
+			color={hovering && hasHoveredLink ? color : "transparent"}
 			layoutId={layoutId}
 			transition={{ type: "spring", damping: 17 }}
 		/>

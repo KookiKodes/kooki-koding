@@ -7,14 +7,8 @@ import { useStyles } from "@chakra-ui/react";
 import { MotionLinkOverlay, MotionIcon } from "@components/framer";
 import { HoverLinkSelector } from "@components/navigation/hover-link-selector";
 
-interface Props {
-	name: string;
-	href: string;
-	filename: string;
-	hovering: boolean;
-	hoveredLink: boolean;
-	setHoveredLink: () => void;
-}
+//* Interfaces
+import SvgProps from "@interfaces/footer/Svg";
 
 export function SvgWrapper({
 	href,
@@ -22,7 +16,9 @@ export function SvgWrapper({
 	hovering,
 	hoveredLink,
 	setHoveredLink,
-}: Props) {
+	setFocus,
+	setBlur,
+}: SvgProps) {
 	const Svg = dynamic(() => import(`../../lib/icons/socials/${filename}.svg`));
 	const styles = useStyles();
 	return (
@@ -31,12 +27,15 @@ export function SvgWrapper({
 			target='_blank'
 			onHoverStart={setHoveredLink}
 			__css={styles.svgWrapper}
+			onFocus={setFocus}
+			onBlur={setBlur}
 			layout>
 			{hoveredLink && (
 				<HoverLinkSelector
 					hasHoveredLink={hoveredLink}
 					hovering={hovering}
 					layoutId='footerSvgHover'
+					color='primary.500.80'
 				/>
 			)}
 			<MotionIcon __css={styles.svg} layout>

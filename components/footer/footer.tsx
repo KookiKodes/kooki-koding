@@ -34,6 +34,7 @@ export function Footer() {
 					hovering={hovering}
 					hoveredLink={hoveredLink}
 					setHoveredLink={setHoveredLink}
+					setHovering={setHovering}
 					Svgs={Logos}
 				/>
 				<Text fontSize='sm'>

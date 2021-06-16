@@ -12,7 +12,6 @@ export function BgOverlay() {
 	const particlesLoaded = React.useRef();
 
 	const theme = useTheme();
-	// console.log(theme);
 
 	return (
 		<>

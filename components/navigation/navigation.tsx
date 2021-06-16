@@ -12,13 +12,12 @@ import { Navtitle } from "./navtitle";
 import { NavlinkContainer } from "./navlink-container";
 import { MotionFlex, MotionNav } from "@components/framer";
 import { MenuBtn } from "./menu-btn";
-import { FocusMenuSelector } from "./focus-menu-selector";
+// import { FocusMenuSelector } from "./focus-menu-selector";
 
 //* Static
 import links from "@static/links";
 
 interface Props {
-	containerRef: React.RefObject<HTMLElement | null> | undefined;
 	hideLinks: boolean;
 }
 
@@ -27,15 +26,15 @@ interface LinkInfoState {
 	index: number;
 }
 
-export function Navigation({ containerRef, hideLinks }: Props) {
+export function Navigation({ hideLinks }: Props) {
 	const router = useRouter();
 	const [isOpen, setIsOpen] = useBoolean(false);
 	const [hoverSelector, setHoverSelector] = useState(links[0].name);
 	const [hovering, setHovering] = useBoolean(false);
 	const linksVisible = (hideLinks && isOpen) || !hideLinks;
 
-	const linkContainer = useRef<HTMLElement>(null);
-	const link = useRef<HTMLElement>(null);
+	// const linkContainer = useRef<HTMLElement>(null);
+	// const link = useRef<HTMLElement>(null);
 
 	useEffect(() => {
 		if (hideLinks) setIsOpen.off();
@@ -57,7 +56,7 @@ export function Navigation({ containerRef, hideLinks }: Props) {
 				}}
 				layout>
 				<StylesProvider value={styles}>
-					{hideLinks && isOpen && (
+					{/* {hideLinks && isOpen && (
 						<FocusMenuSelector
 							bgPosition={
 								Math.floor(window.innerHeight / 2) +
@@ -67,7 +66,7 @@ export function Navigation({ containerRef, hideLinks }: Props) {
 									links.findIndex(({ name }) => name === hoverSelector)
 							}
 						/>
-					)}
+					)} */}
 					<MotionFlex sx={styles.position} layout>
 						<MotionFlex
 							alignItems='center'
@@ -86,8 +85,8 @@ export function Navigation({ containerRef, hideLinks }: Props) {
 							<NavlinkContainer
 								activeRoute={router.route}
 								links={links}
-								linkRef={link}
-								linkContainerRef={linkContainer}
+								// linkRef={link}
+								// linkContainerRef={linkContainer}
 								closeOnLinkClick={() => setIsOpen.off()}
 								hovering={hovering}
 								setHovering={setHovering}

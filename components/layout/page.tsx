@@ -1,17 +1,20 @@
+//* Packages
 import React, { useEffect } from "react";
 import { useStyleConfig } from "@chakra-ui/react";
 import { MotionFlex } from "../framer";
 import { useAnimation, useIsPresent, AnimateSharedLayout } from "framer-motion";
 
+//* Variants
 import variants from "@variants/pageVariants";
 
-interface Props {
-	children: JSX.Element | JSX.Element[];
-	variant?: string;
-	size?: string;
-}
+//* Interfaces
+import PageProps from "@interfaces/layout/Page";
 
-export function Page({ children, variant = "default", size = "auto" }: Props) {
+export function Page({
+	children,
+	variant = "default",
+	size = "auto",
+}: PageProps) {
 	const present = useIsPresent();
 	const container = useAnimation();
 	const styles = useStyleConfig("Page", { variant, size });

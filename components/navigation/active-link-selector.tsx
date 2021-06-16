@@ -1,14 +1,16 @@
+//* Packages
 import * as React from "react";
 import { useStyles } from "@chakra-ui/react";
-import { MotionSpan, MotionBox } from "../framer";
+import { MotionSpan } from "../framer";
 
-interface Props {
-	charLeft: string;
-	charRight: string;
-	link: string;
-}
+//* Interfaces
+import ActiveLinkSelectorProps from "@interfaces/navigation/ActiveLinkSelector";
 
-export function ActiveLinkSelector({ charLeft, charRight, link }: Props) {
+export function ActiveLinkSelector({
+	charLeft,
+	charRight,
+	link,
+}: ActiveLinkSelectorProps) {
 	const style = useStyles();
 
 	return (

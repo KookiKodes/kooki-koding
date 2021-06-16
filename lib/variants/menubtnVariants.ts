@@ -20,14 +20,12 @@ export const bars: Bar[] = [
 	{
 		variants: {
 			open: {
-				rotateY: 180,
 				width: "0%",
 				position: "absolute",
 				margin: 0,
 				opacity: 0,
 			},
 			closed: {
-				rotateY: 0,
 				width: "100%",
 				position: "relative",
 				opacity: 1,

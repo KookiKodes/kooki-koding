@@ -34,6 +34,7 @@ export const Navigation: ComponentStyleConfig = {
 				fontWeight: "light",
 				userSelect: "none",
 				_hover: { color: "primary.400.solid" },
+				_focus: { color: "primary.400.solid" },
 			},
 			link: {
 				display: "flex",
@@ -41,6 +42,9 @@ export const Navigation: ComponentStyleConfig = {
 				cursor: "pointer",
 				textShadow: "0 0 1rem currentColor",
 				_hover: {
+					color: "primary.400.solid",
+				},
+				_focus: {
 					color: "primary.400.solid",
 				},
 			},
@@ -71,6 +75,7 @@ export const Navigation: ComponentStyleConfig = {
 				cursor: "pointer",
 				position: "relative",
 				_hover: { color: "complementary.500.solid" },
+				_focus: { color: "complementary.500.solid" },
 				transition: "color .3s ease",
 			},
 			hamburgerBar: {
@@ -133,6 +138,9 @@ export const Navigation: ComponentStyleConfig = {
 					h: "min-content",
 					minH: "2vh",
 					_hover: {
+						color: "primary.400.solid",
+					},
+					_focus: {
 						color: "primary.400.solid",
 					},
 					alignItems: "center",

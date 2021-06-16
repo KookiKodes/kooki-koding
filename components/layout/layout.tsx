@@ -23,7 +23,6 @@ export function Layout({ children }: Props) {
 			<MotionMain sx={styles} ref={containerRef}>
 				<AnimateSharedLayout>
 					<Navigation
-						containerRef={containerRef}
 						hideLinks={["base", "sm"].includes(breakpoint as string)}
 					/>
 					{children}

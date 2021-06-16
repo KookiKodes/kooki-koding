@@ -47,7 +47,7 @@ export const Footer: ComponentStyleConfig = {
 				borderRadius: "50%",
 				zIndex: "-1",
 				bg: "currentColor",
-				boxShadow: "0 0 2rem currentColor",
+				boxShadow: "0 0 1.5rem currentColor",
 			},
 		};
 	},

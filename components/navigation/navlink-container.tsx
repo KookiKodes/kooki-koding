@@ -9,32 +9,13 @@ import { Navlink } from "./navlink";
 //* Variants
 import { linkContainer } from "@variants/navbarVariants";
 
-interface Link {
-	name: string;
-	to: string;
-}
-
-interface Props {
-	links: Link[];
-	activeRoute: string;
-	hovering: boolean;
-	shouldBeBlurred: boolean;
-	setHovering: {
-		readonly on: () => void;
-		readonly off: () => void;
-		readonly toggle: () => void;
-	};
-	hoverSelector: string;
-	linkRef: React.RefObject<HTMLElement>;
-	linkContainerRef?: React.RefObject<HTMLElement>;
-	setHoverSelector: (str: string) => void;
-	closeOnLinkClick: () => void;
-}
+//* Interface
+import NavlinkContainerProps from "@interfaces/navigation/NavlinkContainer";
 
 export function NavlinkContainer({
 	links,
-	linkRef,
-	linkContainerRef,
+	// linkRef,
+	// linkContainerRef,
 	activeRoute,
 	hovering,
 	setHovering,
@@ -42,12 +23,12 @@ export function NavlinkContainer({
 	setHoverSelector,
 	shouldBeBlurred,
 	closeOnLinkClick,
-}: Props) {
+}: NavlinkContainerProps) {
 	const styles = useStyles();
 	return (
 		<MotionFlex
 			__css={styles.linkContainer}
-			ref={linkContainerRef}
+			// ref={linkContainerRef}
 			variants={linkContainer}
 			onHoverStart={setHovering.on}
 			onHoverEnd={setHovering.off}
@@ -61,16 +42,23 @@ export function NavlinkContainer({
 						key={index}
 						active={activeRoute === link.to}
 						hoverSelector={hover}
-						linkRef={hover ? linkRef : null}
+						// linkRef={hover ? linkRef : null}
 						setHoverSelector={() => setHoverSelector(link.name)}
 						hovering={hovering}
 						blurAmount={shouldBeBlurred && !hover ? "blur(3.5px)" : "blur(0px)"}
+						setFocus={(e) => {
+							setHoverSelector(link.name);
+							setHovering.on();
+						}}
+						setBlur={(e) => {
+							setHovering.off();
+						}}
 						onClick={(e) => {
+							setHoverSelector(link.name);
 							if (activeRoute === link.to) e.preventDefault();
-							else
-								setTimeout(() => {
-									closeOnLinkClick();
-								}, 600);
+							else {
+								setTimeout(() => closeOnLinkClick(), 700);
+							}
 						}}
 						{...link}
 					/>

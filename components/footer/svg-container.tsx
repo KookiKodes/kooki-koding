@@ -6,25 +6,16 @@ import { useStyles } from "@chakra-ui/react";
 import { MotionBox } from "@components/framer";
 import { SvgWrapper } from "./svg-wrapper";
 
-interface Svg {
-	name: string;
-	filename: string;
-	href: string;
-}
-
-interface Props {
-	Svgs: Svg[];
-	hovering: boolean;
-	hoveredLink: string;
-	setHoveredLink: (name: string) => void;
-}
+//* Interfaces
+import SvgContainerProps from "@interfaces/footer/SvgContainer";
 
 export function SvgContainer({
 	Svgs,
 	hoveredLink,
 	setHoveredLink,
 	hovering,
-}: Props) {
+	setHovering,
+}: SvgContainerProps) {
 	const styles = useStyles();
 
 	return (
@@ -36,6 +27,13 @@ export function SvgContainer({
 						hovering={hovering}
 						hoveredLink={hoveredLink === props.name}
 						setHoveredLink={() => setHoveredLink(props.name)}
+						setFocus={() => {
+							setHovering.on();
+							setHoveredLink(props.name);
+						}}
+						setBlur={() => {
+							setHovering.off();
+						}}
 						{...props}
 					/>
 				);
