@@ -50,7 +50,7 @@ export function Navlink({
 						hasHoveredLink={hoverSelector}
 						hovering={hovering}
 						layoutId='navlinkHover'
-						color='accent.500.50'
+						color='Primary.default.70'
 					/>
 				)}
 			</MotionLinkOverlay>

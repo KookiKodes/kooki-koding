@@ -12,8 +12,8 @@ export const Layout: ComponentStyleConfig = {
 			justifyContent: "flex-start",
 			overflowX: "hidden",
 			overFlowY: "auto",
-			color: "primary.400.solid",
-			bgGradient: "linear(to-b, dark.solid 50%, neutral.800.solid) 80%",
+			color: "Primary.default.solid",
+			bgGradient: "linear(to-b, dark.solid 50%, Neutral.dark.50) 80%",
 		};
 	},
 };

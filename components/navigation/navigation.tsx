@@ -21,11 +21,6 @@ interface Props {
 	hideLinks: boolean;
 }
 
-interface LinkInfoState {
-	height: number;
-	index: number;
-}
-
 export function Navigation({ hideLinks }: Props) {
 	const router = useRouter();
 	const [isOpen, setIsOpen] = useBoolean(false);

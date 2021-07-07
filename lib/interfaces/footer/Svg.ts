@@ -1,8 +1,9 @@
-import { Callback, UseBoolean } from "@interfaces/Utilities";
+import { Callback} from "@interfaces/Utilities";
+import { ComponentType } from "react";
 
 export interface Svg {
 	name: string;
-	filename: string;
+	SVG: ComponentType;
 	href: string;
 }
 

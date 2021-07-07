@@ -21,7 +21,9 @@
       "@utils/*": ["./lib/utils/*"],
       "@variants/*": ["./lib/variants/*"],
       "@interfaces/*": ["./lib/interfaces/*"],
-      "@helper/*": ["./lib/helpers/*"]
+      "@helper/*": ["./lib/helpers/*"],
+      "@icons/*": ["./lib/icons/*"],
+      "@lib/*": ["./lib/*"]
     }
   },
   "exclude": ["node_modules"],

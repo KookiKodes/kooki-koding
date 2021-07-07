@@ -2,6 +2,8 @@
 import React from "react";
 import { NextPage } from "next";
 import Head from "next/head";
+import { useBoolean } from "@chakra-ui/react";
+import { MotionBox } from "@components/framer";
 // import cuid from "cuid";
 
 //* Helper Fns
@@ -11,6 +13,14 @@ import Head from "next/head";
 // 	checkAllValid,
 // 	formValidation,
 // } from "@helper/form";
+
+//* Components
+import { ContactForm } from "@components/form/contact-form";
+import { Greeting } from "@components/layout/greeting";
+
+//* interfaces
+import {ContactFormStateTypes as State} from "@interfaces/form/ContactForm";
+import { setTimeout } from "timers";
 
 interface Props {
 	uids: string[];
@@ -84,17 +94,24 @@ const ContactPage: NextPage<Props> = ({ uids }: Props) => {
 	// 	updateFormValues(name, { error, isValid });
 	// 	formChange();
 	// }
+	const [state, setState] = React.useState(State.INACTIVE);
+	const toggleStateType = (type: string) => {setState((state) => state ^ State[type])}
+	
+	function determineState() {
+		
+	}
 
 	return (
 		<>
 			<Head>
 				<title>Devin Jackson | Send me a message</title>
 			</Head>
-			<header className='flex self-center justify-center w-5/6 mt-16 h-30 xl:w-3/6'>
-				<h1 className='text-4xl text-center xl:text-6xl'>
-					Thanks for stopping by. How may I help you?
-				</h1>
-			</header>
+			{/* <header className='flex self-center justify-center w-5/6 mt-16 h-30 xl:w-3/6'>
+				<Greeting message='Thanks for stopping by. How may I help you?' />
+			</header> */}
+			<MotionBox as='section' w='100%' minH='100%' h='max-content'>
+				<ContactForm state={'INACTIVE'} toggleState={toggleStateType} />
+			</MotionBox>
 		</>
 	);
 };

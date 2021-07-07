@@ -6,6 +6,8 @@ import { Navigation } from "@static/themes/navigation/navigation";
 import { Page } from "@static/themes/layout/page";
 import { Layout } from "@static/themes/layout/layout";
 import { Footer } from "@static/themes/footer/footer";
+import { ContactForm } from "@static/themes/form/contact-form";
+import {FlushIconInput} from "@static/themes/form/flush-icon-input"
 
 //* Helper Functions
 import { objFromRgba } from "@helper/objFromRgba";
@@ -31,6 +33,8 @@ export default extendTheme({
 		Page,
 		Layout,
 		Footer,
+		ContactForm,
+		FlushIconInput,
 	},
 	config: {
 		initialColorMode: "dark",
@@ -89,6 +93,22 @@ export default extendTheme({
 			800: objFromRgba("rgba(8, 57, 51, 1)"),
 			900: objFromRgba("rgba(0, 22, 17, 1)"),
 		},
+		Neutral: {
+			dark: objFromRgba("rgba(34, 36, 56, 1)"),
+			default: objFromRgba("rgba(50, 53, 82, 1)"),
+			light: objFromRgba("rgba(96, 103, 158, 1)"),
+		},
+		Primary: {
+			dark: objFromRgba("rgba(36, 87, 57, 1)"),
+			default: objFromRgba("rgba(62, 150, 99, 1)"),
+			light: objFromRgba("rgba(88, 214, 140, 1)"),
+		},
+		Complementary: {
+			dark: objFromRgba("rgba(112, 46, 47, 1)"),
+			default: objFromRgba("rgba(138, 56, 58, 1)"),
+			light: objFromRgba("rgba(214, 88, 90, 1)"),
+		},
+		Accent: objFromRgba("rgba(54, 150, 135, 1)"),
 		light: objFromRgba("rgba(245, 245, 252, 1)"),
 		dark: objFromRgba("rgba(26, 28, 43, 1)"),
 	},

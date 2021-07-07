@@ -59,20 +59,20 @@ export const Footer: ComponentStyleConfig = {
 	variants: {
 		default: {
 			container: {
-				color: "neutral.600.solid",
-				bg: "neutral.800.90",
+				color: "Neutral.default.solid",
+				bg: "Neutral.dark.70",
 				backdropFilter: "blur(3px)",
-				_hover: { color: "primary.400.solid" },
+				_hover: { color: "Primary.light.solid" },
 				borderTop: ".2rem solid currentColor",
 			},
 			svgWrapper: {
-				color: "neutral.700.solid",
+				color: "Neutral.default.solid",
 				border: ".2rem solid currentColor",
 			},
 			svg: {
 				w: "1.5rem",
 				h: "1.5rem",
-				color: "neutral.700.solid",
+				color: "Neutral.default.solid",
 			},
 		},
 	},

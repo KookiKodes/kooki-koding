@@ -4,7 +4,7 @@ import { useStyles } from "@chakra-ui/react";
 
 //* Components
 import { MotionBox } from "@components/framer";
-import { SvgWrapper } from "./svg-wrapper";
+import { SVGLinkWrapper } from "@components/footer/svg-link-wrapper";
 
 //* Interfaces
 import SvgContainerProps from "@interfaces/footer/SvgContainer";
@@ -22,7 +22,7 @@ export function SvgContainer({
 		<MotionBox __css={styles.svgContainer} layout>
 			{Svgs.map((props, index: number) => {
 				return (
-					<SvgWrapper
+					<SVGLinkWrapper
 						key={index}
 						hovering={hovering}
 						hoveredLink={hoveredLink === props.name}

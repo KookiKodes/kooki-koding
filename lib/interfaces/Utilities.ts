@@ -1,3 +1,6 @@
+import { CSSWithMultiValues, RecursiveCSSObject } from "@chakra-ui/react";
+import { ComponentType } from "react";
+
 export type UseBoolean = {
 	readonly on: () => void;
 	readonly off: () => void;
@@ -6,3 +9,8 @@ export type UseBoolean = {
 
 export type Callback = () => void;
 export type CallbackWithArg<T> = (arg: T) => void;
+
+export interface SVGWrapperProps {
+	styles: RecursiveCSSObject<CSSWithMultiValues>;
+	SVG: ComponentType;
+}

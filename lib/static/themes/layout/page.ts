@@ -7,9 +7,11 @@ export const Page: ComponentStyleConfig = {
 			position: "relative",
 			flexDir: "column",
 			alignItems: "center",
-			justifyContent: "center",
 			pointerEvents: "none",
 			zIndex: "10",
+			px: 6,
+			mt: 24,
+			mb: 10,
 		};
 	},
 	sizes: {
@@ -21,7 +23,7 @@ export const Page: ComponentStyleConfig = {
 	},
 	variants: {
 		default: {
-			color: "primary.500.solid",
+			color: "Primary.default.solid",
 			bg: "transparent",
 		},
 	},

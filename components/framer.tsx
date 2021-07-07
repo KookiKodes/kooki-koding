@@ -11,6 +11,11 @@ import {
 	Icon,
 	Link,
 	Portal,
+	Grid,
+	Input,
+	InputGroup,
+	InputLeftAddon,
+	InputRightAddon,
 } from "@chakra-ui/react";
 import { motion, MotionProps, isValidMotionProp } from "framer-motion";
 
@@ -48,6 +53,10 @@ export const MotionFlex = forwardRef((props, ref) => (
 	<MotionBox as={Flex} ref={ref} {...props} />
 ));
 
+export const MotionGrid = forwardRef((props, ref) => (
+	<MotionBox as={Grid} ref={ref} {...props} />
+));
+
 export const MotionVStack = forwardRef((props, ref) => (
 	<MotionBox as={VStack} ref={ref} {...props} />
 ));
@@ -62,4 +71,20 @@ export const MotionNav = forwardRef((props, ref) => (
 
 export const MotionIcon = forwardRef((props, ref) => (
 	<MotionBox as={Icon} ref={ref} {...props} />
+));
+
+export const MotionInput = forwardRef((props, ref) => (
+	<MotionBox as={Input} ref={ref} {...props} />
+));
+
+export const MotionInputGroup = forwardRef((props, ref) => (
+	<MotionBox as={InputGroup} ref={ref} {...props} />
+));
+
+export const MotionInputLeftIcon = forwardRef((props, ref) => (
+	<MotionBox as={InputLeftAddon} ref={ref} {...props} />
+));
+
+export const MotionInputRightIcon = forwardRef((props, ref) => (
+	<MotionBox as={InputRightAddon} ref={ref} {...props} />
 ));

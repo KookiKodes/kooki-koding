@@ -33,8 +33,12 @@ export const Navigation: ComponentStyleConfig = {
 			title: {
 				fontWeight: "light",
 				userSelect: "none",
-				_hover: { color: "primary.400.solid" },
-				_focus: { color: "primary.400.solid" },
+				_hover: {
+					color: "Primary.light.solid",
+				},
+				_focus: {
+					color: "Primary.light.solid",
+				},
 			},
 			link: {
 				display: "flex",
@@ -42,10 +46,10 @@ export const Navigation: ComponentStyleConfig = {
 				cursor: "pointer",
 				textShadow: "0 0 1rem currentColor",
 				_hover: {
-					color: "primary.400.solid",
+					color: "Primary.light.solid",
 				},
 				_focus: {
-					color: "primary.400.solid",
+					color: "Primary.light.solid",
 				},
 			},
 			activeLinkSelector: {
@@ -74,8 +78,8 @@ export const Navigation: ComponentStyleConfig = {
 				alignItems: "center",
 				cursor: "pointer",
 				position: "relative",
-				_hover: { color: "complementary.500.solid" },
-				_focus: { color: "complementary.500.solid" },
+				_hover: { color: "Complementary.light.solid" },
+				_focus: { color: "Complementary.light.solid" },
 				transition: "color .3s ease",
 			},
 			hamburgerBar: {
@@ -131,17 +135,17 @@ export const Navigation: ComponentStyleConfig = {
 			const dark = colorMode === "dark";
 			return {
 				container: {
-					bg: dark ? "neutral.800.80" : "neutral.400.80",
+					bg: dark ? "Neutral.dark.70" : "neutral.400.80",
 					borderBottom: ".2rem solid currentColor",
-					color: dark ? "neutral.700.solid" : "neutral.200.solid",
+					color: dark ? "Neutral.default.solid" : "neutral.200.solid",
 					w: "100vw",
 					h: "min-content",
 					minH: "2vh",
 					_hover: {
-						color: "primary.400.solid",
+						color: "Primary.light.solid",
 					},
 					_focus: {
-						color: "primary.400.solid",
+						color: "Primary.light.solid",
 					},
 					alignItems: "center",
 					justifyContent: "center",
@@ -162,13 +166,14 @@ export const Navigation: ComponentStyleConfig = {
 				hoverLinkSelector: {
 					boxShadow: "0 0 1rem currentColor",
 					borderRadius: ".3rem",
+					bg: "currentColor",
 				},
 				link: {
 					justifyContent: "center",
 					alignItems: "center",
 				},
 				hamburgerBtn: {
-					color: "neutral.700.solid",
+					color: "Neutral.default.solid",
 				},
 			};
 		},
@@ -176,8 +181,8 @@ export const Navigation: ComponentStyleConfig = {
 			const dark = colorMode === "dark";
 			return {
 				container: {
-					bg: dark ? "neutral.800.80" : "neutral.400.80",
-					color: dark ? "neutral.400.solid" : "neutral.200.solid",
+					bg: dark ? "Neutral.dark.90" : "neutral.400.80",
+					color: dark ? "Neutral.default.solid" : "neutral.200.solid",
 					w: "100%",
 					h: "100vh",
 					alignItems: "center",
@@ -202,7 +207,7 @@ export const Navigation: ComponentStyleConfig = {
 					transition: "color .4s ease",
 				},
 				hamburgerBtn: {
-					color: "neutral.500.solid",
+					color: "Neutral.default.solid",
 				},
 				title: {
 					transition: "color .3s ease",
