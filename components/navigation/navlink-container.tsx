@@ -45,7 +45,7 @@ export function NavlinkContainer({
 						// linkRef={hover ? linkRef : null}
 						setHoverSelector={() => setHoverSelector(link.name)}
 						hovering={hovering}
-						blurAmount={shouldBeBlurred && !hover ? "blur(3.5px)" : "blur(0px)"}
+						blurAmount={shouldBeBlurred && !hover ? "blur(2.5px)" : "blur(0px)"}
 						setFocus={(e) => {
 							setHoverSelector(link.name);
 							setHovering.on();
