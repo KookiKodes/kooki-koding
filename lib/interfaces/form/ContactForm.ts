@@ -22,7 +22,6 @@ export interface FormStatusProps {
 export const isFocus = (stateByte: number) => (stateByte & ContactFormStateTypes.FOCUS) === ContactFormStateTypes.FOCUS;
 export const isInvalid = (stateByte: number) => (stateByte & ContactFormStateTypes.INVALID) === ContactFormStateTypes.INVALID;
 export const isValid = (stateByte: number) => (stateByte & ContactFormStateTypes.VALID) === ContactFormStateTypes.VALID;
-export const isDisabled = (stateByte: number) => (stateByte & ContactFormStateTypes.DISABLED) === ContactFormStateTypes.DISABLED;
 export const isSending = (stateByte: number) => (stateByte & ContactFormStateTypes.SENDING) === ContactFormStateTypes.SENDING;
 export const isSent = (stateByte: number) => (stateByte & ContactFormStateTypes.SENT) === ContactFormStateTypes.SENT;
 export const isError = (stateByte: number) => (stateByte & ContactFormStateTypes.ERROR) === ContactFormStateTypes.ERROR;
