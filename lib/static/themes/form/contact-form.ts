@@ -6,7 +6,8 @@ export const ContactForm: ComponentStyleConfig = {
 		return {
 			display: "grid",
 			w: "100%",
-			p: 2,
+			px: 4,
+			py: 8,
 			minHeight: "80vh",
 			borderRadius: ".3rem",
 			boxSizing: "border-box",
@@ -22,5 +23,9 @@ export const ContactForm: ComponentStyleConfig = {
 			color: "Neutral.default.solid",
 			_hover: {color: "Accent.solid", boxShadow: 'xl'}
 		},
+		FOCUS: {
+			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			color: "Primary.light.solid",
+		}
 	},
 };

@@ -10,7 +10,7 @@ import {SVGWrapperProps as Props} from "@interfaces/Utilities"
 export function SVGWrapper({SVG, styles}: Props) {
 
 	return (
-		<MotionIcon __css={styles} layout>
+		<MotionIcon sx={styles}>
 			<SVG />
 		</MotionIcon>
 	)

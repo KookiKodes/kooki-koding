@@ -16,6 +16,9 @@ import {
 	InputGroup,
 	InputLeftAddon,
 	InputRightAddon,
+	Button,
+	ButtonGroup,
+	IconButton,
 } from "@chakra-ui/react";
 import { motion, MotionProps, isValidMotionProp } from "framer-motion";
 
@@ -87,4 +90,15 @@ export const MotionInputLeftIcon = forwardRef((props, ref) => (
 
 export const MotionInputRightIcon = forwardRef((props, ref) => (
 	<MotionBox as={InputRightAddon} ref={ref} {...props} />
+));
+
+export const MotionButton = forwardRef((props, ref) => (
+	<MotionBox as={Button} ref={ref} {...props} />
+));
+
+export const MotionButtonGroup = forwardRef((props, ref) => (
+	<MotionBox as={ButtonGroup} ref={ref} {...props} />
+));
+export const MotionIconButton = forwardRef((props, ref) => (
+	<MotionBox as={IconButton} ref={ref} {...props} />
 ));

@@ -15,31 +15,16 @@ import { SVGWrapper } from "@components/utilities/svg-wrapper";
 import { FlushIconInputProps as Props } from "@interfaces/form/FlushIconInput";
 import { ContactFormStateTypes as State } from "@interfaces/form/ContactForm";
 
-//* icons
-import Mail from "@icons/input/mail.svg";
-import UserCard from "@icons/input/user-card.svg";
-import Checkmark from "@icons/input/checkmark.svg";
-
-const icons = {
-  "": "",
-  mail: Mail,
-  checkmark: Checkmark,
-  "user-card": UserCard,
-};
-
 export function FlushIconInput(props: Props) {
   const styles = useMultiStyleConfig("FlushIconInput", {
-    variant: props.state,
+    variant: props.isFocused ? props.state : "INACTIVE",
   });
-  const IconLeft = icons[props.iconLeft ? props.iconLeft : ""];
-  const IconRight = icons[props.iconRight ? props.iconRight : ""];
-
   return (
     <MotionInputGroup __css={styles.container}>
       <StylesProvider value={styles}>
-        {props.iconLeft && (
+        {props.IconLeft && (
           <MotionInputLeftIcon __css={styles["icon-left-box"]}>
-            <SVGWrapper SVG={IconLeft} styles={styles["icon-left"]} />
+            <SVGWrapper SVG={props.IconLeft} styles={styles["icon-left"]} />
           </MotionInputLeftIcon>
         )}
         <MotionInput
@@ -47,12 +32,14 @@ export function FlushIconInput(props: Props) {
           name={props.name}
           type={props.type}
           placeholder={props.placeholder}
+          onFocus={props.toggleFocus}
+          onBlur={props.toggleFocus}
         />
-        {props.iconRight && (
+        {/*props.iconRight && (
           <MotionInputRightIcon __css={styles["icon-right-box"]}>
             <SVGWrapper SVG={IconRight} styles={styles["icon-right"]} />
           </MotionInputRightIcon>
-        )}
+        ) */}
       </StylesProvider>
     </MotionInputGroup>
   );

@@ -2,15 +2,18 @@
 import * as React from "react";
 
 //* interfaces
-import { Callback } from "@interfaces/Utilities";
+import { Callback, CallbackWithArg } from "@interfaces/Utilities";
 import {ContactFormStateTypes} from "./ContactForm";
 
 export interface FlushIconInputProps {
-	iconLeft?: string;
+	toggleState: CallbackWithArg<string>;
+	toggleFocus: CallbackWithArg<any>;
+	isFocused: boolean;
+	IconLeft?: React.ComponentType;
 	type: string;
 	placeholder: string;
 	state: string;
-	iconRight?: string;
+	IconRight?: React.ComponentType;
 	name: string;
 	required?: Callback;
 }

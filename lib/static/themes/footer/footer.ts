@@ -46,8 +46,11 @@ export const Footer: ComponentStyleConfig = {
 				position: "absolute",
 				borderRadius: "50%",
 				zIndex: "-1",
-				bg: "currentColor",
-				boxShadow: "0 0 1.5rem currentColor",
+				bg: "Complementary.default.solid",
+				_groupHover: {
+					color: "Complementary.default.solid"
+				},
+				_groupFocus: { color: "Complementary.default.solid" },
 			},
 		};
 	},
@@ -62,17 +65,22 @@ export const Footer: ComponentStyleConfig = {
 				color: "Neutral.default.solid",
 				bg: "Neutral.dark.70",
 				backdropFilter: "blur(3px)",
-				_hover: { color: "Primary.light.solid" },
 				borderTop: ".2rem solid currentColor",
 			},
 			svgWrapper: {
 				color: "Neutral.default.solid",
 				border: ".2rem solid currentColor",
+				_hover: { color: "Complementary.default.solid" },
+				_focus: { color: "Complementary.default.solid"},
 			},
 			svg: {
 				w: "1.5rem",
 				h: "1.5rem",
 				color: "Neutral.default.solid",
+				_groupFocus: { color: "Complementary.light.solid"},
+				_groupHover: {
+					color: "Complementary.light.solid"
+				}
 			},
 		},
 	},

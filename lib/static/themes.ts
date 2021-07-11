@@ -8,6 +8,7 @@ import { Layout } from "@static/themes/layout/layout";
 import { Footer } from "@static/themes/footer/footer";
 import { ContactForm } from "@static/themes/form/contact-form";
 import {FlushIconInput} from "@static/themes/form/flush-icon-input"
+import {FlushIconButton} from "@static/themes/form/flush-icon-button";
 
 //* Helper Functions
 import { objFromRgba } from "@helper/objFromRgba";
@@ -35,6 +36,7 @@ export default extendTheme({
 		Footer,
 		ContactForm,
 		FlushIconInput,
+		FlushIconButton,
 	},
 	config: {
 		initialColorMode: "dark",

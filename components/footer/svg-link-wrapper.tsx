@@ -25,6 +25,7 @@ export function SVGLinkWrapper({
 		<MotionLinkOverlay
 			href={href}
 			target='_blank'
+			role="group"
 			onHoverStart={setHoveredLink}
 			__css={styles.svgWrapper}
 			onFocus={setFocus}

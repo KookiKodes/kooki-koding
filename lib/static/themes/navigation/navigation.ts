@@ -1,4 +1,4 @@
-import { ComponentStyleConfig, theme } from "@chakra-ui/react";
+import { ComponentStyleConfig } from "@chakra-ui/react";
 
 export const Navigation: ComponentStyleConfig = {
 	parts: [
@@ -47,9 +47,12 @@ export const Navigation: ComponentStyleConfig = {
 				textShadow: "0 0 1rem currentColor",
 				_hover: {
 					color: "Primary.light.solid",
+					boxShadow: "none",
 				},
 				_focus: {
 					color: "Primary.light.solid",
+					boxShadow: "none",
+					outline: "none",
 				},
 			},
 			activeLinkSelector: {
@@ -78,8 +81,8 @@ export const Navigation: ComponentStyleConfig = {
 				alignItems: "center",
 				cursor: "pointer",
 				position: "relative",
-				_hover: { color: "Complementary.light.solid" },
-				_focus: { color: "Complementary.light.solid" },
+				_hover: { color: "Complementary.light.solid",},
+				_focus: { color: "Complementary.light.solid", boxShadow: "none", outline: "none" },
 				transition: "color .3s ease",
 			},
 			hamburgerBar: {

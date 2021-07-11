@@ -1,9 +1,8 @@
 //* Packages
-import React from "react";
+import {useState, useEffect} from "react";
 import { NextPage } from "next";
 import Head from "next/head";
-import { useBoolean } from "@chakra-ui/react";
-import { MotionBox } from "@components/framer";
+import {useBoolean} from "@chakra-ui/react";
 // import cuid from "cuid";
 
 //* Helper Fns
@@ -16,15 +15,17 @@ import { MotionBox } from "@components/framer";
 
 //* Components
 import { ContactForm } from "@components/form/contact-form";
+import { MotionBox } from "@components/framer";
 import { Greeting } from "@components/layout/greeting";
 
 //* interfaces
-import {ContactFormStateTypes as State} from "@interfaces/form/ContactForm";
+import {ContactFormStateTypes as State, isFocus, isInactive} from "@interfaces/form/ContactForm";
 import { setTimeout } from "timers";
 
 interface Props {
 	uids: string[];
 }
+
 
 const ContactPage: NextPage<Props> = ({ uids }: Props) => {
 	// const [isDisabled, setIsDisabled] = React.useState(true);
@@ -94,12 +95,20 @@ const ContactPage: NextPage<Props> = ({ uids }: Props) => {
 	// 	updateFormValues(name, { error, isValid });
 	// 	formChange();
 	// }
-	const [state, setState] = React.useState(State.INACTIVE);
-	const toggleStateType = (type: string) => {setState((state) => state ^ State[type])}
+	const [stateByte, setStateByte] = useState(State.INACTIVE);
+	const [state, setState] = useState("INACTIVE")
+	const toggleStateType = (type: string) => {setStateByte((state) => state ^ State[type])};
+
 	
-	function determineState() {
-		
-	}
+	useEffect(() => {
+		switch(true) {
+			case isFocus(stateByte):
+				setState('FOCUS');
+				break;
+			default:
+				setState('INACTIVE');
+		}	
+	}, [stateByte])
 
 	return (
 		<>
@@ -110,7 +119,7 @@ const ContactPage: NextPage<Props> = ({ uids }: Props) => {
 				<Greeting message='Thanks for stopping by. How may I help you?' />
 			</header> */}
 			<MotionBox as='section' w='100%' minH='100%' h='max-content'>
-				<ContactForm state={'INACTIVE'} toggleState={toggleStateType} />
+				<ContactForm state={state} toggleState={toggleStateType} />
 			</MotionBox>
 		</>
 	);
