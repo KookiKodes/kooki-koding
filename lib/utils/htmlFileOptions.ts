@@ -5,7 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 
 //* Utils
-import { reactEventList } from "../static/reactEventList";
+import { reactEventList } from "@static/reactEventList";
 
 type ReactProp = Record<string, string | Function>;
 
