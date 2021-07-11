@@ -1,5 +1,4 @@
 import { PostData } from "@interfaces/FormInterface";
-import FInputs from "@static/formInputs";
 
 interface FormValidObj {
   name: string;
@@ -38,14 +37,15 @@ export async function getFieldInfo({
 }
 
 export function defFormInfo(uids: string[]): FormInfo {
-  return FInputs.reduce((state, { name }, index) => {
-    state[`${uids[index]}`] = {
-      name,
-      error: "",
-      isValid: false,
-    };
-    return state;
-  }, {});
+  return {}
+  // return FInputs.reduce((state, { name }, index) => {
+  //   state[`${uids[index]}`] = {
+  //     name,
+  //     error: "",
+  //     isValid: false,
+  //   };
+  //   return state;
+  // }, {});
 }
 
 export async function checkAllValid(formInfo: FormInfo): Promise<boolean> {
