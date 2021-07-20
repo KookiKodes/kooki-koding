@@ -1,22 +1,26 @@
 //* packages
-import { ChangeEvent, useState, useRef, useEffect } from "react";
-import {
-	useMultiStyleConfig,
-	StylesProvider,
-	useTheme,
-} from "@chakra-ui/system";
-import { useAnimation } from "framer-motion";
+import { useState, useRef, useEffect, MutableRefObject } from "react";
+import { useMultiStyleConfig, StylesProvider } from "@chakra-ui/system";
 
 //* components
 import { MotionTextarea, MotionFlex } from "@components/framer";
 import { SVGWrapper } from "@components/utilities/svg-wrapper";
+import { TextareaLineNumber } from "./textarea-line-number";
 
 //* interfaces
 import { FlushIconTextareaProps as Props } from "@interfaces/form/FlushIconTextarea";
 
 //* helpers
 import { countLines } from "@helper/countLines";
-import { TextareaLineNumber } from "./textarea-line-number";
+import calcHeight from "@helper/calcHeight";
+
+//* hooks
+import useComputedStyle from "@lib/hooks/useComputedStyle";
+import useDimensions from "@lib/hooks/useDimensions";
+import { useBuffer } from "@lib/hooks/useBuffer";
+
+//* static
+import { computedCss, bufferCss } from "@lib/static/flush-input-textarea";
 
 export function FlushIconTextarea({
 	IconLeft,
@@ -30,44 +34,44 @@ export function FlushIconTextarea({
 }: Props) {
 	const [value, setValue] = useState("");
 	const [lines, setLines] = useState(1);
-	const textarea = useRef<HTMLTextAreaElement | null>(null);
-	const buffer = null;
-	const fontInfo = useRef<string>("");
-
+	const textarea = useRef<HTMLTextAreaElement>(null);
+	const [width, _] = useDimensions(textarea);
+	const cs = useComputedStyle<HTMLTextAreaElement>(
+		textarea as MutableRefObject<HTMLTextAreaElement>,
+		computedCss
+	);
+	const buffer = useBuffer("textarea", cs, bufferCss);
 	const styles = useMultiStyleConfig("FlushIconTextarea", {
 		variant: isFocused ? state : "INACTIVE",
 	});
 
-	const theme = useTheme();
-
-	useEffect(() => {
-		fontInfo.current = `${theme.fonts.heading} ${theme.fontSizes["2xl"]}`;
-	}, []);
-
 	async function updateLines() {
-		const count = await countLines(
+		const count = await countLines<HTMLTextAreaElement>(
 			textarea.current as HTMLTextAreaElement,
-			buffer
+			buffer,
+			cs
 		);
 		setLines(count);
 	}
 
 	useEffect(() => {
-		updateLines();
-	}, [value]);
-
-	//Need to update "lines" when window is resized;
-	useEffect(() => {
-		console.log(textarea.current?.clientWidth);
-	}, [textarea.current?.clientWidth]);
+		if (buffer) {
+			updateLines();
+		}
+	}, [value, width]);
 
 	const showIcon = !value && (!isFocused || state === "INACTIVE");
 
 	return (
 		<MotionFlex __css={styles.container} role='group'>
 			<StylesProvider value={styles}>
-				<MotionFlex __css={styles.iconContainer} minH={lines * 33 + 16}>
-					{!showIcon && <TextareaLineNumber max={lines} height={33} />}
+				<MotionFlex __css={styles.iconContainer} minH={calcHeight(lines, cs)}>
+					{!showIcon && (
+						<TextareaLineNumber
+							max={lines}
+							height={parseInt(cs.lineHeight) || parseInt(cs.fontSize)}
+						/>
+					)}
 					{showIcon && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}
 				</MotionFlex>
 				<MotionTextarea
@@ -77,7 +81,7 @@ export function FlushIconTextarea({
 					onChange={(e) => setValue(e.target.value)}
 					placeholder={placeholder}
 					__css={styles.textarea}
-					minH={lines * 33 + 16}
+					minH={calcHeight(lines, cs)}
 					onFocus={toggleFocus}
 					onBlur={toggleFocus}
 				/>
