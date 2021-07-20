@@ -8,6 +8,7 @@ import {
 	Flex,
 	VStack,
 	LinkOverlay,
+	Text,
 	Icon,
 	Link,
 	Portal,
@@ -19,6 +20,7 @@ import {
 	Button,
 	ButtonGroup,
 	IconButton,
+	Textarea,
 } from "@chakra-ui/react";
 import { motion, MotionProps, isValidMotionProp } from "framer-motion";
 
@@ -99,6 +101,15 @@ export const MotionButton = forwardRef((props, ref) => (
 export const MotionButtonGroup = forwardRef((props, ref) => (
 	<MotionBox as={ButtonGroup} ref={ref} {...props} />
 ));
+
 export const MotionIconButton = forwardRef((props, ref) => (
 	<MotionBox as={IconButton} ref={ref} {...props} />
+));
+
+export const MotionTextarea = forwardRef((props, ref) => (
+	<MotionBox as={Textarea} ref={ref} {...props} />
+));
+
+export const MotionText = forwardRef((props, ref) => (
+	<MotionBox as={Text} ref={ref} {...props} />
 ));

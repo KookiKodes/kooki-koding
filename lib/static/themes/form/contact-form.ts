@@ -14,18 +14,18 @@ export const ContactForm: ComponentStyleConfig = {
 			h: "min-content",
 			gap: 40,
 			pointerEvents: "all",
-			transition: "all .3s ease"
+			transition: "all .3s ease",
 		};
 	},
 	variants: {
 		INACTIVE: {
 			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
 			color: "Neutral.default.solid",
-			_hover: {color: "Accent.solid", boxShadow: 'xl'}
+			_hover: { color: "Accent.solid", boxShadow: "xl" },
 		},
 		FOCUS: {
 			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
 			color: "Primary.light.solid",
-		}
+		},
 	},
 };

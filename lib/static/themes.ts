@@ -7,8 +7,9 @@ import { Page } from "@static/themes/layout/page";
 import { Layout } from "@static/themes/layout/layout";
 import { Footer } from "@static/themes/footer/footer";
 import { ContactForm } from "@static/themes/form/contact-form";
-import {FlushIconInput} from "@static/themes/form/flush-icon-input"
-import {FlushIconButton} from "@static/themes/form/flush-icon-button";
+import { FlushIconInput } from "@static/themes/form/flush-icon-input";
+import { FlushIconButton } from "@static/themes/form/flush-icon-button";
+import { FlushIconTextarea } from "@static/themes/form/flush-icon-textarea";
 
 //* Helper Functions
 import { objFromRgba } from "@helper/objFromRgba";
@@ -37,6 +38,7 @@ export default extendTheme({
 		ContactForm,
 		FlushIconInput,
 		FlushIconButton,
+		FlushIconTextarea,
 	},
 	config: {
 		initialColorMode: "dark",
