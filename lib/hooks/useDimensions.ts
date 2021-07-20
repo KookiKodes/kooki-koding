@@ -1,11 +1,18 @@
 import { useEffect, useCallback, useState, RefObject } from "react";
+import ResizeObserver from "resize-observer-polyfill";
+
+export interface ResizeObserverEntry {
+	target: HTMLElement;
+	i;
+	contentRect: DOMRectReadOnly;
+}
 
 export default function useDimensions(
 	ref: RefObject<HTMLElement>,
 	callback?: (entry: DOMRectReadOnly) => void
 ) {
-	const [width, setWidth] = useState();
-	const [height, setHeight] = useState();
+	const [width, setWidth] = useState<number>();
+	const [height, setHeight] = useState<number>();
 
 	const handleResize = useCallback(
 		(entries: ResizeObserverEntry[]) => {
@@ -13,7 +20,7 @@ export default function useDimensions(
 				return;
 			}
 
-			const entry = entries[0] as any;
+			const entry = entries[0];
 			setWidth(entry.contentRect.width);
 			setHeight(entry.contentRect.height);
 
@@ -29,8 +36,8 @@ export default function useDimensions(
 			return;
 		}
 
-		let RO: ResizeObserver | null = new ResizeObserver(
-			(entries: ResizeObserverEntry[]) => handleResize(entries)
+		let RO: ResizeObserver | null = new ResizeObserver((entries: any) =>
+			handleResize(entries)
 		);
 		RO.observe(ref.current);
 
