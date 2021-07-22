@@ -14,12 +14,10 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 				h: "min-content",
 				overflow: "hidden",
 				transition: "color .3s ease, background .3s ease, box-shadow .3s ease",
-				boxShadow: "-.1rem .1rem 0 .1rem currentcolor",
 				borderTopRightRadius: ".3rem",
 				borderTopLeftRadius: ".3rem",
 				_hover: {
-					boxShadow:
-						"-.1rem .1rem 0 .1rem currentcolor, 0 1.6rem 1.2rem rgba(0, 0, 0, .3)",
+					boxShadow: "0 1.6rem 1.2rem rgba(0, 0, 0, .3)",
 				},
 			},
 			textarea: {
@@ -28,14 +26,40 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 				flex: "1 1 100%",
 				fontSize: "2xl",
 				border: "none",
-				_focus: { boxShadow: "none" },
+				_focus: {
+					boxShadow: "none",
+					borderColor: "currentColor",
+					color: "inherit",
+				},
 				resize: "none",
 				color: "inherit",
+				borderRadius: "none",
+				borderBottom: ".2rem solid",
+				borderColor: "currentColor",
 				transition: "height .3s ease",
 				_placeholder: { color: "inherit" },
+				_hover: {
+					color: "inherit",
+					borderColor: "currentColor",
+				},
+				overflow: "hidden",
+			},
+			lineContainer: {
+				flex: "1 1 50px",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "flex-start",
+				flexDir: "column",
+				bg: "currentColor",
+				color: "inherit",
+				transition: "height .3s ease",
+				fontSize: "2xl",
+				borderLeft: ".2rem solid",
+				borderBottom: ".2rem solid",
+				px: 4,
+				py: 2,
 			},
 			iconContainer: {
-				flex: "1 1 50px",
 				w: "50px",
 				h: "50px",
 				display: "flex",
@@ -45,50 +69,47 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 				color: "inherit",
 				transition: "height .3s ease",
 				fontSize: "2xl",
-				p: "8px 16px",
+				borderLeft: ".2rem solid",
+				borderBottom: ".2rem solid",
+				px: 4,
+				py: 2,
 			},
 		};
 	},
 	variants: {
 		INACTIVE: {
 			container: {
-				borderColor: "currentColor",
 				color: "Neutral.default.solid",
 				_hover: {
 					color: "Accent.solid",
 				},
 			},
-			iconContainer: {
-				justifyContent: "center",
+			lineContainer: {
+				h: "150px",
 			},
-			textarea: {
-				_groupHover: {
-					color: "Neutral.default.solid",
-				},
+			line: {
+				color: "dark.solid",
 			},
 			icon: {
 				w: "30px",
-				textAlign: "center",
-				minH: "30px",
-				h: "auto",
-				justifyContent: "center",
+				h: "30px",
 				color: "Neutral.dark.solid",
 			},
 		},
 		FOCUS: {
 			container: {
 				color: "Primary.light.solid",
-				boxShadow:
-					"-.1rem .1rem 0 .1rem currentcolor, 0 .8rem .4rem rgba(0, 0, 0, .3)",
+				boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .3)",
 				bg: "dark.solid",
 			},
 			textarea: {
 				h: "150px",
 			},
-			iconContainer: {
-				w: "min-content",
+			lineContainer: {
 				h: "150px",
-				justifyContent: "flex-start",
+			},
+			line: {
+				color: "dark.solid",
 			},
 			icon: {
 				color: "dark.solid",

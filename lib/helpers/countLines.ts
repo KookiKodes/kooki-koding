@@ -1,8 +1,8 @@
-export async function countLines<T extends HTMLTextAreaElement>(
+export function countLines<T extends HTMLTextAreaElement>(
 	textarea: T,
 	buffer: T,
 	cs: { [key: string]: any }
-) {
+): number {
 	let pl = parseInt(cs.paddingLeft),
 		pr = parseInt(cs.paddingRight),
 		lh = parseInt(cs.lineHeight);
@@ -12,7 +12,6 @@ export async function countLines<T extends HTMLTextAreaElement>(
 
 	// Copy content width.
 	buffer.style.width = textarea.clientWidth + "px";
-	console.log(pl, pr);
 
 	// Copy value.
 	buffer.value = textarea.value;

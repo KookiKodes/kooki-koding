@@ -45,13 +45,13 @@ export function FlushIconTextarea({
 		variant: isFocused ? state : "INACTIVE",
 	});
 
-	async function updateLines() {
-		const count = await countLines<HTMLTextAreaElement>(
+	function updateLines() {
+		const count = countLines<HTMLTextAreaElement>(
 			textarea.current as HTMLTextAreaElement,
 			buffer,
 			cs
 		);
-		setLines(count);
+		if (count !== lines) setLines(count);
 	}
 
 	useEffect(() => {
@@ -65,11 +65,14 @@ export function FlushIconTextarea({
 	return (
 		<MotionFlex __css={styles.container} role='group'>
 			<StylesProvider value={styles}>
-				<MotionFlex __css={styles.iconContainer} minH={calcHeight(lines, cs)}>
+				<MotionFlex
+					__css={showIcon ? styles.iconContainer : styles.lineContainer}
+					minH={calcHeight(lines, cs)}>
 					{!showIcon && (
 						<TextareaLineNumber
 							max={lines}
-							height={parseInt(cs.lineHeight) || parseInt(cs.fontSize)}
+							height={calcHeight(lines, cs)}
+							cs={cs}
 						/>
 					)}
 					{showIcon && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}

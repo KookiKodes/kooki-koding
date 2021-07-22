@@ -19,9 +19,8 @@ export const Navigation: ComponentStyleConfig = {
 			container: {
 				display: "flex",
 				position: "fixed",
-				backdropFilter: "blur(3px)",
+				backdropFilter: "blur(15px)",
 				zIndex: 20,
-				perspective: "100rem",
 				transition: "color .5s ease",
 				top: 0,
 				left: 0,
@@ -81,8 +80,12 @@ export const Navigation: ComponentStyleConfig = {
 				alignItems: "center",
 				cursor: "pointer",
 				position: "relative",
-				_hover: { color: "Complementary.light.solid",},
-				_focus: { color: "Complementary.light.solid", boxShadow: "none", outline: "none" },
+				_hover: { color: "Complementary.light.solid" },
+				_focus: {
+					color: "Complementary.light.solid",
+					boxShadow: "none",
+					outline: "none",
+				},
 				transition: "color .3s ease",
 			},
 			hamburgerBar: {

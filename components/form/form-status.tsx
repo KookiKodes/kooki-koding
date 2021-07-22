@@ -1,7 +1,14 @@
+//* packages
+import { useAnimation } from "framer-motion";
+import { useEffect } from "react";
+
+//* components
 import { MotionHeading } from "@components/framer";
 
 //* interfaces
 import { FormStatusProps as Props } from "@interfaces/form/ContactForm";
+
+const variants = {};
 
 const getMessages = (state, placeholder) => {
 	switch (state) {
@@ -16,10 +23,22 @@ const getMessages = (state, placeholder) => {
 };
 
 export function FormStatus({ state = "INACTIVE", placeholder }: Props) {
+	const container = useAnimation();
 	const message = getMessages(state, placeholder);
 
+	useEffect(() => {
+		container.start({
+			opacity: [0, 1],
+		});
+	}, [state]);
+
 	return (
-		<MotionHeading color='currentColor' size='xl'>
+		<MotionHeading
+			variants={variants}
+			animate={container}
+			color='currentColor'
+			size='xl'
+			fontWeight='light'>
 			{message}
 		</MotionHeading>
 	);

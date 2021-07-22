@@ -24,6 +24,7 @@ export default extendTheme({
 				position: "absolute",
 				width: "100%",
 				height: "100%",
+				maxHeight: "200vh",
 				zIndex: 1,
 				top: 0,
 				left: 0,

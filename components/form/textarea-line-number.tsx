@@ -1,23 +1,36 @@
 //* packages
 import { useStyles } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 
 //* components
 import { MotionText } from "@components/framer";
 
-export function TextareaLineNumber({ max = 0, height = 0 }) {
+//* hooks
+import useRangeArr from "@hooks/useRangeArr";
+
+interface Props {
+	max: number;
+	height: number;
+	cs: { [key: string]: any };
+}
+
+export function TextareaLineNumber({ max = 0, height = 0, cs = {} }: Props) {
 	const styles = useStyles();
+	const getLineNumbers = useRangeArr(max);
 
 	return (
-		<>
-			{Array(max)
-				.fill(0)
-				.map((_, index) => {
-					return (
-						<MotionText __css={styles.icon} h={height} key={index}>
-							{index + 1}
-						</MotionText>
-					);
-				})}
-		</>
+		<MotionText
+			__css={styles.line}
+			h={height}
+			font={cs.fontSize}
+			fontSize={cs.fontSize}
+			letterSpacing={cs.letterSpacing}
+			whiteSpace={cs.whiteSpace}
+			wordBreak={cs.wordBreak}
+			wordSpacing={cs.wordSpacing}
+			lineHeight={cs.lineHeight}>
+			{getLineNumbers(max)}
+		</MotionText>
 	);
 }
