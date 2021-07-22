@@ -10,4 +10,5 @@ export interface FlushIconTextareaProps {
 	toggleState: CallbackWithArg<string>;
 	toggleFocus: CallbackWithArg<any>;
 	isFocused: boolean;
+	maxLineCount?: number;
 }

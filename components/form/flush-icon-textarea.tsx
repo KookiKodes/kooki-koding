@@ -31,9 +31,10 @@ export function FlushIconTextarea({
 	isFocused,
 	toggleFocus,
 	toggleState,
+	maxLineCount = Infinity,
 }: Props) {
-	const [value, setValue] = useState("");
-	const [lines, setLines] = useState(1);
+	const [lines, setLines] = useState<number>(1);
+	const value = useRef<string>("");
 	const textarea = useRef<HTMLTextAreaElement>(null);
 	const [width, _] = useDimensions(textarea);
 	const cs = useComputedStyle<HTMLTextAreaElement>(
@@ -51,32 +52,41 @@ export function FlushIconTextarea({
 			buffer,
 			cs
 		);
-		if (count !== lines) setLines(count);
+		if (count <= maxLineCount) setLines(count);
+		if (textarea.current) {
+			if (count > maxLineCount) textarea.current.value = value.current;
+			else value.current = textarea.current.value;
+		}
 	}
 
 	useEffect(() => {
 		if (buffer) {
 			updateLines();
 		}
-	}, [value, width]);
+	}, [width]);
 
-	const showIcon = !value && (!isFocused || state === "INACTIVE");
+	const showIcon = () => {
+		if (textarea.current) {
+			return !textarea.current.value && (!isFocused || state === "INACTIVE");
+		}
+		return true;
+	};
 
 	return (
 		<MotionFlex __css={styles.container} role='group'>
 			<StylesProvider value={styles}>
 				<MotionFlex
-					__css={showIcon ? styles.iconContainer : styles.lineContainer}
+					__css={showIcon() ? styles.iconContainer : styles.lineContainer}
 					minH={calcHeight(lines, cs)}>
 					<MotionLabel htmlFor={name}>
-						{!showIcon && (
+						{!showIcon() && (
 							<TextareaLineNumber
 								max={lines}
 								height={calcHeight(lines, cs)}
 								cs={cs}
 							/>
 						)}
-						{showIcon && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}
+						{showIcon() && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}
 					</MotionLabel>
 				</MotionFlex>
 				<MotionTextarea
@@ -84,7 +94,7 @@ export function FlushIconTextarea({
 					name={name}
 					id={name}
 					wrap='hard'
-					onChange={(e) => setValue(e.target.value)}
+					onChange={() => updateLines()}
 					placeholder={placeholder}
 					__css={styles.textarea}
 					minH={calcHeight(lines, cs)}

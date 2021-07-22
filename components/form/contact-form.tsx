@@ -80,6 +80,7 @@ export function ContactForm({
 					toggleState={toggleState}
 					toggleFocus={(e: FocusEvent<HTMLTextAreaElement>) => toggleFocus(e)}
 					isFocused={isFocused("message here!")}
+					maxLineCount={50}
 				/>
 			</GridItem>
 			<GridItem rowSpan={1} colSpan={1}>
