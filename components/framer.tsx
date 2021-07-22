@@ -113,3 +113,7 @@ export const MotionTextarea = forwardRef((props, ref) => (
 export const MotionText = forwardRef((props, ref) => (
 	<MotionBox as={Text} ref={ref} {...props} />
 ));
+
+export const MotionLabel = forwardRef((props, ref) => (
+	<MotionBox as='label' ref={ref} {...props} />
+));

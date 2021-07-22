@@ -3,7 +3,7 @@ import { useState, useRef, useEffect, MutableRefObject } from "react";
 import { useMultiStyleConfig, StylesProvider } from "@chakra-ui/system";
 
 //* components
-import { MotionTextarea, MotionFlex } from "@components/framer";
+import { MotionTextarea, MotionFlex, MotionLabel } from "@components/framer";
 import { SVGWrapper } from "@components/utilities/svg-wrapper";
 import { TextareaLineNumber } from "./textarea-line-number";
 
@@ -68,18 +68,21 @@ export function FlushIconTextarea({
 				<MotionFlex
 					__css={showIcon ? styles.iconContainer : styles.lineContainer}
 					minH={calcHeight(lines, cs)}>
-					{!showIcon && (
-						<TextareaLineNumber
-							max={lines}
-							height={calcHeight(lines, cs)}
-							cs={cs}
-						/>
-					)}
-					{showIcon && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}
+					<MotionLabel htmlFor={name}>
+						{!showIcon && (
+							<TextareaLineNumber
+								max={lines}
+								height={calcHeight(lines, cs)}
+								cs={cs}
+							/>
+						)}
+						{showIcon && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}
+					</MotionLabel>
 				</MotionFlex>
 				<MotionTextarea
 					ref={textarea}
 					name={name}
+					id={name}
 					wrap='hard'
 					onChange={(e) => setValue(e.target.value)}
 					placeholder={placeholder}
