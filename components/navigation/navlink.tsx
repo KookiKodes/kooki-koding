@@ -40,7 +40,6 @@ export function Navlink({
 				transition={{ duration: 0.45 }}
 				zIndex='10'
 				tabIndex={0}
-				rel='noopener'
 				layout>
 				{active && (
 					<ActiveLinkSelector link={name} charLeft='[' charRight=']' />

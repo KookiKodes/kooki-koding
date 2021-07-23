@@ -5,7 +5,7 @@ import { useStyles } from "@chakra-ui/react";
 //* Components
 import { MotionLinkOverlay } from "@components/framer";
 import { HoverLinkSelector } from "@components/navigation/hover-link-selector";
-import {SVGWrapper} from "@components/utilities/svg-wrapper";
+import { SVGWrapper } from "@components/utilities/svg-wrapper";
 
 //* Interfaces
 import SvgProps from "@interfaces/footer/Svg";
@@ -20,12 +20,13 @@ export function SVGLinkWrapper({
 	setBlur,
 }: SvgProps) {
 	const styles = useStyles();
-	
+
 	return (
 		<MotionLinkOverlay
 			href={href}
 			target='_blank'
-			role="group"
+			rel='noopener'
+			role='group'
 			onHoverStart={setHoveredLink}
 			__css={styles.svgWrapper}
 			onFocus={setFocus}
