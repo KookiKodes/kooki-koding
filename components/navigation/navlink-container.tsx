@@ -57,7 +57,10 @@ export function NavlinkContainer({
 							setHoverSelector(link.name);
 							if (activeRoute === link.to) e.preventDefault();
 							else {
-								setTimeout(() => closeOnLinkClick(), 700);
+								setTimeout(() => {
+									setHoverSelector("");
+									closeOnLinkClick();
+								}, 700);
 							}
 						}}
 						{...link}
