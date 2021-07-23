@@ -99,9 +99,9 @@ export default extendTheme({
 			900: objFromRgba("rgba(0, 22, 17, 1)"),
 		},
 		Neutral: {
-			dark: objFromRgba("rgba(34, 36, 56, 1)"),
-			default: objFromRgba("rgba(50, 53, 82, 1)"),
-			light: objFromRgba("rgba(96, 103, 158, 1)"),
+			dark: objFromRgba("rgba(27, 24, 43, 1)"),
+			default: objFromRgba("rgba(81, 73, 131, 1)"),
+			light: objFromRgba("rgba(149, 135, 222, 1)"),
 		},
 		Primary: {
 			dark: objFromRgba("rgba(36, 87, 57, 1)"),
@@ -115,6 +115,6 @@ export default extendTheme({
 		},
 		Accent: objFromRgba("rgba(54, 150, 135, 1)"),
 		light: objFromRgba("rgba(245, 245, 252, 1)"),
-		dark: objFromRgba("rgba(26, 28, 43, 1)"),
+		dark: objFromRgba("rgba(20, 22, 34, 1)"),
 	},
 });

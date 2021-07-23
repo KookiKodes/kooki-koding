@@ -52,7 +52,7 @@ export const FlushIconButton: ComponentStyleConfig = {
 					border: "none",
 					borderRadius: ".3rem",
 					bg: "Accent.solid",
-					color: "dark.solid",
+					color: "Neutral.dark.solid",
 				},
 			},
 			iconContainer: {
@@ -63,7 +63,7 @@ export const FlushIconButton: ComponentStyleConfig = {
 				},
 				_groupHover: {
 					bg: "Accent.solid",
-					color: "dark.solid",
+					color: "Neutral.dark.solid",
 					borderRadius: "inherit",
 				},
 			},
@@ -75,7 +75,7 @@ export const FlushIconButton: ComponentStyleConfig = {
 			button: {
 				bgGradient: "linear(to right, Primary.default.solid, Accent.solid)",
 				borderColor: "none",
-				color: "dark.solid",
+				color: "Neutral.dark.solid",
 				borderRadius: ".3rem",
 				_hover: {
 					boxShadow: "0 1.6rem 1.2rem rgba(0, 0, 0, .3)",

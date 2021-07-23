@@ -66,13 +66,13 @@ export const FlushIconInput: ComponentStyleConfig = {
 			container: {
 				color: "Neutral.default.solid",
 				bg: "transparent",
-				_hover: { color: "Accent.solid" },
+				_hover: { color: "Accent.solid", bg: "Neutral.dark.solid" },
 			},
 		},
 		FOCUS: {
 			container: {
 				color: "Primary.light.solid",
-				bg: "dark.solid",
+				bg: "Neutral.dark.solid",
 				boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .3)",
 			},
 			input: {

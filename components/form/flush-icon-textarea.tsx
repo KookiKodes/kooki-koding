@@ -98,6 +98,7 @@ export function FlushIconTextarea({
 					placeholder={placeholder}
 					__css={styles.textarea}
 					minH={calcHeight(lines, cs)}
+					h={!showIcon() ? "150px" : "50px"}
 					onFocus={toggleFocus}
 					onBlur={toggleFocus}
 				/>

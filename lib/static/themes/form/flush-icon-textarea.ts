@@ -80,8 +80,10 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 		INACTIVE: {
 			container: {
 				color: "Neutral.default.solid",
+				bg: "dark.solid",
 				_hover: {
 					color: "Accent.solid",
+					bg: "Neutral.dark.solid",
 				},
 			},
 			lineContainer: {
@@ -100,7 +102,7 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 			container: {
 				color: "Primary.light.solid",
 				boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .3)",
-				bg: "dark.solid",
+				bg: "Neutral.dark.solid",
 			},
 			textarea: {
 				h: "150px",
@@ -109,7 +111,7 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 				h: "150px",
 			},
 			line: {
-				color: "dark.solid",
+				color: "Primary.dark.solid",
 			},
 			icon: {
 				color: "dark.solid",

@@ -15,16 +15,25 @@ export const ContactForm: ComponentStyleConfig = {
 			gap: 40,
 			pointerEvents: "all",
 			transition: "all .3s ease",
+			border: ".2rem solid",
+			borderColor: "Neutral.dark.solid",
 		};
 	},
 	variants: {
 		INACTIVE: {
-			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			// bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			bg: "dark.solid",
 			color: "Neutral.default.solid",
-			_hover: { color: "Accent.solid", boxShadow: "xl" },
+			boxShadow: ["0 1.6rem 1.2rem rgba(0, 0, 0, .3)", "none"],
+			_hover: {
+				color: "Accent.solid",
+				boxShadow: "0 1.6rem 1.2rem rgba(0, 0, 0, .3)",
+			},
 		},
 		FOCUS: {
-			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			bg: "dark.solid",
+			// bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .50)",
 			color: "Primary.light.solid",
 		},
 	},
