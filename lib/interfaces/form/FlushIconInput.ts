@@ -3,7 +3,6 @@ import * as React from "react";
 
 //* interfaces
 import { Callback, CallbackWithArg } from "@interfaces/Utilities";
-import {ContactFormStateTypes} from "./ContactForm";
 
 export interface FlushIconInputProps {
 	toggleFocus: CallbackWithArg<any>;
