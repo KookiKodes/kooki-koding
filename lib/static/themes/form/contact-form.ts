@@ -20,21 +20,39 @@ export const ContactForm: ComponentStyleConfig = {
 		};
 	},
 	variants: {
-		INACTIVE: {
+		"default&": {
 			// bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
 			bg: "dark.solid",
 			color: "Neutral.default.solid",
 			boxShadow: ["0 1.6rem 1.2rem rgba(0, 0, 0, .3)", "none"],
-			_hover: {
-				color: "Accent.solid",
-				boxShadow: "0 1.6rem 1.2rem rgba(0, 0, 0, .3)",
-			},
 		},
-		FOCUS: {
+		"default&focus": {
 			bg: "dark.solid",
 			// bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
 			boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .50)",
 			color: "Primary.light.solid",
+			borderColor: "Primary.light.solid"
 		},
+		"default&hover": {
+			bg: "dark.solid",
+			color: "Accent.solid",
+			boxShadow: "0 1.6rem 1.2rem rgba(0, 0, 0, .3)",
+			borderColor: "Accent.solid"
+		},
+		"invalid&": {
+			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			color: "Complementary.dark.solid",
+		},
+		"invalid&hover": {
+			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			color: "Complementary.dark.solid",
+			borderColor: "Complementary.dark.solid",
+		},
+		"invalid&focus": {
+			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+			color: "Complementary.default.solid",
+			borderColor: "Complementary.default.solid",
+		},
+		
 	},
 };

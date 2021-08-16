@@ -77,10 +77,27 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 		};
 	},
 	variants: {
-		INACTIVE: {
+		"default&": {
 			container: {
 				color: "Neutral.default.solid",
 				bg: "dark.solid",
+			},
+			lineContainer: {
+				h: "150px",
+			},
+			line: {
+				color: "dark.solid",
+			},
+			icon: {
+				w: "30px",
+				h: "30px",
+				color: "Neutral.dark.solid",
+			},
+		},
+		"default&hover": {
+			container: {
+				color: "Accent.solid",
+				bg: "Neutral.dark.solid",
 				_hover: {
 					color: "Accent.solid",
 					bg: "Neutral.dark.solid",
@@ -98,7 +115,7 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 				color: "Neutral.dark.solid",
 			},
 		},
-		FOCUS: {
+		"default&focus": {
 			container: {
 				color: "Primary.light.solid",
 				boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .3)",
@@ -115,6 +132,26 @@ export const FlushIconTextarea: ComponentStyleConfig = {
 			},
 			icon: {
 				color: "dark.solid",
+			},
+		},
+		invalid: {
+			container: {
+				color: "Complementary.dark.solid",
+				bg: "Neutral.dark.solid",
+				_hover: {
+					color: "Complementary.light.solid",
+				},
+			},
+			lineContainer: {
+				h: "50px",
+			},
+			line: {
+				color: "dark.solid",
+			},
+			icon: {
+				w: "30px",
+				h: "30px",
+				color: "Neutral.dark.solid",
 			},
 		},
 	},

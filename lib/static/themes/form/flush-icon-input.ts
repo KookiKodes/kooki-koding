@@ -23,10 +23,11 @@ export const FlushIconInput: ComponentStyleConfig = {
 				borderTopLeftRadius: ".3rem",
 				borderTopRightRadius: ".3rem",
 				h: "50px",
-				transition: "all .3s ease",
+				transition: "color .3s ease, background .3s ease, border .2s ease",
 				_hover: {
 					boxShadow: "0 1.6rem 1.2rem rgba(0, 0, 0, .3)",
 				},
+				overflow: "hidden",
 			},
 			"icon-left-box": {
 				w: "50px",
@@ -35,7 +36,7 @@ export const FlushIconInput: ComponentStyleConfig = {
 				color: "",
 				alignItems: "center",
 				justifyContent: "center",
-				borderTopLeftRadius: ".3rem",
+				// borderTopLeftRadius: ".3rem",
 				bg: "currentColor",
 			},
 			"icon-right-box": {
@@ -62,14 +63,13 @@ export const FlushIconInput: ComponentStyleConfig = {
 		};
 	},
 	variants: {
-		INACTIVE: {
+		"default&": {
 			container: {
 				color: "Neutral.default.solid",
 				bg: "transparent",
-				_hover: { color: "Accent.solid", bg: "Neutral.dark.solid" },
 			},
 		},
-		FOCUS: {
+		"default&focus": {
 			container: {
 				color: "Primary.light.solid",
 				bg: "Neutral.dark.solid",
@@ -79,5 +79,34 @@ export const FlushIconInput: ComponentStyleConfig = {
 				color: "Primary.default.solid",
 			},
 		},
+		"default&hover": {
+			container: {
+				color: "Accent.solid",
+				bg: "Neutral.dark.solid",
+			}
+		},
+		"invalid&": {
+			container: {
+				color: "Complementary.dark.solid",
+				bg: "transparent",
+			}
+		},
+		"invalid&hover": {
+			container: {
+				color: "Complementary.default.solid",
+				bg: "Neutral.dark.solid",
+			}
+		},
+		"invalid&focus": {
+			container: {
+				color: "Complementary.default.solid",
+				bg: "Neutral.dark.solid",
+				border: ".1rem solid",
+				borderTopLeftRadius: ".3rem",
+				borderTopRightRadius: ".3rem",
+				h: "calc(.2rem + 50px)",
+				borderRadius: ".3rem",
+			},
+		}
 	},
 };

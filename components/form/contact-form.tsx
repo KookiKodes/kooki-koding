@@ -1,4 +1,4 @@
-import { FocusEvent, useState } from "react";
+import { FocusEvent, useState, useEffect } from "react";
 import { GridItem, useStyleConfig } from "@chakra-ui/react";
 
 //* Components
@@ -8,42 +8,41 @@ import { FlushIconInput } from "@components/form/flush-icon-input";
 import { FlushIconButton } from "@components/form/flush-icon-button";
 import { FlushIconTextarea } from "@components/form/flush-icon-textarea";
 
-//* interfaces
-import {
-	ContactFormProps as Props,
-	ContactFormStateTypes as State,
-} from "@interfaces/form/ContactForm";
+//* hooks
+import useComponentState from "@hooks/useComponentState";
 
 //* icons
 import { InputIcons } from "@static/icons";
 
-export function ContactForm({
-	state = State[State.INACTIVE],
-	toggleState,
-}: Props) {
-	const styles = useStyleConfig("ContactForm", { variant: state });
+export function ContactForm() {
+	const [state, stateUtils] = useComponentState("default",["invalid", "valid", "sending", "sent", "error"]);
+	const [modifier, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
+	const styles = useStyleConfig("ContactForm", { variant: `${state}&${modifier}`});
 	const [placeholder, setPlaceholder] = useState("");
+	
+	useEffect(() => {
+		// stateUtils.on.invalid();
+	}, [])
 
 	function toggleFocus(e: FocusEvent<HTMLInputElement | HTMLTextAreaElement>) {
 		const { target, type } = e;
-		toggleState("FOCUS");
+		switch(type) {
+			case "focus":
+				modUtils.on.focus();
+				break;
+			default:
+				modUtils.off.focus();
+		}
 		target.scrollIntoView({ behavior: "smooth", block: "nearest" });
 		if (target.placeholder) {
 			setPlaceholder(target.placeholder.toLowerCase());
 		} else setPlaceholder(target.name.toLowerCase());
 	}
 
-	function isFocused(pl: string) {
-		return (
-			(state === "FOCUS" && pl.toLowerCase() === placeholder) ||
-			state !== "FOCUS"
-		);
-	}
-
 	return (
-		<MotionGrid as='form' __css={styles}>
+		<MotionGrid as='form' __css={styles} onHoverStart={() => modUtils.on.hover()} onHoverEnd={() => modUtils.off.hover()}>
 			<GridItem rowSpan={1} colSpan={1}>
-				<FormStatus state={state} placeholder={placeholder} />
+				<FormStatus state={state} placeholder={placeholder} modifier={modifier} />
 			</GridItem>
 			<GridItem rowSpan={1} colSpan={1}>
 				<FlushIconInput
@@ -53,9 +52,7 @@ export function ContactForm({
 					IconLeft={InputIcons.UserCard}
 					IconRight={InputIcons.Checkmark}
 					state={state}
-					toggleState={toggleState}
 					toggleFocus={(e: FocusEvent<HTMLInputElement>) => toggleFocus(e)}
-					isFocused={isFocused("Name")}
 				/>
 			</GridItem>
 			<GridItem rowSpan={1} colSpan={1}>
@@ -66,9 +63,7 @@ export function ContactForm({
 					IconLeft={InputIcons.Mail}
 					IconRight={InputIcons.Checkmark}
 					state={state}
-					toggleState={toggleState}
 					toggleFocus={(e: FocusEvent<HTMLInputElement>) => toggleFocus(e)}
-					isFocused={isFocused("Email")}
 				/>
 			</GridItem>
 			<GridItem rowSpan={1} colSpan={1}>
@@ -77,9 +72,7 @@ export function ContactForm({
 					state={state}
 					placeholder='Message here!'
 					IconLeft={InputIcons.TextAlignLeft}
-					toggleState={toggleState}
 					toggleFocus={(e: FocusEvent<HTMLTextAreaElement>) => toggleFocus(e)}
-					isFocused={isFocused("message here!")}
 					maxLineCount={50}
 				/>
 			</GridItem>
@@ -89,7 +82,6 @@ export function ContactForm({
 					name='submit'
 					submitFn={() => {}}
 					IconRight={InputIcons.LongRight}
-					isFocusing={isFocused("submit")}
 					disabled={false}
 					toggleFocus={(e: FocusEvent<HTMLInputElement>) => toggleFocus(e)}>
 					Send

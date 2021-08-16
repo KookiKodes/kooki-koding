@@ -21,6 +21,7 @@ import { useBuffer } from "@lib/hooks/useBuffer";
 
 //* static
 import { computedCss, bufferCss } from "@lib/static/flush-input-textarea";
+import useComponentState from "@lib/hooks/useComponentState";
 
 export function FlushIconTextarea({
 	IconLeft,
@@ -28,11 +29,10 @@ export function FlushIconTextarea({
 	name,
 	state,
 	placeholder,
-	isFocused,
 	toggleFocus,
-	toggleState,
 	maxLineCount = Infinity,
 }: Props) {
+	const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"])
 	const [lines, setLines] = useState<number>(1);
 	const value = useRef<string>("");
 	const textarea = useRef<HTMLTextAreaElement>(null);
@@ -43,7 +43,7 @@ export function FlushIconTextarea({
 	);
 	const buffer = useBuffer("textarea", cs, bufferCss);
 	const styles = useMultiStyleConfig("FlushIconTextarea", {
-		variant: isFocused ? state : "INACTIVE",
+		variant: `${state}&${mod}`
 	});
 
 	function updateLines() {
@@ -67,13 +67,13 @@ export function FlushIconTextarea({
 
 	const showIcon = () => {
 		if (textarea.current) {
-			return !textarea.current.value && (!isFocused || state === "INACTIVE");
+			return !textarea.current.value && !modUtils.is.hover() && !modUtils.is.focus()
 		}
 		return true;
 	};
-
+	
 	return (
-		<MotionFlex __css={styles.container} role='group'>
+		<MotionFlex __css={styles.container} role='group' onHoverStart={modUtils.on.hover} onHoverEnd={modUtils.off.hover}>
 			<StylesProvider value={styles}>
 				<MotionFlex
 					__css={showIcon() ? styles.iconContainer : styles.lineContainer}
@@ -98,9 +98,9 @@ export function FlushIconTextarea({
 					placeholder={placeholder}
 					__css={styles.textarea}
 					minH={calcHeight(lines, cs)}
-					h={!showIcon() ? "150px" : "50px"}
-					onFocus={toggleFocus}
-					onBlur={toggleFocus}
+					h={showIcon() ? "50px" : "150px"}
+					onFocus={(e) => {toggleFocus(e), modUtils.on.focus()}}
+					onBlur={(e) => {toggleFocus(e), modUtils.off.focus()}}
 				/>
 			</StylesProvider>
 		</MotionFlex>

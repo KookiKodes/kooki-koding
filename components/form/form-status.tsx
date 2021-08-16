@@ -10,21 +10,18 @@ import { FormStatusProps as Props } from "@interfaces/form/ContactForm";
 
 const variants = {};
 
-const getMessages = (state, placeholder) => {
-	switch (state) {
-		case "INACTIVE":
+const getMessages = (state, placeholder, modifier) => {
+	switch (state + "&" + modifier) {
+		case "default&focus": 
+			return "Please fill the field with your " + placeholder;
+		default:
 			return "Thanks for stopping by. How may I help you?";
-		case "FOCUS":
-			if (placeholder === "submit") {
-				return "Whenever you're ready to submit, please press this button :)";
-			}
-			return `Please provide your ${placeholder}`;
 	}
 };
 
-export function FormStatus({ state = "INACTIVE", placeholder }: Props) {
+export function FormStatus({ state = "inactive", modifier = "", placeholder }: Props) {
 	const container = useAnimation();
-	const message = getMessages(state, placeholder);
+	const message = getMessages(state, placeholder, modifier);
 
 	useEffect(() => {
 		container.start({

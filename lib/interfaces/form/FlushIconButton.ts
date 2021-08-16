@@ -7,7 +7,6 @@ export interface FlushIconButtonProps {
   state: string;
   IconRight: ComponentType;
   submitFn: Callback;
-  isFocusing: boolean;
   disabled: boolean;
   toggleFocus: CallbackWithArg<any>;
 }

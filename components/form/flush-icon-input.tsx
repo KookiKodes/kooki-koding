@@ -12,13 +12,17 @@ import {
 } from "@components/framer";
 import { SVGWrapper } from "@components/utilities/svg-wrapper";
 
+//* hooks
+import useComponentState from "@hooks/useComponentState";
+
 //* interfaces
 import { FlushIconInputProps as Props } from "@interfaces/form/FlushIconInput";
 import { ContactFormStateTypes as State } from "@interfaces/form/ContactForm";
 
 export function FlushIconInput(props: Props) {
+	const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
 	const styles = useMultiStyleConfig("FlushIconInput", {
-		variant: props.isFocused ? props.state : "INACTIVE",
+		variant: `${props.state}&${mod}`
 	});
 	return (
 		<MotionInputGroup __css={styles.container}>
@@ -36,8 +40,10 @@ export function FlushIconInput(props: Props) {
 					id={props.name}
 					type={props.type}
 					placeholder={props.placeholder}
-					onFocus={props.toggleFocus}
-					onBlur={props.toggleFocus}
+					onFocus={(e) => {props.toggleFocus(e), modUtils.on.focus()}}
+					onBlur={(e) => {props.toggleFocus(e), modUtils.off.focus()}}
+					onHoverStart={modUtils.on.hover}
+					onHoverEnd={modUtils.off.hover}
 				/>
 				{/*props.iconRight && (
           <MotionInputRightIcon __css={styles["icon-right-box"]}>

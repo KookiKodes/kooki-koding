@@ -7,8 +7,6 @@ export interface FlushIconTextareaProps {
 	state: string;
 	IconLeft: ComponentType;
 	placeholder: string;
-	toggleState: CallbackWithArg<string>;
 	toggleFocus: CallbackWithArg<any>;
-	isFocused: boolean;
 	maxLineCount?: number;
 }
