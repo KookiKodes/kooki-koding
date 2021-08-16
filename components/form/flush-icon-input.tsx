@@ -17,7 +17,6 @@ import useComponentState from "@hooks/useComponentState";
 
 //* interfaces
 import { FlushIconInputProps as Props } from "@interfaces/form/FlushIconInput";
-import { ContactFormStateTypes as State } from "@interfaces/form/ContactForm";
 
 export function FlushIconInput(props: Props) {
 	const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
