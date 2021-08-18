@@ -53,15 +53,15 @@ export function FlushIconInput(props: Props) {
           onHoverStart={modUtils.on.hover}
           onHoverEnd={modUtils.off.hover}
         />
-        {
-          {/*props.IconRight && (
+        {/* {
+          props.IconRight && (
           <MotionLabel htmlFor={props.name}>
             <MotionInputLeftIcon __css={styles["icon-right-box"]}>
               <SVGWrapper SVG={props.IconRight} styles={styles["icon-right"]} />
             </MotionInputLeftIcon>
           </MotionLabel>
-        )*/}
-        }
+        )
+        } */}
       </StylesProvider>
     </MotionInputGroup>
   );
