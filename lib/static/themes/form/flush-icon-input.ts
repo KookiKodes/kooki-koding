@@ -13,14 +13,11 @@ export const FlushIconInput: ComponentStyleConfig = {
         alignitems: "center",
         borderRadius: "none",
         h: "100%",
-        w: "calc(100% - 100px)",
+        w: "100%",
         fontSize: "1.5rem",
         transition: "none",
         background: "transparent",
-        position: "absolute",
-        top: 0,
-        left: "50px",
-        translateX: "-50px",
+        position: "relative",
       },
       container: {
         borderColor: "currentColor",
@@ -31,6 +28,7 @@ export const FlushIconInput: ComponentStyleConfig = {
         transition: "color .3s ease, background .3s ease, box-shadow .3s ease",
       },
       "icon-left-box": {
+        position: 'relative',
         w: "50px",
         h: "50px",
         display: "flex",
@@ -41,6 +39,7 @@ export const FlushIconInput: ComponentStyleConfig = {
         bg: "currentColor",
       },
       "icon-right-box": {
+        position: 'relative',
         w: "50px",
         h: "50px",
         display: "flex",

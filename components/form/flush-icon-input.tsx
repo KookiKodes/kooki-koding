@@ -20,7 +20,7 @@ import useScrollIntoView from "@hooks/useScrollIntoView";
 import { FlushIconInputProps as Props } from "@interfaces/form/FlushIconInput";
 
 export function FlushIconInput(props: Props) {
-  const [inputRef, triggerScrollTo] = useScrollIntoView<HTMLInputElement>({
+  const [ref, triggerScrollTo] = useScrollIntoView<HTMLLabelElement>({
     options: { block: "center", behavior: "smooth" },
   });
   const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
@@ -29,7 +29,7 @@ export function FlushIconInput(props: Props) {
   });
 
   return (
-    <MotionInputGroup __css={styles.container} ref={inputRef}>
+    <MotionInputGroup __css={styles.container} ref={ref}>
       <StylesProvider value={styles}>
         {props.IconLeft && (
           <MotionLabel htmlFor={props.name}>
@@ -54,11 +54,13 @@ export function FlushIconInput(props: Props) {
           onHoverEnd={modUtils.off.hover}
         />
         {
-          /*props.iconRight && (
-          <MotionInputRightIcon __css={styles["icon-right-box"]}>
-            <SVGWrapper SVG={IconRight} styles={styles["icon-right"]} />
-          </MotionInputRightIcon>
-        ) */
+          {/*props.IconRight && (
+          <MotionLabel htmlFor={props.name}>
+            <MotionInputLeftIcon __css={styles["icon-right-box"]}>
+              <SVGWrapper SVG={props.IconRight} styles={styles["icon-right"]} />
+            </MotionInputLeftIcon>
+          </MotionLabel>
+        )*/}
         }
       </StylesProvider>
     </MotionInputGroup>
