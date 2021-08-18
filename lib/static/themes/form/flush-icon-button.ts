@@ -47,6 +47,43 @@ export const FlushIconButton: ComponentStyleConfig = {
 				borderTopLeftRadius: ".3rem",
 				borderBottomLeftRadius: "none",
 				borderBottomRightRadius: "none",
+				hover: {
+					bg: "Neutral.dark.solid",
+					borderColor: "currentColor",
+					color: "Neutral.default.solid",
+					borderTopRightRadius: ".3rem",
+					borderTopLeftRadius: ".3rem",
+					borderBottomLeftRadius: "none",
+					borderBottomRightRadius: "none",
+				},
+				_active: {
+					bg: "Neutral.dark.solid",
+					borderColor: "currentColor",
+					color: "Neutral.default.solid",
+					borderTopRightRadius: ".3rem",
+					borderTopLeftRadius: ".3rem",
+					borderBottomLeftRadius: "none",
+					borderBottomRightRadius: "none",
+				},
+				_focus: {
+					bgGradient: "linear(to right, Primary.default.solid, Accent.solid)",
+					borderColor: "none",
+					color: "Neutral.dark.solid",
+					borderRadius: ".3rem",
+					_active: {
+						bgGradient: "linear(to right, Primary.default.solid, Accent.solid)",
+						borderColor: "none",
+						color: "Neutral.dark.solid",
+						borderRadius: ".3rem",
+						
+					},
+					_hover: {
+						bgGradient: "linear(to right, Primary.default.solid, Accent.solid)",
+						borderColor: "none",
+						color: "Neutral.dark.solid",
+						borderRadius: ".3rem",
+					},
+				}
 			},
 			iconContainer: {
 				bg: "Neutral.default.solid",
@@ -54,6 +91,10 @@ export const FlushIconButton: ComponentStyleConfig = {
 				_groupDisabled: {
 					opacity: 0.5,
 				},
+				_groupFocus: {
+					bg: "transparent",
+					color: "inherit",
+				}
 			},
 			icon: {
 				color: "inherit",

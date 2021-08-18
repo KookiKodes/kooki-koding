@@ -1,158 +1,205 @@
 import { ComponentStyleConfig } from "@chakra-ui/react";
 
 export const FlushIconTextarea: ComponentStyleConfig = {
-	parts: ["container", "textarea", "iconContainer", "icon"],
-	baseStyle: ({ colorMode }) => {
-		const dark = colorMode === "dark";
+  parts: ["container", "textarea", "iconContainer", "icon"],
+  baseStyle: ({ colorMode }) => {
+    const dark = colorMode === "dark";
 
-		return {
-			container: {
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "center",
-				w: "100%",
-				h: "min-content",
-				overflow: "hidden",
-				transition: "color .3s ease, background .3s ease, box-shadow .3s ease",
-				borderTopRightRadius: ".3rem",
-				borderTopLeftRadius: ".3rem",
-				_hover: {
-					boxShadow: "0 1.6rem 1.2rem rgba(0, 0, 0, .3)",
-				},
-			},
-			textarea: {
-				w: "100%",
-				h: "50px",
-				flex: "1 1 100%",
-				fontSize: "2xl",
-				border: "none",
-				_focus: {
-					boxShadow: "none",
-					borderColor: "currentColor",
-					color: "inherit",
-				},
-				resize: "none",
-				color: "inherit",
-				borderRadius: "none",
-				borderBottom: ".2rem solid",
-				borderColor: "currentColor",
-				transition: "height .3s ease",
-				_placeholder: { color: "inherit" },
-				_hover: {
-					color: "inherit",
-					borderColor: "currentColor",
-				},
-				overflow: "hidden",
-			},
-			lineContainer: {
-				flex: "1 1 50px",
-				display: "flex",
-				alignItems: "center",
-				justifyContent: "flex-start",
-				flexDir: "column",
-				bg: "currentColor",
-				color: "inherit",
-				transition: "height .3s ease",
-				fontSize: "2xl",
-				borderLeft: ".2rem solid",
-				borderBottom: ".2rem solid",
-				px: 4,
-				py: 2,
-			},
-			iconContainer: {
-				w: "50px",
-				h: "50px",
-				display: "flex",
-				alignItems: "center",
-				flexDir: "column",
-				bg: "currentColor",
-				color: "inherit",
-				transition: "height .3s ease",
-				fontSize: "2xl",
-				borderLeft: ".2rem solid",
-				borderBottom: ".2rem solid",
-				px: 4,
-				py: 2,
-			},
-		};
-	},
-	variants: {
-		"default&": {
-			container: {
-				color: "Neutral.default.solid",
-				bg: "dark.solid",
-			},
-			lineContainer: {
-				h: "150px",
-			},
-			line: {
-				color: "dark.solid",
-			},
-			icon: {
-				w: "30px",
-				h: "30px",
-				color: "Neutral.dark.solid",
-			},
-		},
-		"default&hover": {
-			container: {
-				color: "Accent.solid",
-				bg: "Neutral.dark.solid",
-				_hover: {
-					color: "Accent.solid",
-					bg: "Neutral.dark.solid",
-				},
-			},
-			lineContainer: {
-				h: "150px",
-			},
-			line: {
-				color: "dark.solid",
-			},
-			icon: {
-				w: "30px",
-				h: "30px",
-				color: "Neutral.dark.solid",
-			},
-		},
-		"default&focus": {
-			container: {
-				color: "Primary.light.solid",
-				boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .3)",
-				bg: "Neutral.dark.solid",
-			},
-			textarea: {
-				h: "150px",
-			},
-			lineContainer: {
-				h: "150px",
-			},
-			line: {
-				color: "Primary.dark.solid",
-			},
-			icon: {
-				color: "dark.solid",
-			},
-		},
-		invalid: {
-			container: {
-				color: "Complementary.dark.solid",
-				bg: "Neutral.dark.solid",
-				_hover: {
-					color: "Complementary.light.solid",
-				},
-			},
-			lineContainer: {
-				h: "50px",
-			},
-			line: {
-				color: "dark.solid",
-			},
-			icon: {
-				w: "30px",
-				h: "30px",
-				color: "Neutral.dark.solid",
-			},
-		},
-	},
+    return {
+      container: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        w: "100%",
+        h: "min-content",
+        overflow: "hidden",
+        transition: "color .3s ease, background .3s ease, box-shadow .3s ease",
+        borderTopRightRadius: ".3rem",
+        borderTopLeftRadius: ".3rem",
+        _hover: {
+          boxShadow: "0 0 0 currentColor, 0 1.6rem .8rem rgba(0, 0, 0, .3)",
+        },
+      },
+      textarea: {
+        w: "100%",
+        h: "50px",
+        flex: "1 1 100%",
+        fontSize: "2xl",
+        border: "none",
+        _focus: {
+          boxShadow: "none",
+          borderColor: "currentColor",
+          color: "inherit",
+        },
+        resize: "none",
+        color: "inherit",
+        borderRadius: "none",
+        borderBottom: ".2rem solid",
+        borderColor: "currentColor",
+        transition: "height .3s ease",
+        _placeholder: { color: "inherit" },
+        _hover: {
+          color: "inherit",
+          borderColor: "currentColor",
+        },
+        overflow: "hidden",
+      },
+      lineContainer: {
+        flex: "1 1 50px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        flexDir: "column",
+        bg: "currentColor",
+        color: "inherit",
+        transition: "height .3s ease",
+        fontSize: "2xl",
+        borderLeft: ".2rem solid",
+        borderBottom: ".2rem solid",
+        px: 2,
+        py: 2,
+      },
+      iconContainer: {
+        w: "50px",
+        h: "50px",
+        display: "flex",
+        alignItems: "center",
+        flexDir: "column",
+        bg: "currentColor",
+        color: "inherit",
+        transition: "height .3s ease",
+        fontSize: "2xl",
+        borderLeft: ".2rem solid",
+        borderBottom: ".2rem solid",
+        px: 4,
+        py: 2,
+      },
+    };
+  },
+  variants: {
+    "default&": {
+      container: {
+        color: "Neutral.default.solid",
+        bg: "dark.solid",
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+    "default&hover": {
+      container: {
+        color: "Accent.solid",
+        bg: "Neutral.dark.solid",
+        _hover: {
+          color: "Accent.solid",
+          bg: "Neutral.dark.solid",
+        },
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+    "default&focus": {
+      container: {
+        color: "Primary.light.solid",
+        boxShadow: "0 0 0 currentColor, 0 .8rem .4rem rgba(0, 0, 0, .3)",
+        bg: "Neutral.dark.solid",
+      },
+      textarea: {
+        h: "150px",
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "Primary.dark.solid",
+      },
+      icon: {
+        color: "dark.solid",
+      },
+    },
+    "invalid&": {
+      container: {
+        color: "Complementary.dark.solid",
+        bg: "transparent",
+        _hover: {
+          color: "Complementary.light.solid",
+        },
+      },
+      lineContainer: {
+        h: "50px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+    "invalid&hover": {
+      container: {
+        color: "Complementary.default.solid",
+        bg: "Neutral.dark.solid",
+        _hover: {
+          color: "Complementary.default.solid",
+          bg: "Neutral.dark.solid",
+        },
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+    "invalid&focus": {
+      container: {
+        boxShadow:
+          ".1rem -.1rem 0 .1rem currentColor, 0 .8rem .4rem rgba(0, 0, 0, .3)",
+        color: "Complementary.default.solid",
+        bg: "Neutral.dark.solid",
+        _hover: {
+          color: "Complementary.default.solid",
+          bg: "Neutral.dark.solid",
+          boxShadow:
+            ".1rem -.1rem 0 .1rem currentColor, 0 1.6rem .8rem rgba(0, 0, 0, .3)",
+        },
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+  },
 };
+

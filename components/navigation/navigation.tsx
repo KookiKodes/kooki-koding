@@ -26,6 +26,7 @@ export function Navigation({ hideLinks }: Props) {
 	const [isOpen, setIsOpen] = useBoolean(false);
 	const [hoverSelector, setHoverSelector] = useState(links[0].name);
 	const [hovering, setHovering] = useBoolean(false);
+	const [title, setTitle] = useState('');
 	const linksVisible = (hideLinks && isOpen) || !hideLinks;
 
 	// const linkContainer = useRef<HTMLElement>(null);
@@ -34,6 +35,13 @@ export function Navigation({ hideLinks }: Props) {
 	useEffect(() => {
 		if (hideLinks) setIsOpen.off();
 	}, [hideLinks]);
+
+	useEffect(() => {
+		if (window) {
+			if (window.location.href.includes('kookikoding')) setTitle('kooki koding');
+			else setTitle('devin jackson');
+		}	
+	}, [])
 
 	const styles = useMultiStyleConfig("Navigation", {
 		variant: hideLinks && isOpen ? "navmenu" : "navbar",
@@ -68,7 +76,7 @@ export function Navigation({ hideLinks }: Props) {
 							w='100%'
 							justifyContent='space-between'
 							layout>
-							<Navtitle>devin jackson</Navtitle>
+							<Navtitle>{title}</Navtitle>
 							{hideLinks && (
 								<MenuBtn
 									state={isOpen ? "open" : "closed"}

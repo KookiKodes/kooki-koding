@@ -99,7 +99,7 @@ const ContactPage: NextPage<Props> = ({ uids }: Props) => {
 			{/* <header className='flex self-center justify-center w-5/6 mt-16 h-30 xl:w-3/6'>
 				<Greeting message='Thanks for stopping by. How may I help you?' />
 			</header> */}
-			<MotionBox as='section' w='100%' minH='100%' h='max-content'>
+			<MotionBox as='section' w='100%' minH='100vh' h='max-content' maxW="1080px" display="flex" justifyContent="center" alignItems={["start", "start", "start", "center"]}>
 				<ContactForm />
 			</MotionBox>
 		</>

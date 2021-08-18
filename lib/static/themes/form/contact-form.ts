@@ -5,10 +5,11 @@ export const ContactForm: ComponentStyleConfig = {
 		const dark = colorMode === "dark";
 		return {
 			display: "grid",
+			position: 'relative',
 			w: "100%",
 			px: 4,
 			py: 8,
-			minHeight: "80vh",
+			minHeight: ["80vh", "80vh", "80vh", "50vh"],
 			borderRadius: ".3rem",
 			boxSizing: "border-box",
 			h: "min-content",
@@ -46,7 +47,7 @@ export const ContactForm: ComponentStyleConfig = {
 		"invalid&hover": {
 			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
 			color: "Complementary.dark.solid",
-			borderColor: "Complementary.dark.solid",
+			borderColor: ["Neutral.dark.solid", "Neutral.dark.solid","Complementary.dark.solid"],
 		},
 		"invalid&focus": {
 			bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
