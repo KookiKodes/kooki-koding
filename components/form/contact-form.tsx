@@ -99,7 +99,7 @@ export function ContactForm() {
   }
 
   function onValid(event: CustomEvent<UseValidationEventObj>) {
-    if (!stateUtils.is.invalid()) stateUtils.switch.valid();
+    stateUtils.switch.valid();
     updateMessage(event.detail?.name);
   }
 
