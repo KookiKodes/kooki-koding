@@ -1,6 +1,6 @@
 //* packages
 import { StylesProvider, useMultiStyleConfig } from "@chakra-ui/react";
-import * as React from "react";
+import { useEffect } from "react";
 
 //* components
 import {
@@ -28,6 +28,10 @@ export function FlushIconInput(props: Props) {
     variant: `${props.state}&${mod}`,
   });
 
+  useEffect(() => {
+    // modUtils.on.disabled();
+  }, []);
+
   return (
     <MotionInputGroup __css={styles.container} ref={ref}>
       <StylesProvider value={styles}>
@@ -44,26 +48,25 @@ export function FlushIconInput(props: Props) {
           id={props.name}
           type={props.type}
           placeholder={props.placeholder}
+          onChange={props.required ? props.required : null}
           onFocus={(e) => {
-            props.toggleFocus(e), modUtils.on.focus(), triggerScrollTo();
+            modUtils.on.focus(), triggerScrollTo();
           }}
           onBlur={(e) => {
-            props.toggleFocus(e), modUtils.off.focus();
+            modUtils.off.focus();
           }}
           onHoverStart={modUtils.on.hover}
           onHoverEnd={modUtils.off.hover}
+          disabled={modUtils.is.disabled()}
         />
-        {/* {
-          props.IconRight && (
+        {props.IconRight && (
           <MotionLabel htmlFor={props.name}>
             <MotionInputLeftIcon __css={styles["icon-right-box"]}>
               <SVGWrapper SVG={props.IconRight} styles={styles["icon-right"]} />
             </MotionInputLeftIcon>
           </MotionLabel>
-        )
-        } */}
+        )}
       </StylesProvider>
     </MotionInputGroup>
   );
 }
-

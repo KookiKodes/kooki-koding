@@ -30,7 +30,6 @@ export function FlushIconTextarea({
   name,
   state,
   placeholder,
-  toggleFocus,
   maxLineCount = Infinity,
 }: Props) {
   const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
@@ -42,7 +41,7 @@ export function FlushIconTextarea({
   const [width, _] = useDimensions(textarea);
   const cs = useComputedStyle<HTMLTextAreaElement>(
     textarea as MutableRefObject<HTMLTextAreaElement>,
-    computedCss,
+    computedCss
   );
   const buffer = useBuffer("textarea", cs, bufferCss);
   const styles = useMultiStyleConfig("FlushIconTextarea", {
@@ -53,7 +52,7 @@ export function FlushIconTextarea({
     const count = countLines<HTMLTextAreaElement>(
       textarea.current as HTMLTextAreaElement,
       buffer,
-      cs,
+      cs
     );
     if (count <= maxLineCount) setLines(count);
     if (textarea.current) {
@@ -68,10 +67,15 @@ export function FlushIconTextarea({
     }
   }, [width]);
 
+  useEffect(() => {
+    // modUtils.on.disabled();
+  }, []);
+
   const showIcon = () => {
     if (textarea.current) {
-      return !textarea.current.value && !modUtils.is.hover() &&
-        !modUtils.is.focus();
+      return (
+        !textarea.current.value && !modUtils.is.hover() && !modUtils.is.focus()
+      );
     }
     return true;
   };
@@ -85,39 +89,42 @@ export function FlushIconTextarea({
     >
       <StylesProvider value={styles}>
         <MotionFlex
+          as="label"
+          htmlFor={name}
           __css={showIcon() ? styles.iconContainer : styles.lineContainer}
           minH={calcHeight(lines, cs)}
         >
-          <MotionLabel htmlFor={name}>
-            {!showIcon() && (
-              <TextareaLineNumber
-                max={lines}
-                height={calcHeight(lines, cs)}
-                cs={cs}
-              />
-            )}
-            {showIcon() && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}
-          </MotionLabel>
+          {!showIcon() && (
+            <TextareaLineNumber
+              max={lines}
+              height={calcHeight(lines, cs)}
+              cs={cs}
+            />
+          )}
+          {showIcon() && <SVGWrapper SVG={IconLeft} styles={styles.icon} />}
         </MotionFlex>
         <MotionTextarea
           ref={textarea}
           name={name}
+          type="message"
           id={name}
           wrap="hard"
-          onChange={() => updateLines()}
+          onChange={(e) => {
+            updateLines(), required ? required(e) : null;
+          }}
           placeholder={placeholder}
           __css={styles.textarea}
           minH={calcHeight(lines, cs)}
           h={showIcon() ? "50px" : "150px"}
           onFocus={(e) => {
-            toggleFocus(e), modUtils.on.focus(), triggerScrollTo();
+            modUtils.on.focus(), triggerScrollTo();
           }}
           onBlur={(e) => {
-            toggleFocus(e), modUtils.off.focus();
+            modUtils.off.focus();
           }}
+          disabled={modUtils.is.disabled()}
         />
       </StylesProvider>
     </MotionFlex>
   );
 }
-

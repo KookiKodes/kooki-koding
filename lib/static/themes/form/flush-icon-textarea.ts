@@ -118,8 +118,13 @@ export const FlushIconTextarea: ComponentStyleConfig = {
     "default&focus": {
       container: {
         color: "Primary.light.solid",
-        boxShadow: "0 0 0 currentColor, 0 .8rem .4rem rgba(0, 0, 0, .3)",
         bg: "Neutral.dark.solid",
+        boxShadow:
+          ".1rem -.1rem 0 .1rem currentColor, 0 .8rem .4rem rgba(0, 0, 0, .3)",
+        _hover: {
+          boxShadow:
+            ".1rem -.1rem 0 .1rem currentColor, 0 1.6rem .8rem rgba(0, 0, 0, .3)",
+        },
       },
       textarea: {
         h: "150px",
@@ -143,7 +148,7 @@ export const FlushIconTextarea: ComponentStyleConfig = {
         },
       },
       lineContainer: {
-        h: "50px",
+        h: "150px",
       },
       line: {
         color: "dark.solid",
@@ -177,15 +182,77 @@ export const FlushIconTextarea: ComponentStyleConfig = {
     },
     "invalid&focus": {
       container: {
-        boxShadow:
-          ".1rem -.1rem 0 .1rem currentColor, 0 .8rem .4rem rgba(0, 0, 0, .3)",
+        boxShadow: "invalid-focus",
         color: "Complementary.default.solid",
         bg: "Neutral.dark.solid",
         _hover: {
           color: "Complementary.default.solid",
           bg: "Neutral.dark.solid",
-          boxShadow:
-            ".1rem -.1rem 0 .1rem currentColor, 0 1.6rem .8rem rgba(0, 0, 0, .3)",
+          shadow: "invalid-hover",
+        },
+      },
+      textarea: {
+        color: "Complementary.light.solid",
+        _placeholder: {
+          color: "Complementary.light.solid",
+          borderColor: "Complementary.default.solid",
+        },
+        _hover: {
+          color: "Complementary.light.solid",
+          borderColor: "Complementary.default.solid",
+        },
+        _focus: {
+          color: "Complementary.light.solid",
+          borderColor: "Complementary.default.solid",
+        },
+      },
+      lineContainer: {
+        color: "Complementary.default.solid",
+        h: "150px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+    "invalid&disabled": {
+      container: {
+        opacity: 0.3,
+        color: "Complementary.light.solid",
+        bg: "Complementary.dark.solid",
+        _hover: {
+          boxShadow: "none",
+        },
+      },
+      textarea: {
+        color: "Complementary.light.solid",
+      },
+      iconContainer: {
+        opacity: 0.31,
+        background: "Complementary.light.solid",
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "Complementary.dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Complementary.dark.solid",
+      },
+    },
+    "valid&": {
+      container: {
+        color: "Primary.dark.solid",
+        bg: "transparent",
+        _hover: {
+          color: "Primary.light.solid",
         },
       },
       lineContainer: {
@@ -200,6 +267,93 @@ export const FlushIconTextarea: ComponentStyleConfig = {
         color: "Neutral.dark.solid",
       },
     },
+    "valid&hover": {
+      container: {
+        color: "Primary.default.solid",
+        bg: "Neutral.dark.solid",
+        _hover: {
+          color: "Primary.default.solid",
+          bg: "Neutral.dark.solid",
+        },
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+    "valid&focus": {
+      container: {
+        boxShadow: "valid-focus",
+        color: "Primary.default.solid",
+        bg: "Neutral.dark.solid",
+        _hover: {
+          color: "Primary.default.solid",
+          bg: "Neutral.dark.solid",
+          shadow: "valid-hover",
+        },
+      },
+      textarea: {
+        color: "Primary.light.solid",
+        _placeholder: {
+          color: "Primary.light.solid",
+          borderColor: "Primary.default.solid",
+        },
+        _hover: {
+          color: "Primary.light.solid",
+          borderColor: "Primary.default.solid",
+        },
+        _focus: {
+          color: "Primary.light.solid",
+          borderColor: "Primary.default.solid",
+        },
+      },
+      lineContainer: {
+        color: "Primary.default.solid",
+        h: "150px",
+      },
+      line: {
+        color: "dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Neutral.dark.solid",
+      },
+    },
+    "valid&disabled": {
+      container: {
+        opacity: 0.3,
+        color: "Primary.light.solid",
+        bg: "Primary.dark.solid",
+        _hover: {
+          boxShadow: "none",
+        },
+      },
+      textarea: {
+        color: "Primary.light.solid",
+      },
+      iconContainer: {
+        opacity: 0.31,
+        background: "Primary.light.solid",
+      },
+      lineContainer: {
+        h: "150px",
+      },
+      line: {
+        color: "Primary.dark.solid",
+      },
+      icon: {
+        w: "30px",
+        h: "30px",
+        color: "Primary.dark.solid",
+      },
+    },
   },
 };
-

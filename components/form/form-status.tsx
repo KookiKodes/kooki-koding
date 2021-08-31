@@ -3,40 +3,44 @@ import { useAnimation } from "framer-motion";
 import { useEffect } from "react";
 
 //* components
-import { MotionHeading } from "@components/framer";
+import { MotionHeading, MotionSpan } from "@components/framer";
 
 //* interfaces
 import { FormStatusProps as Props } from "@interfaces/form/ContactForm";
 
-const variants = {};
+//* helpers
+import { firstToUpper } from "@helper/utilities";
 
-const getMessages = (state, placeholder, modifier) => {
-	switch (state + "&" + modifier) {
-		case "default&focus": 
-			return "Please fill the field with your " + placeholder;
-		default:
-			return "Thanks for stopping by. How may I help you?";
-	}
-};
+function getInvalidNameMessage(getInvalidFieldNames: any) {
+  return `Please correct the following fields: ${getInvalidFieldNames()
+    .map((name, index, arr) =>
+      index + 1 === arr.length && arr.length > 1
+        ? `and ${firstToUpper(name)}`
+        : firstToUpper(name)
+    )
+    .join(", ")}`;
+}
 
-export function FormStatus({ state = "inactive", modifier = "", placeholder }: Props) {
-	const container = useAnimation();
-	const message = getMessages(state, placeholder, modifier);
+export function FormStatus({ state = "inactive", message }: Props) {
+  const container = useAnimation();
 
-	useEffect(() => {
-		container.start({
-			opacity: [0, 1],
-		});
-	}, [state]);
+  useEffect(() => {
+    container.start({
+      opacity: [0, 1],
+    });
+  }, [state]);
 
-	return (
-		<MotionHeading
-			variants={variants}
-			animate={container}
-			color='currentColor'
-			size='xl'
-			fontWeight='light'>
-			{message}
-		</MotionHeading>
-	);
+  return (
+    <MotionHeading
+      animate={container}
+      variants={{}}
+      color="currentColor"
+      size={state === "invalid" ? "lg" : "xl"}
+      fontWeight="light"
+      display="block"
+      whiteSpace="pre-wrap"
+    >
+      {message}
+    </MotionHeading>
+  );
 }

@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useRef } from "react";
-import {Callback} from "@interfaces/Utilities";
+import { Callback } from "@interfaces/Utilities";
 
 type ScrollAlignment = "start" | "center" | "end" | "nearest";
 
@@ -9,10 +9,11 @@ interface ScrollIntoViewOptions {
   inline?: ScrollAlignment;
 }
 
-interface UseScrollIntoView {
+interface UseScrollIntoView<T> {
   options?: boolean | ScrollIntoViewOptions;
   onLoad?: boolean;
   watch?: [any];
+  ref?: RefObject<T>;
 }
 
 const getDefaultOptions = () => {
@@ -31,8 +32,8 @@ const getDefaultOptions = () => {
   return options;
 };
 
-function defaulHookParams(): UseScrollIntoView {
-  const params = {} as UseScrollIntoView;
+function defaulHookParams<T>(): UseScrollIntoView<T> {
+  const params = {} as UseScrollIntoView<T>;
   Object.defineProperties(params, {
     options: {
       value: getDefaultOptions(),
@@ -48,13 +49,16 @@ function defaulHookParams(): UseScrollIntoView {
 }
 
 const useScrollIntoView = <T extends Element>(
-  params: UseScrollIntoView = defaulHookParams(),
+  params: UseScrollIntoView<T> = defaulHookParams()
 ): [RefObject<T>, Callback] => {
-  const { options, watch, onLoad } = params;
-  const ref = useRef<null | T>(null);
+  const ref = params.ref ? params.ref : useRef<null | T>(null);
+
+  let { options, watch, onLoad } = params;
+  if (!options) options = getDefaultOptions();
+
   const scrollIntoView = () => {
-    if (ref.current !== null) {
-      ref.current.scrollIntoView(options ? options : getDefaultOptions());
+    if (ref.current) {
+      ref.current.scrollIntoView(options);
     }
   };
 
@@ -68,10 +72,9 @@ const useScrollIntoView = <T extends Element>(
     if (watch && watch.length > 0) {
       scrollIntoView();
     }
-  }, watch)
+  }, watch);
 
   return [ref, scrollIntoView];
 };
 
 export default useScrollIntoView;
-

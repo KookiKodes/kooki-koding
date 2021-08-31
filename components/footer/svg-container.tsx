@@ -1,43 +1,43 @@
-//* Packages
-import * as React from "react";
-import { useStyles } from "@chakra-ui/react";
+//
+import { useState } from "react";
 
 //* Components
-import { MotionBox } from "@components/framer";
+import { MotionFlex } from "@components/framer";
 import { SVGLinkWrapper } from "@components/footer/svg-link-wrapper";
 
 //* Interfaces
 import SvgContainerProps from "@interfaces/footer/SvgContainer";
 
 export function SvgContainer({
-	Svgs,
-	hoveredLink,
-	setHoveredLink,
-	hovering,
-	setHovering,
+  Svgs,
+  isHovering,
+  toggleFocus,
 }: SvgContainerProps) {
-	const styles = useStyles();
-
-	return (
-		<MotionBox __css={styles.svgContainer} layout>
-			{Svgs.map((props, index: number) => {
-				return (
-					<SVGLinkWrapper
-						key={index}
-						hovering={hovering}
-						hoveredLink={hoveredLink === props.name}
-						setHoveredLink={() => setHoveredLink(props.name)}
-						setFocus={() => {
-							setHovering.on();
-							setHoveredLink(props.name);
-						}}
-						setBlur={() => {
-							setHovering.off();
-						}}
-						{...props}
-					/>
-				);
-			})}
-		</MotionBox>
-	);
+  const [hoveredLink, setHoveredLink] = useState("");
+  return (
+    <MotionFlex
+      justifyContent="center"
+      alignItems="center"
+      w="1080px"
+      h="min-content"
+      pb=".5rem"
+      color="inherit"
+      layout
+    >
+      {Svgs.map((props, index: number) => {
+        return (
+          <SVGLinkWrapper
+            key={index}
+            containerIsHovered={isHovering}
+            toggleFocus={() => {
+              toggleFocus();
+            }}
+            hoveredLink={hoveredLink === props.name}
+            setHoveredLink={() => setHoveredLink(props.name)}
+            {...props}
+          />
+        );
+      })}
+    </MotionFlex>
+  );
 }

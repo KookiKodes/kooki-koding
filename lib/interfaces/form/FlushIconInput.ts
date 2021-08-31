@@ -1,21 +1,20 @@
 //* packages
-import * as React from "react";
+import { ChangeEvent } from "react";
 
 //* interfaces
 import { Callback, CallbackWithArg } from "@interfaces/Utilities";
 
 export interface FlushIconInputProps {
-	toggleFocus: CallbackWithArg<any>;
-	IconLeft?: React.ComponentType;
-	type: string;
-	placeholder: string;
-	state: string;
-	IconRight?: React.ComponentType;
-	name: string;
-	required?: Callback;
+  IconLeft?: React.ComponentType;
+  type: string;
+  placeholder: string;
+  state: string;
+  IconRight?: React.ComponentType;
+  name: string;
+  required?: CallbackWithArg<ChangeEvent<HTMLInputElement>>;
 }
 
 export interface IconInputProps {
-	dir: string;
-	Icon: React.ComponentType;
+  dir: string;
+  Icon: React.ComponentType;
 }

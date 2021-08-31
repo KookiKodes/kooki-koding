@@ -1,5 +1,8 @@
+import {
+  CallbackWithReturn,
+  CallbackWithReturnArg,
+} from "@interfaces/Utilities";
 export interface FormStatusProps {
-	state: string;
-	modifier: string;
-	placeholder?: string;
+  state: string;
+  message: string | string[];
 }

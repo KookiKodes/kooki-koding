@@ -9,6 +9,8 @@ export type UseBoolean = {
 
 export type Callback = () => void;
 export type CallbackWithArg<T> = (arg: T) => void;
+export type CallbackWithReturn<T> = () => T;
+export type CallbackWithReturnArg<A,T> = (arg: A) => T;
 
 export interface SVGWrapperProps {
 	styles: RecursiveCSSObject<CSSWithMultiValues>;

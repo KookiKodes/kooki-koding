@@ -25,7 +25,6 @@ export function FlushIconButton({
   submitFn,
   IconRight,
   disabled,
-  toggleFocus,
 }: Props) {
   const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
   const [ref, triggerScrollTo] = useScrollIntoView({
@@ -37,7 +36,7 @@ export function FlushIconButton({
 
   useEffect(() => {
     if (disabled) modUtils.on.disabled();
-    else modUtils.off.disabled();
+    modUtils.off.disabled();
   }, [disabled]);
 
   return (
@@ -47,17 +46,17 @@ export function FlushIconButton({
       role="group"
       type="submit"
       onClick={(e) => {
-      	if (!disabled){
-			e.preventDefault()
-			submitFn();
-		} 
-	  }}
-      disabled={disabled}
+        if (!disabled) {
+          e.preventDefault();
+          submitFn();
+        }
+      }}
+      disabled={false}
       onFocus={(e) => {
-        toggleFocus(e), modUtils.on.focus(), triggerScrollTo();
+        modUtils.on.focus(), triggerScrollTo();
       }}
       onBlur={(e) => {
-        toggleFocus(e), modUtils.off.focus();
+        modUtils.off.focus();
       }}
       onHoverStart={modUtils.on.hover}
       onHoverEnd={modUtils.off.hover}
@@ -71,4 +70,3 @@ export function FlushIconButton({
     </MotionButton>
   );
 }
-

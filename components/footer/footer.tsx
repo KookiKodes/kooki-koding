@@ -1,46 +1,41 @@
 //* Packages
 import * as React from "react";
-import {
-	Text,
-	Icon,
-	useMultiStyleConfig,
-	StylesProvider,
-	useBoolean,
-} from "@chakra-ui/react";
+import { Text, Icon, useStyleConfig } from "@chakra-ui/react";
 
 //* Components
 import { SvgContainer } from "@components/footer/svg-container";
 import { MotionBox } from "../framer";
 import Copyright from "../../lib/icons/utility/copyright.svg";
 
+//* hooks
+import useComponentState from "@lib/hooks/useComponentState";
+
 //* Static
 import Logos from "@static/icons";
 
+//* hooks
+import useScrollIntoView from "@lib/hooks/useScrollIntoView";
+
 export function Footer() {
-	const [hoveredLink, setHoveredLink] = React.useState("");
-	const [hovering, setHovering] = useBoolean(false);
+  const [state, utils] = useComponentState("default", ["hover", "focus"]);
+  const date = new Date().getFullYear();
+  const styles = useStyleConfig("Footer", { variant: state });
 
-	const date = new Date().getFullYear();
-	const styles = useMultiStyleConfig("Footer", {});
-
-	return (
-		<MotionBox
-			as={"footer"}
-			__css={styles.container}
-			onHoverStart={setHovering.on}
-			onHoverEnd={setHovering.off}>
-			<StylesProvider value={styles}>
-				<SvgContainer
-					hovering={hovering}
-					hoveredLink={hoveredLink}
-					setHoveredLink={setHoveredLink}
-					setHovering={setHovering}
-					Svgs={Logos}
-				/>
-				<Text fontSize='sm'>
-					<Icon as={Copyright} fill='currentColor' /> Devin Jackson {date}
-				</Text>
-			</StylesProvider>
-		</MotionBox>
-	);
+  return (
+    <MotionBox
+      as="footer"
+      __css={styles}
+      onHoverStart={utils.on.hover}
+      onHoverEnd={utils.off.hover}
+    >
+      <SvgContainer
+        isHovering={utils.is.hover() || utils.is.focus()}
+        toggleFocus={() => utils.toggle.focus}
+        Svgs={Logos}
+      />
+      <Text fontSize="sm" display="flex" alignItems="center">
+        <Icon as={Copyright} fill="currentColor" mr={2} /> Devin Jackson {date}
+      </Text>
+    </MotionBox>
+  );
 }
