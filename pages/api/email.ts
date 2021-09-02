@@ -3,19 +3,23 @@
 // import cuid from "cuid";
 import { NextApiResponse, NextApiRequest } from "next";
 import { DateTime, DurationUnit, DurationUnits } from "luxon";
-import redis from "redis";
-const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
+import getConfig from "next/config";
+// import redis from "redis";
+// const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
 
-const redis_client = redis.createClient(
-  parseInt(REDIS_PORT as string),
-  REDIS_HOST
-);
-redis_client.auth(REDIS_PASSWORD as string);
+// const redis_client = redis.createClient(
+//   parseInt(REDIS_PORT as string),
+//   REDIS_HOST
+// );
+// redis_client.auth(REDIS_PASSWORD as string);
 
-redis_client.on("connect", function(error) {
-  if (error) return console.log(error);
-  console.log("Redis Database Connected");
-});
+// redis_client.on("connect", function(error) {
+//   if (error) return console.log(error);
+//   console.log("Redis Database Connected");
+// });
+
+const { serverRuntimeConfig } = getConfig();
+const redis_client = serverRuntimeConfig.redis_client;
 
 const EXPIRE_IN_MINUTES = 5;
 const EXPIRE_IN_SECONDS = EXPIRE_IN_MINUTES * 60;
@@ -25,7 +29,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // If request is not a POST request, we will redirect user to error 404 page
-  if (req.method !== "POST") return redirect(res);
+  // if (req.method !== "POST") return redirect(res);
   //
   // Get's ip from vercel's header -> This only works with vercel.
   const ip =
