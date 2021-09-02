@@ -25,7 +25,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   // If request is not a POST request, we will redirect user to error 404 page
-  // if (req.method !== "POST") return redirect(res);
+  if (req.method !== "POST") return redirect(res);
+  //
   // Checks to see if the server is being run locally
   if (NODE_ENV !== "production")
     return res.send(
