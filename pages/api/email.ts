@@ -4,7 +4,7 @@
 import { NextApiResponse, NextApiRequest } from "next";
 import { DateTime, DurationUnit, DurationUnits } from "luxon";
 import redis from "redis";
-const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD, NODE_ENV } = process.env;
+const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
 
 const redis_client = redis.createClient(
   parseInt(REDIS_PORT as string),
@@ -27,18 +27,12 @@ export default async function handler(
   // If request is not a POST request, we will redirect user to error 404 page
   if (req.method !== "POST") return redirect(res);
   //
-  // Checks to see if the server is being run locally
-  if (NODE_ENV !== "production")
-    return res.send(
-      "You're on local host, disable this if statement to test locally"
-    );
-
   // Get's ip from vercel's header -> This only works with vercel.
   const ip =
     (req.headers["x-real-ip"] as string) || (req.headers["host"] as string);
 
-  // If no ip is found from header, we will redirect to error 404 page
-  // if (!ip) return redirect(res);
+  // If no ip/host is found from header, we will redirect to error 404 page
+  if (!ip) return redirect(res);
 
   // Get's users ip from redis database
   redis_client.get(ip, function(err, record) {
