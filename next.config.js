@@ -1,35 +1,24 @@
-// const fs = require("fs");
-// const path = require("path");
-// const glob = require("glob");
-// const genImportThemeConfig = async () => {
-// 	const srcDir = path.resolve("lib", "static", "themes");
-// 	outputDir = path.resolve("lib", "configs");
+const redis = require("redis");
+const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
 
-// 	try {
-// 		const themeDirs = glob.sync(srcDir + "/**/*.ts");
+const redis_client = redis.createClient(REDIS_PORT, REDIS_HOST);
+redis_client.auth(REDIS_PASSWORD);
 
-// 		if (!fs.existsSync(outputDir)) {
-// 			fs.mkdirSync(outputDir, { recursive: true });
-// 		}
-
-// 		fs.writeFileSync(
-// 			path.join(outputDir, "importThemeConfig.ts"),
-// 			`export default ${JSON.stringify(themeDirs)} as string[]`
-// 		);
-// 	} catch (err) {
-// 		console.log(err);
-// 	}
-// };
-
-// genImportThemeConfig();
+redis_client.on("connect", function(error) {
+  if (error) return console.log(error);
+  console.log("Redis Database Connected");
+});
 
 module.exports = {
-	webpack(config) {
-		config.module.rules.push({
-			test: /\.svg$/,
-			use: ["@svgr/webpack"],
-		});
+  serverRuntimeConfig: {
+    redis_client,
+  },
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"],
+    });
 
-		return config;
-	},
+    return config;
+  },
 };

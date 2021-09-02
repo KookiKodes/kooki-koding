@@ -1,4 +1,10 @@
-import { FocusEvent, useEffect, useState, useCallback } from "react";
+import React, {
+  FocusEvent,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import { GridItem, useStyleConfig } from "@chakra-ui/react";
 
 //* Components
@@ -19,6 +25,7 @@ import useValidation, { UseValidationEventObj } from "@hooks/useValidation";
 
 //* icons
 import { InputIcons } from "@static/icons";
+import { InputIcon } from "./input-icon";
 
 const testGroups = [
   TestGroup.EmailTestGroup(),
@@ -27,6 +34,7 @@ const testGroups = [
 ];
 
 export function ContactForm() {
+  const iconRightRef = useRef<React.ComponentType | null>(null);
   const [state, stateUtils] = useComponentState("default", [
     "invalid",
     "valid",
@@ -57,9 +65,21 @@ export function ContactForm() {
   });
 
   useEffect(() => {
-    // stateUtils.switch.valid();
+    // stateUtils.switch.error();
     updateMessage();
   }, []);
+
+  function getValue(name: string): string {
+    if (ref.current) {
+      return Array.from(ref.current).reduce((value, input) => {
+        const castedInput = input as HTMLInputElement,
+          inputName = castedInput.getAttribute("name");
+        if (inputName === name) value = castedInput.value;
+        return value;
+      }, "");
+    }
+    return "";
+  }
 
   function updateMessage(name?: string) {
     if (name === "submit") {
@@ -71,11 +91,30 @@ export function ContactForm() {
       }
     }
     switch (true) {
+      case stateUtils.is.error():
+        iconRightRef.current = InputIcons.ErrorOutline;
+        return setMessage(
+          `Thank you ${getValue(
+            "name"
+          )}, unfortunately your message failed to send.`
+        );
+      case stateUtils.is.sent():
+        iconRightRef.current = InputIcons.Checkmark;
+        return setMessage(
+          `Thank you ${getValue(
+            "name"
+          )}, your message was sent successfully. I look forward to speaking with you soon!`
+        );
+      case stateUtils.is.sending():
+        iconRightRef.current = InputIcons.Loading;
+        return setMessage(`Thank you! Your message is currently being sent.`);
       case stateUtils.is.valid():
+        iconRightRef.current = InputIcons.Checkmark;
         return setMessage(
           `It looks like the form is good to go, press the send button whenever you're ready!`
         );
       case stateUtils.is.invalid() && modUtils.is.focus():
+        iconRightRef.current = InputIcons.Close;
         let message: string | string[] = validator.getInvalidMessage(
           name as string
         );
@@ -84,10 +123,13 @@ export function ContactForm() {
         return setMessage(message);
       case (stateUtils.is.invalid() && modUtils.is.none()) ||
         (stateUtils.is.invalid() && modUtils.is.hover()):
+        iconRightRef.current = InputIcons.Close;
         return setMessage(getInvalidNameMessage());
       case modUtils.is.focus():
+        iconRightRef.current = null;
         return setMessage(`Please fill the field with your ${name}`);
       default:
+        iconRightRef.current = null;
         return setMessage(
           "Thank you for stopping by. How may I help you today?"
         );
@@ -145,9 +187,7 @@ export function ContactForm() {
           name="name"
           placeholder="Name"
           IconLeft={InputIcons.UserCard}
-          IconRight={
-            !stateUtils.is.invalid() ? InputIcons.Checkmark : InputIcons.Close
-          }
+          IconRight={iconRightRef.current}
           state={state}
           required={validator.validate}
         />
@@ -158,9 +198,7 @@ export function ContactForm() {
           name="email"
           placeholder="Email"
           IconLeft={InputIcons.Mail}
-          IconRight={
-            !stateUtils.is.invalid() ? InputIcons.Checkmark : InputIcons.Close
-          }
+          IconRight={iconRightRef.current}
           state={state}
           required={validator.validate}
         />
@@ -180,7 +218,9 @@ export function ContactForm() {
           state={state}
           name="submit"
           submitFn={() => {}}
-          IconRight={InputIcons.LongRight}
+          IconRight={
+            iconRightRef.current ? iconRightRef.current : InputIcons.LongRight
+          }
           disabled={false}
         >
           Send

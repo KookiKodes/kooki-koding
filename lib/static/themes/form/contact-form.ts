@@ -17,19 +17,18 @@ export const ContactForm: ComponentStyleConfig = {
       pointerEvents: "all",
       transition: "all .3s ease",
       border: ".2rem solid",
+      bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
       borderColor: "Neutral.dark.solid",
     };
   },
   variants: {
     "default&none": {
-      // bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
       bg: "dark.solid",
       color: "Neutral.default.solid",
       boxShadow: "0 .2rem .8rem rgba(0, 0, 0, .3)",
     },
     "default&focus": {
       bg: "dark.solid",
-      // bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
       boxShadow: "0 .8rem .4rem rgba(0, 0, 0, .50)",
       color: "Primary.light.solid",
       borderColor: "Primary.light.solid",
@@ -41,11 +40,9 @@ export const ContactForm: ComponentStyleConfig = {
       borderColor: "Accent.solid",
     },
     "invalid&none": {
-      bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
       color: "Complementary.dark.solid",
     },
     "invalid&hover": {
-      bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
       color: "Complementary.dark.solid",
       borderColor: [
         "Neutral.dark.solid",
@@ -54,16 +51,14 @@ export const ContactForm: ComponentStyleConfig = {
       ],
     },
     "invalid&focus": {
-      bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+      bg: "dark.solid",
       color: "Complementary.default.solid",
       borderColor: "Complementary.default.solid",
     },
     "valid&none": {
-      bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
       color: "Primary.dark.solid",
     },
     "valid&hover": {
-      bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
       color: "Primary.dark.solid",
       borderColor: [
         "Neutral.dark.solid",
@@ -72,9 +67,57 @@ export const ContactForm: ComponentStyleConfig = {
       ],
     },
     "valid&focus": {
-      bgGradient: "linear(to bottom, Neutral.dark.solid, dark.solid)",
+      bg: "dark.solid",
       color: "Primary.default.solid",
       borderColor: "Primary.default.solid",
+    },
+    "sending&none": {
+      color: "Primary.dark.solid",
+    },
+    "sending&hover": {
+      color: "Primary.default.solid",
+      borderColor: [
+        "Neutral.dark.solid",
+        "Neutral.dark.solid",
+        "Primary.dark.solid",
+      ],
+    },
+    "sending&focus": {
+      bg: "dark.solid",
+      color: "Primary.default.solid",
+      borderColor: "Primary.default.solid",
+    },
+    "sent&none": {
+      color: "Primary.default.solid",
+    },
+    "sent&hover": {
+      color: "Primary.default.solid",
+      borderColor: [
+        "Neutral.dark.solid",
+        "Neutral.dark.solid",
+        "Primary.default.solid",
+      ],
+    },
+    "sent&focus": {
+      bg: "dark.solid",
+      color: "Primary.light.solid",
+      borderColor: "Primary.default.solid",
+    },
+    "error&none": {
+      color: "Complementary.default.solid",
+    },
+    "error&hover": {
+      color: "Complementary.default.solid",
+      borderColor: [
+        "Neutral.dark.solid",
+        "Neutral.dark.solid",
+        "Complementary.default.solid",
+      ],
+    },
+    "error&focus": {
+      bg: "dark.solid",
+      color: "Complementary.light.solid",
+      borderColor: "Complementary.default.solid",
     },
   },
 };

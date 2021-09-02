@@ -37,6 +37,7 @@ export const FlushIconInput: ComponentStyleConfig = {
         justifyContent: "center",
         borderTopLeftRadius: ".3rem",
         bg: "currentColor",
+        cursor: "pointer",
       },
       "icon-right-box": {
         position: "relative",
@@ -47,6 +48,7 @@ export const FlushIconInput: ComponentStyleConfig = {
         justifyContent: "center",
         borderTopLeftRadius: ".3rem",
         color: "inherit",
+        cursor: "pointer",
       },
       "icon-right": {
         w: "30px",
@@ -98,6 +100,19 @@ export const FlushIconInput: ComponentStyleConfig = {
         bg: "Neutral.dark.solid",
       },
     },
+    "default&disabled": {
+      container: {
+        opacity: 0.35,
+        color: "Neutral.default.solid",
+        bg: "transparent",
+      },
+      input: {
+        _disabled: {
+          opacity: 1,
+          color: "Neutral.default.solid",
+        },
+      },
+    },
     "invalid&": {
       container: {
         color: "Complementary.dark.solid",
@@ -136,8 +151,8 @@ export const FlushIconInput: ComponentStyleConfig = {
     },
     "invalid&disabled": {
       container: {
-        opacity: 0.35,
-        color: "Complementary.default.solid",
+        opacity: 0.3,
+        color: "Complementary.light.solid",
         bg: "Complementary.dark.solid",
         boxShadow: "0 0 0 0 currentColor, 0 0 0 rgba(0, 0, 0, .3)",
         _hover: {
@@ -145,7 +160,10 @@ export const FlushIconInput: ComponentStyleConfig = {
         },
       },
       input: {
-        color: "Complementary.light.solid",
+        _disabled: {
+          opacity: 1,
+          color: "Complementary.light.solid",
+        },
       },
       "icon-left-box": {
         borderBottomLeftRadius: ".3rem",
@@ -197,8 +215,8 @@ export const FlushIconInput: ComponentStyleConfig = {
     },
     "valid&disabled": {
       container: {
-        opacity: 0.35,
-        color: "Primary.default.solid",
+        opacity: 0.3,
+        color: "Primary.light.solid",
         bg: "Primary.dark.solid",
         boxShadow: "0 0 0 0 currentColor, 0 0 0 rgba(0, 0, 0, .3)",
         _hover: {
@@ -206,7 +224,10 @@ export const FlushIconInput: ComponentStyleConfig = {
         },
       },
       input: {
-        color: "Primary.light.solid",
+        _disabled: {
+          opacity: 1,
+          color: "Primary.light.solid",
+        },
       },
       "icon-left-box": {
         borderBottomLeftRadius: ".3rem",
@@ -217,6 +238,272 @@ export const FlushIconInput: ComponentStyleConfig = {
       "icon-right-box": {
         borderBottomRightRadius: ".3rem",
         color: "Primary.light.solid",
+      },
+    },
+    "sending&": {
+      container: {
+        color: "Primary.dark.solid",
+        bg: "Primary.default.solid",
+      },
+      input: {
+        color: "Neutral.dark.solid",
+      },
+      "icon-left-box": {
+        border: ".2rem solid",
+        borderColor: "Primary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.default.solid",
+      },
+      "icon-right": {
+        color: "Neutral.dark.solid",
+      },
+    },
+    "sending&hover": {
+      container: {
+        color: "Primary.dark.solid",
+        bg: "Primary.default.solid",
+        boxShadow: "0 0 0 currentColor, 0 1.6rem .8rem rgba(0, 0, 0, .3)",
+      },
+      input: {
+        color: "Neutral.dark.solid",
+      },
+      "icon-left-box": {
+        borderWidth: ".2rem",
+        borderColor: "Primary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.default.solid",
+      },
+      "icon-right": {
+        color: "Neutral.dark.solid",
+      },
+    },
+    "sending&focus": {
+      container: {
+        color: "Primary.dark.solid",
+        bg: "Primary.default.solid",
+        boxShadow: "sending-focus",
+        borderRadius: ".3rem",
+      },
+      input: {
+        color: "Primary.light.solid",
+      },
+      "icon-left-box": {
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderBottomLeftRadius: ".3rem",
+        borderColor: "Primary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.light.solid",
+      },
+      "icon-right": {
+        color: "Primary.light.solid",
+      },
+    },
+    "sending&disabled": {
+      container: {
+        opacity: 0.3,
+        color: "Primary.dark.solid",
+        bg: "Primary.default.solid",
+      },
+      input: {
+        _disabled: {
+          opacity: 1,
+          color: "Neutral.dark.solid",
+        },
+      },
+      "icon-left-box": {
+        border: ".2rem solid",
+        borderColor: "Primary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.default.solid",
+      },
+      "icon-right": {
+        color: "Neutral.dark.solid",
+      },
+    },
+    "sent&": {
+      container: {
+        color: "Primary.dark.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "sent",
+      },
+      input: {
+        color: "Primary.dark.solid",
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Primary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.dark.solid",
+      },
+    },
+    "sent&hover": {
+      container: {
+        color: "Primary.dark.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "sending-hover",
+      },
+      input: {
+        color: "Primary.default.solid",
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Primary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.dark.solid",
+      },
+      "icon-right": {
+        color: "Primary.default.solid",
+      },
+    },
+    "sent&focus": {
+      container: {
+        color: "Primary.default.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "sent-focus",
+        _hover: {
+          boxShadow: "sent-hover",
+        },
+      },
+      input: {
+        color: "Primary.light.solid",
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Primary.default.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.light.solid",
+      },
+      "icon-right": {
+        color: "Primary.light.solid",
+      },
+    },
+    "sent&disabled": {
+      container: {
+        opacity: 0.5,
+        color: "Primary.dark.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "sent",
+      },
+      input: {
+        _disabled: {
+          opacity: 1,
+          color: "Primary.dark.solid",
+        },
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Primary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Primary.dark.solid",
+      },
+    },
+    "error&": {
+      container: {
+        color: "Complementary.dark.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "error",
+      },
+      input: {
+        color: "Complementary.dark.solid",
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Complementary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Complementary.dark.solid",
+      },
+    },
+    "error&hover": {
+      container: {
+        color: "Complementary.dark.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "error-hover",
+      },
+      input: {
+        color: "Complementary.default.solid",
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Complementary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Complementary.dark.solid",
+      },
+      "icon-right": {
+        color: "Complementary.default.solid",
+      },
+    },
+    "error&focus": {
+      container: {
+        color: "Complementary.default.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "error-focus",
+        _hover: {
+          boxShadow: "error-focus-hover",
+        },
+      },
+      input: {
+        color: "Complementary.light.solid",
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Complementary.default.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Complementary.light.solid",
+      },
+      "icon-right": {
+        color: "Complementary.light.solid",
+      },
+    },
+    "error&disabled": {
+      container: {
+        opacity: 0.5,
+        color: "Complementary.dark.solid",
+        bg: "Neutral.dark.solid",
+        boxShadow: "error",
+      },
+      input: {
+        _disabled: {
+          opacity: 1,
+          color: "Complementary.dark.solid",
+        },
+      },
+      "icon-left-box": {
+        border: "solid",
+        borderWidth: "0 .2rem .2rem .2rem",
+        borderColor: "Complementary.dark.solid",
+        color: "Neutral.dark.solid",
+      },
+      "icon-left": {
+        color: "Complementary.dark.solid",
       },
     },
   },

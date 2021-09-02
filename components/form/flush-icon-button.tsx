@@ -35,7 +35,7 @@ export function FlushIconButton({
   });
 
   useEffect(() => {
-    if (disabled) modUtils.on.disabled();
+    if (disabled) return modUtils.on.disabled();
     modUtils.off.disabled();
   }, [disabled]);
 
@@ -46,12 +46,12 @@ export function FlushIconButton({
       role="group"
       type="submit"
       onClick={(e) => {
-        if (!disabled) {
+        if (modUtils.is.disabled()) {
           e.preventDefault();
           submitFn();
         }
       }}
-      disabled={false}
+      disabled={modUtils.is.disabled()}
       onFocus={(e) => {
         modUtils.on.focus(), triggerScrollTo();
       }}

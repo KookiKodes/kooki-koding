@@ -47,42 +47,6 @@ export const FlushIconButton: ComponentStyleConfig = {
         borderTopLeftRadius: ".3rem",
         borderBottomLeftRadius: "none",
         borderBottomRightRadius: "none",
-        hover: {
-          bg: "Neutral.dark.solid",
-          borderColor: "currentColor",
-          color: "Neutral.default.solid",
-          borderTopRightRadius: ".3rem",
-          borderTopLeftRadius: ".3rem",
-          borderBottomLeftRadius: "none",
-          borderBottomRightRadius: "none",
-        },
-        _active: {
-          bg: "Neutral.dark.solid",
-          borderColor: "currentColor",
-          color: "Neutral.default.solid",
-          borderTopRightRadius: ".3rem",
-          borderTopLeftRadius: ".3rem",
-          borderBottomLeftRadius: "none",
-          borderBottomRightRadius: "none",
-        },
-        _focus: {
-          bgGradient: "linear(to right, Primary.default.solid, Accent.solid)",
-          borderColor: "none",
-          color: "Neutral.dark.solid",
-          borderRadius: ".3rem",
-          _active: {
-            bgGradient: "linear(to right, Primary.default.solid, Accent.solid)",
-            borderColor: "none",
-            color: "Neutral.dark.solid",
-            borderRadius: ".3rem",
-          },
-          _hover: {
-            bgGradient: "linear(to right, Primary.default.solid, Accent.solid)",
-            borderColor: "none",
-            color: "Neutral.dark.solid",
-            borderRadius: ".3rem",
-          },
-        },
       },
       iconContainer: {
         bg: "Neutral.default.solid",
@@ -142,6 +106,38 @@ export const FlushIconButton: ComponentStyleConfig = {
         bg: "transparent",
         color: "inherit",
         _groupHover: {
+          bg: "transparent",
+          color: "inherit",
+        },
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "default&disabled": {
+      button: {
+        _disabled: {
+          _hover: {
+            bg: "Neutral.dark.solid",
+            color: "Neutral.default.solid",
+            borderColor: "currentColor",
+          },
+          opacity: 0.5,
+          bg: "Neutral.dark.solid",
+          color: "Neutral.default.solid",
+          borderColor: "currentColor",
+          border: "solid",
+          borderWidth: "0 0 .2rem 0",
+          borderTopRightRadius: ".3rem",
+          borderTopLeftRadius: ".3rem",
+          borderBottomLeftRadius: "none",
+          borderBottomRightRadius: "none",
+        },
+      },
+      iconContainer: {
+        bg: "Neutral.default.solid",
+        color: "Neutral.dark.solid",
+        _groupFocus: {
           bg: "transparent",
           color: "inherit",
         },
@@ -344,6 +340,292 @@ export const FlushIconButton: ComponentStyleConfig = {
       iconContainer: {
         bg: "Primary.dark.solid",
         color: "Neutral.dark.solid",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sending&": {
+      button: {
+        bgGradient:
+          "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+        color: "Neutral.dark.solid",
+        borderRadius: ".3rem",
+        boxShadow: "none",
+      },
+      iconContainer: {
+        bg: "transparent",
+        color: "Neutral.dark.solid",
+        _groupDisabled: {
+          opacity: 0.5,
+        },
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sending&hover": {
+      button: {
+        bgGradient:
+          "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+        color: "Neutral.dark.solid",
+        borderRadius: ".3rem",
+        boxShadow: "0 0 0 currentColor, 0 1.6rem .8rem rgba(0, 0, 0, 0.3)",
+        _hover: {
+          boxShadow: "0 0 0 currentColor, 0 1.6rem .8rem rgba(0, 0, 0, 0.3)",
+          bgGradient:
+            "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+          color: "Neutral.dark.solid",
+          borderRadius: ".3rem",
+        },
+      },
+      iconContainer: {
+        bg: "transparent",
+        color: "Neutral.dark.solid",
+        _groupDisabled: {
+          opacity: 0.5,
+        },
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sending&focus": {
+      button: {
+        bgGradient:
+          "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+        color: "Neutral.dark.solid",
+        borderRadius: ".3rem",
+        boxShadow: "0 0 0 currentColor, 0 1.6rem .8rem rgba(0, 0, 0, 0.3)",
+        border: ".2rem solid",
+        borderColor: "Primary.dark.solid",
+        _hover: {
+          border: ".2rem solid",
+          borderColor: "Primary.dark.solid",
+          boxShadow: "0 0 0 currentColor, 0 1.6rem .8rem rgba(0, 0, 0, 0.3)",
+          bgGradient:
+            "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+          color: "Neutral.dark.solid",
+          borderRadius: ".3rem",
+        },
+      },
+      iconContainer: {
+        bg: "transparent",
+        color: "Neutral.dark.solid",
+        _groupDisabled: {
+          opacity: 0.5,
+        },
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sending&disabled": {
+      button: {
+        _hover: {
+          bgGradient:
+            "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+        },
+        _disabled: {
+          bgGradient:
+            "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+          opacity: 0.3,
+          color: "Neutral.dark.solid",
+          borderRadius: ".3rem",
+          boxShadow: "none",
+          _hover: {
+            bgGradient:
+              "linear-gradient(to-r, Primary.default.solid, Primary.light.solid)",
+          },
+        },
+      },
+      iconContainer: {
+        bg: "transparent",
+        color: "Neutral.dark.solid",
+        _groupDisabled: {
+          opacity: 0.5,
+        },
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sent&": {
+      button: {
+        bg: "Neutral.dark.solid",
+        color: "Primary.dark.solid",
+        borderRadius: ".3rem",
+        boxShadow: "0 0 0rem .2rem currentColor",
+      },
+      iconContainer: {
+        bg: "Primary.default.solid",
+        color: "Primary.dark.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Primary.dark.solid",
+        borderBottomRightRadius: ".3rem",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sent&hover": {
+      button: {
+        bg: "Neutral.dark.solid",
+        color: "Primary.default.solid",
+        borderRadius: ".3rem",
+        _hover: {
+          boxShadow: "button-sent-hover",
+          bg: "Neutral.dark.solid",
+        },
+      },
+      iconContainer: {
+        bg: "Primary.default.solid",
+        color: "Primary.dark.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Primary.dark.solid",
+        borderBottomRightRadius: ".3rem",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sent&focus": {
+      button: {
+        bg: "Neutral.dark.solid",
+        color: "Primary.light.solid",
+        borderRadius: ".3rem",
+        _focus: {
+          boxShadow: "button-sent-focus",
+          _hover: {
+            bg: "Neutral.dark.solid",
+            boxShadow: "button-sent-focus-hover",
+          },
+        },
+      },
+      iconContainer: {
+        bg: "Primary.light.solid",
+        color: "Primary.default.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Primary.default.solid",
+        borderBottomRightRadius: ".3rem",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "sent&disabled": {
+      button: {
+        _hover: {
+          bg: "Neutral.dark.solid",
+        },
+        _disabled: {
+          cursor: "not-allowed",
+          opacity: 0.3,
+          bg: "Neutral.dark.solid",
+          color: "Primary.dark.solid",
+          borderRadius: ".3rem",
+          boxShadow: "0 0 0rem .2rem currentColor",
+          _hover: {
+            bg: "Neutral.dark.solid",
+          },
+        },
+      },
+      iconContainer: {
+        bg: "Primary.default.solid",
+        color: "Primary.dark.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Primary.dark.solid",
+        borderBottomRightRadius: ".3rem",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "error&": {
+      button: {
+        bg: "Neutral.dark.solid",
+        color: "Complementary.dark.solid",
+        borderRadius: ".3rem",
+        boxShadow: "0 0 0rem .2rem currentColor",
+      },
+      iconContainer: {
+        bg: "Complementary.default.solid",
+        color: "Complementary.dark.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Complementary.dark.solid",
+        borderBottomRightRadius: ".3rem",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "error&hover": {
+      button: {
+        _hover: {
+          boxShadow: "button-error-hover",
+          bg: "Neutral.dark.solid",
+          color: "Complementary.default.solid",
+          borderRadius: ".3rem",
+        },
+      },
+      iconContainer: {
+        bg: "Complementary.default.solid",
+        color: "Complementary.dark.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Complementary.dark.solid",
+        borderBottomRightRadius: ".3rem",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "error&focus": {
+      button: {
+        bg: "Neutral.dark.solid",
+        color: "Complementary.light.solid",
+        borderRadius: ".3rem",
+        _focus: {
+          boxShadow: "button-error-focus",
+          _hover: {
+            bg: "Neutral.dark.solid",
+            boxShadow: "button-error-focus-hover",
+          },
+        },
+      },
+      iconContainer: {
+        bg: "Complementary.light.solid",
+        color: "Complementary.default.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Complementary.default.solid",
+        borderBottomRightRadius: ".3rem",
+      },
+      icon: {
+        color: "inherit",
+      },
+    },
+    "error&disabled": {
+      button: {
+        _hover: {
+          bg: "Neutral.dark.solid",
+        },
+        _disabled: {
+          cursor: "not-allowed",
+          opacity: 0.3,
+          bg: "Neutral.dark.solid",
+          color: "Complementary.dark.solid",
+          borderRadius: ".3rem",
+          boxShadow: "0 0 0rem .2rem currentColor",
+          _hover: {
+            bg: "Neutral.dark.solid",
+          },
+        },
+      },
+      iconContainer: {
+        bg: "Complementary.default.solid",
+        color: "Complementary.dark.solid",
+        borderWidth: "0 0 0 .2rem",
+        borderColor: "Complementary.dark.solid",
+        borderBottomRightRadius: ".3rem",
       },
       icon: {
         color: "inherit",
