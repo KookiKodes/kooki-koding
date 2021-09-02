@@ -6,9 +6,11 @@ import getConfig from "next/config";
 import { DateTime, DurationUnit, DurationUnits } from "luxon";
 
 // Get's initiated redis_client from serverConfig.
-const {
-  serverRuntimeConfig: { redis_client },
-} = getConfig();
+const { serverRuntimeConfig } = getConfig();
+
+const { redis_client } = serverRuntimeConfig;
+
+console.log(serverRuntimeConfig);
 
 const EXPIRE_IN_MINUTES = 5;
 const EXPIRE_IN_SECONDS = EXPIRE_IN_MINUTES * 60;
