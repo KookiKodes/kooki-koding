@@ -18,9 +18,8 @@ import getConfig from "next/config";
 //   console.log("Redis Database Connected");
 // });
 
-const {
-  serverRuntimeConfig: { redis_client },
-} = getConfig();
+const { serverRuntimeConfig } = getConfig();
+const redis_client = serverRuntimeConfig.redis_client;
 
 const EXPIRE_IN_MINUTES = 5;
 const EXPIRE_IN_SECONDS = EXPIRE_IN_MINUTES * 60;

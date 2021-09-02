@@ -1,38 +1,42 @@
 const redis = require("redis");
 
-const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
-const redis_client = redis.createClient(REDIS_PORT, REDIS_HOST);
-redis_client.auth(REDIS_PASSWORD);
+// redis_client.auth(REDIS_PASSWORD);
 
-redis_client.on("connected", function(error) {
-  if (error) return console.error(error);
-  console.log("Redis Client Connected");
-});
+// redis_client.on("connected", function(error) {
+//   if (error) return console.error(error);
+//   console.log("Redis Client Connected");
+// });
 
-const redis_clientProxy = new Proxy(redis_client, {
-  get(target, prop) {
-    if (!target[prop]) {
-      const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
-      if (!target.connected) {
-        target.auth(REDIS_PASSWORD);
-        return target[prop];
+// const redis_client = instantiateRedis();
+
+const serverRuntimeConfigProxy = new Proxy(
+  { redis_client: {} },
+  getProxyHandler()
+);
+
+function instantiateRedis() {
+  const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
+  return redis.createClient({
+    host: REDIS_HOST,
+    port: parseInt(REDIS_PORT),
+    auth_pass: REDIS_PASSWORD,
+  });
+}
+
+function getProxyHandler() {
+  return {
+    get(target, prop) {
+      if (prop === "redis_client" && !target[prop]?.get) {
+        const redis_client = instantiateRedis();
+        target[prop] = redis_client;
       }
-      const redis_client = redis.createClient(REDIS_PORT, REDIS_HOST);
-      redis_client.on("connected", function(error) {
-        if (error) return console.error(error);
-        console.log("Redis Client Connected");
-      });
-      return redis_client[prop];
-    }
-
-    return target[prop];
-  },
-});
+      return target[prop];
+    },
+  };
+}
 
 module.exports = {
-  serverRuntimeConfig: {
-    redis_client: redis_clientProxy,
-  },
+  serverRuntimeConfig: serverRuntimeConfigProxy,
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
