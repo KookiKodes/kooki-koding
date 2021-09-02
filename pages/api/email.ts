@@ -2,15 +2,20 @@
 // import { serialize } from "cookie";
 // import cuid from "cuid";
 import { NextApiResponse, NextApiRequest } from "next";
-import getConfig from "next/config";
 import { DateTime, DurationUnit, DurationUnits } from "luxon";
+import redis from "redis";
+const { REDIS_PORT, REDIS_HOST, REDIS_PASSWORD } = process.env;
 
-// Get's initiated redis_client from serverConfig.
-const { serverRuntimeConfig } = getConfig();
+const redis_client = redis.createClient(
+  parseInt(REDIS_PORT as string),
+  REDIS_HOST
+);
+redis_client.auth(REDIS_PASSWORD as string);
 
-const { redis_client } = serverRuntimeConfig;
-
-console.log(serverRuntimeConfig);
+redis_client.on("connect", function(error) {
+  if (error) return console.log(error);
+  console.log("Redis Database Connected");
+});
 
 const EXPIRE_IN_MINUTES = 5;
 const EXPIRE_IN_SECONDS = EXPIRE_IN_MINUTES * 60;
@@ -23,42 +28,43 @@ export default async function handler(
   // if (req.method !== "POST") return redirect(res);
 
   // Checks to see if the server is being run locally
-  if (!req.headers["test"]?.includes("localhost:3000")) {
-    // Get's ip from vercel's header -> This only works with vercel.
-    const ip = req.headers["x-real-ip"] || req.headers["host"];
+  // if (!req.headers["test"]?.includes("localhost:3000")) {
+  // Get's ip from vercel's header -> This only works with vercel.
+  const ip =
+    (req.headers["x-real-ip"] as string) || (req.headers["host"] as string);
 
-    // If no ip is found from header, we will redirect to error 404 page
-    // if (!ip) return redirect(res);
+  // If no ip is found from header, we will redirect to error 404 page
+  // if (!ip) return redirect(res);
 
-    // Get's users ip from redis database
-    redis_client.get(ip, function(err, record) {
-      // If there is an error with redis we will send an error response back
-      if (err) return res.status(503).send(err);
+  // Get's users ip from redis database
+  redis_client.get(ip, function(err, record) {
+    // If there is an error with redis we will send an error response back
+    if (err) return res.status(503).send(err);
 
-      // Creates a Date object for use for later
-      const requestTime = DateTime.now();
+    // Creates a Date object for use for later
+    const requestTime = DateTime.now();
 
-      // If the record exists, then the person made a request previously
-      if (record) {
-        // Get's a formatted string in minutes and seconds
-        const remainingTime = getMinutesFromLastRequest(requestTime, record);
+    // If the record exists, then the person made a request previously
+    if (record) {
+      // Get's a formatted string in minutes and seconds
+      const remainingTime = getMinutesFromLastRequest(requestTime, record);
 
-        // Creates json response object
-        const response = {
-          remainingTime,
-          message: `I'm sorry, you cannot send another message for another ${remainingTime}.`,
-        };
+      // Creates json response object
+      const response = {
+        remainingTime,
+        message: `I'm sorry, you cannot send another message for another ${remainingTime}.`,
+      };
 
-        // Responds with too many requests status code
-        return res.status(429).json(response);
-      }
+      // Responds with too many requests status code
+      return res.status(429).json(response);
+    }
 
-      // If all above passed, then we create a new message with an expiration time in our redis database.
-      return redis_client.set(ip, requestTime.toISO(), "EX", EXPIRE_IN_SECONDS);
-    });
-  }
+    // If all above passed, then we create a new message with an expiration time in our redis database.
+    redis_client.set(ip, requestTime.toISO(), "EX", EXPIRE_IN_SECONDS);
+    res.send("success!");
+  });
+  // }
 
-  res.send("success!");
   // if (!req.cookies.limit) {
   //   res.setHeader(
   //     "Set-Cookie",
