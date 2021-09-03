@@ -1,25 +1,47 @@
-// import { handleEmail } from "@helper/emailApi";
-// import { serialize } from "cookie";
-// import cuid from "cuid";
-
 //* packages
 import { NextApiResponse, NextApiRequest } from "next";
 import { DateTime } from "luxon";
+import nodemailer from "nodemailer";
 
 //* helpers
-import calcMinFromLastRequest from "@helper/calcMinFromLastRequest";
-import getRedisHandler from "@helper/getProxyHandler";
+import getRedisHandler from "@helper/emailApi/getRedisHandler";
+import { getIPRecord, setIPRecord } from "@helper/emailApi/redisHelpers";
+import validateFormData from "@helper/emailApi/validateFormData";
+import { createResponseObjWithTime } from "@helper/emailApi/createResponseObj";
+import buildEmailMessage from "@helper/emailApi/buildEmailMessage";
 
 //
 //
-// email api setup
-const redis = new Proxy(
-  { redis_client: {} },
-  getRedisHandler(process.env.REDIS_EMAIL_DB_URL as string)
-);
 // constants
 const EXPIRE_IN_MINUTES = 5;
 const EXPIRE_IN_SECONDS = EXPIRE_IN_MINUTES * 60;
+
+const {
+  REDIS_EMAIL_DB_URL,
+  EMAIL_HOST,
+  EMAIL_PORT,
+  EMAIL_PASSWORD,
+  EMAIL_USER,
+} = process.env;
+
+// email api setup
+//
+// Redis setup
+const redis = new Proxy(
+  { redis_client: {} },
+  getRedisHandler(REDIS_EMAIL_DB_URL as string)
+);
+
+// Nodemailer setup
+const transport = nodemailer.createTransport({
+  host: EMAIL_HOST,
+  port: parseInt(EMAIL_PORT as string),
+  secure: true,
+  auth: {
+    user: EMAIL_USER,
+    pass: EMAIL_PASSWORD,
+  },
+});
 
 export default async function handler(
   req: NextApiRequest,
@@ -39,82 +61,57 @@ export default async function handler(
   // Creates a Date object for use for later
   const requestTime = DateTime.now();
 
-  // Get's users ip from redis database
-  try {
-    const ipRecord = await redis_client?.get(ip);
+  let response = await getIPRecord({
+    redis_client,
+    ip,
+    requestTime,
+    expiration: EXPIRE_IN_MINUTES,
+  });
 
-    // Creates response object
-    let response = { remainingTime: "", message: "" };
+  if (response) return res.json(response);
 
-    // If the record exists, then the person made a request previously
-    if (ipRecord) {
-      // Get's a formatted string in minutes and seconds
-      const remainingTime = calcMinFromLastRequest(
-        requestTime,
-        ipRecord,
-        EXPIRE_IN_MINUTES
-      );
-
-      // Updates json response object
-      response.remainingTime = remainingTime;
-      response.message = `I'm sorry, you cannot send another message for another ${remainingTime}.`;
-
-      // Responds with too many requests status code
-      return res.status(429).json(response);
-    }
-
-    // If all above passed, then we create a new message with an expiration time in our redis database.
-    await redis_client.set(ip, requestTime.toISO(), {
-      EX: EXPIRE_IN_SECONDS,
-    });
-
-    // Updates json response object
-    response.remainingTime = calcMinFromLastRequest(
+  const allValid = validateFormData({
+    data: req.body,
+    needsNames: ["name", "email", "message"],
+  });
+  if (!allValid.valid) {
+    const response = createResponseObjWithTime({
       requestTime,
-      requestTime.toISO(),
-      EXPIRE_IN_MINUTES
-    );
-    response.message = `Your message was sent successfully!`;
-
-    // Sends success response - will update in the future to include actually sending the email.
-    return res.status(200).json(response);
-  } catch (error) {
-    // If there is an error with redis we will send an error response back
-    console.error(error);
-    return res.status(503).send(error);
+      expiration: EXPIRE_IN_MINUTES,
+    });
+    response.message = allValid.message;
+    response.status = 406;
+    return res.json(response);
   }
 
-  // if (!req.cookies.limit) {
-  //   res.setHeader(
-  //     "Set-Cookie",
-  //     serialize("limit", String(cuid()), {
-  //       maxAge: 120,
-  //       domain: "devinjackson.me",
-  //       path: "/",
-  //     })
-  //   );
-  // }
+  try {
+    const { name, email, message } = req.body;
+    await transport.sendMail({
+      from: EMAIL_USER,
+      to: EMAIL_USER,
+      subject: `Message from ${name}`,
+      text: buildEmailMessage({ email, message }),
+      cc: req.body.email,
+    });
+  } catch (error) {
+    console.error(error);
+    const response = createResponseObjWithTime({
+      expiration: EXPIRE_IN_MINUTES,
+      requestTime,
+    });
+    response.message = error;
+    response.status = 503;
+    res.json(response);
+  }
 
-  // switch (true) {
-  //   case req.cookies.limit !== undefined:
-  //     res.status(406).json({
-  //       message: "",
-  //       error:
-  //         "The time between each email is limited, please try again later.",
-  //     });
-  //     break;
-  //   case req.method === "POST":
-  //     await handleEmail(req.body)
-  //       .then((message) => {
-  //         res.status(200).json({ message, error: "" });
-  //       })
-  //       .catch((error) => {
-  //         res.status(406).json({ message: "", error });
-  //       });
-  //     break;
-  //   default:
-  //     res.status(500).send("No route for provided get method.");
-  // }
+  response = await setIPRecord({
+    redis_client,
+    ip,
+    requestTime,
+    expiration: EXPIRE_IN_SECONDS,
+  });
+
+  return res.status(200).json(response);
 }
 
 // Shorthand to redirect user to 404 page.

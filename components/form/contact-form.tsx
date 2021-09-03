@@ -1,11 +1,13 @@
 import React, {
-  FocusEvent,
   useEffect,
   useRef,
   useState,
   useCallback,
+  FormEvent,
 } from "react";
 import { GridItem, useStyleConfig } from "@chakra-ui/react";
+import axios from "axios";
+import serialize from "form-serialize";
 
 //* Components
 import { FormStatus } from "@components/form/form-status";
@@ -25,7 +27,6 @@ import useValidation, { UseValidationEventObj } from "@hooks/useValidation";
 
 //* icons
 import { InputIcons } from "@static/icons";
-import { InputIcon } from "./input-icon";
 
 const testGroups = [
   TestGroup.EmailTestGroup(),
@@ -168,6 +169,18 @@ export function ContactForm() {
     updateMessage(event.target.name);
   }
 
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const target = event.target as HTMLFormElement;
+    const form = serialize(target, { hash: true });
+    try {
+      const response = await axios.post("/api/email", form);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <MotionGrid
       as="form"
@@ -176,6 +189,8 @@ export function ContactForm() {
       __css={styles}
       onHoverStart={() => modUtils.on.hover()}
       onHoverEnd={() => modUtils.off.hover()}
+      onSubmit={handleSubmit}
+      method="POST"
       ref={ref}
     >
       <GridItem rowSpan={1} colSpan={1}>
@@ -217,7 +232,6 @@ export function ContactForm() {
         <FlushIconButton
           state={state}
           name="submit"
-          submitFn={() => {}}
           IconRight={
             iconRightRef.current ? iconRightRef.current : InputIcons.LongRight
           }

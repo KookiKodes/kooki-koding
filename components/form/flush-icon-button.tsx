@@ -3,12 +3,7 @@ import { useMultiStyleConfig } from "@chakra-ui/react";
 import { useEffect } from "react";
 
 //* components
-import {
-  MotionButton,
-  MotionButtonGroup,
-  MotionIconButton,
-  MotionSpan,
-} from "@components/framer";
+import { MotionButton, MotionSpan } from "@components/framer";
 import { SVGWrapper } from "@components/utilities/svg-wrapper";
 
 //* hooks
@@ -48,7 +43,6 @@ export function FlushIconButton({
       onClick={(e) => {
         if (modUtils.is.disabled()) {
           e.preventDefault();
-          submitFn();
         }
       }}
       disabled={modUtils.is.disabled()}
