@@ -17,7 +17,6 @@ export function FlushIconButton({
   name,
   state,
   children,
-  submitFn,
   IconRight,
   disabled,
 }: Props) {
