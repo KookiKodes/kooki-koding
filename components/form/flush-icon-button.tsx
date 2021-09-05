@@ -29,7 +29,9 @@ export function FlushIconButton({
   });
 
   useEffect(() => {
-    if (disabled) return modUtils.on.disabled();
+    if (disabled) {
+      return modUtils.switch.disabled();
+    }
     modUtils.off.disabled();
   }, [disabled]);
 
@@ -46,7 +48,7 @@ export function FlushIconButton({
       }}
       disabled={modUtils.is.disabled()}
       onFocus={(e) => {
-        modUtils.on.focus(), triggerScrollTo();
+        modUtils.on.focus();
       }}
       onBlur={(e) => {
         modUtils.off.focus();

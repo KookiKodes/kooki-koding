@@ -8,6 +8,7 @@ export interface ResponseObject {
   message: string;
   isoTime: string;
   status: number;
+  disabled: boolean;
 }
 
 export interface IPRecordArgs {

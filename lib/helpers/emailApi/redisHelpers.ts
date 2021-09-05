@@ -51,7 +51,7 @@ export async function getIPRecord({
       });
 
       // Updates json response object
-      response.message = `I'm sorry, you cannot send another message for another ${response.formatedDuration}.`;
+      response.message = `I'm sorry, you cannot send another message for ${response.formatedDuration}.`;
       response.status = 429;
       return response;
     }

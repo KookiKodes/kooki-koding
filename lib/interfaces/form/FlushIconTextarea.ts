@@ -8,4 +8,5 @@ export interface FlushIconTextareaProps {
   IconLeft: ComponentType;
   placeholder: string;
   maxLineCount?: number;
+  disabled?: boolean;
 }

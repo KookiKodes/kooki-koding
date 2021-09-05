@@ -1,13 +1,8 @@
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  useCallback,
-  FormEvent,
-} from "react";
+import React, { useEffect, useRef, useState, FormEvent } from "react";
 import { GridItem, useStyleConfig } from "@chakra-ui/react";
 import axios from "axios";
 import serialize from "form-serialize";
+import { DateTime } from "luxon";
 
 //* Components
 import { FormStatus } from "@components/form/form-status";
@@ -28,6 +23,10 @@ import useValidation, { UseValidationEventObj } from "@hooks/useValidation";
 //* icons
 import { InputIcons } from "@static/icons";
 
+//* interfaces
+import { ResponseObject } from "@helper/emailApi/emailInterfaces";
+import calcMinFromLastRequest from "@helper/emailApi/calcMinFromLastRequest";
+
 const testGroups = [
   TestGroup.EmailTestGroup(),
   TestGroup.TextTestGroup(),
@@ -36,6 +35,9 @@ const testGroups = [
 
 export function ContactForm() {
   const iconRightRef = useRef<React.ComponentType | null>(null);
+  const responseRef = useRef<ResponseObject | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const allDisabled = useRef<boolean>(false);
   const [state, stateUtils] = useComponentState("default", [
     "invalid",
     "valid",
@@ -52,7 +54,7 @@ export function ContactForm() {
     variant: `${state}&${modifier}`,
   });
   const [message, setMessage] = useState<string | string[]>("");
-  const [ref, _] = useScrollIntoView<HTMLFormElement>({
+  const [ref, scrollIntoView] = useScrollIntoView<HTMLFormElement>({
     onLoad: true,
     options: { block: "center", behavior: "smooth" },
   });
@@ -66,8 +68,7 @@ export function ContactForm() {
   });
 
   useEffect(() => {
-    // stateUtils.switch.error();
-    updateMessage();
+    onFormLoad();
   }, []);
 
   function getValue(name: string): string {
@@ -82,23 +83,29 @@ export function ContactForm() {
     return "";
   }
 
-  function updateMessage(name?: string) {
-    if (name === "submit") {
-      switch (name) {
-        default:
-          return setMessage(
-            "Press me whenever you're ready to send your message"
-          );
-      }
-    }
+  function updateMessage({ name }: { name?: string }) {
+    const response = responseRef.current;
     switch (true) {
       case stateUtils.is.error():
         iconRightRef.current = InputIcons.ErrorOutline;
-        return setMessage(
-          `Thank you ${getValue(
-            "name"
-          )}, unfortunately your message failed to send.`
-        );
+        if ((response?.remainingTimeInMinutes as number) < 5) {
+          const int = setInterval(() => {
+            const time = DateTime.now();
+            const minutes = (response?.remainingTimeInSeconds as number) / 60;
+            const timeInfo = calcMinFromLastRequest(
+              time,
+              response?.isoTime as string,
+              minutes
+            );
+            if (timeInfo.remainingTimeInSeconds === 0) clearInterval(int);
+            else
+              setMessage(
+                "I'm sorry, you cannot send a message for another " +
+                  timeInfo.formatedDuration
+              );
+          }, 1000);
+        }
+        return setMessage(response ? response.message : "");
       case stateUtils.is.sent():
         iconRightRef.current = InputIcons.Checkmark;
         return setMessage(
@@ -125,9 +132,14 @@ export function ContactForm() {
       case (stateUtils.is.invalid() && modUtils.is.none()) ||
         (stateUtils.is.invalid() && modUtils.is.hover()):
         iconRightRef.current = InputIcons.Close;
-        return setMessage(getInvalidNameMessage());
+        return setMessage(getInvalidNameMessage(validator));
       case modUtils.is.focus():
         iconRightRef.current = null;
+        if (name === "submit") {
+          return setMessage(
+            "Press me whenever you're ready to send your message :) !"
+          );
+        }
         return setMessage(`Please fill the field with your ${name}`);
       default:
         iconRightRef.current = null;
@@ -138,47 +150,98 @@ export function ContactForm() {
   }
 
   function onChange(event: CustomEvent<UseValidationEventObj>) {
-    updateMessage(event.detail?.name);
+    updateMessage({ name: event.detail?.name });
   }
 
   function onValid(event: CustomEvent<UseValidationEventObj>) {
     stateUtils.switch.valid();
-    updateMessage(event.detail?.name);
+    updateMessage({ name: event.detail?.name });
   }
 
   function onInvalid(event: CustomEvent<UseValidationEventObj>) {
     if (!stateUtils.is.invalid()) {
       stateUtils.switch.invalid();
     }
-    updateMessage(event.detail?.name);
-  }
-
-  function getInvalidNameMessage() {
-    return `Please correct the following fields: ${validator
-      .getInvalidFieldNames()
-      .map((name, index, arr) =>
-        index + 1 === arr.length && arr.length > 1
-          ? `and ${firstToUpper(name)}`
-          : firstToUpper(name)
-      )
-      .join(", ")}`;
+    updateMessage({ name: event.detail?.name });
   }
 
   function handleFocus(event) {
     modUtils.toggle.focus();
-    updateMessage(event.target.name);
+    updateMessage({ name: event.target.name });
+  }
+
+  async function onFormLoad() {
+    try {
+      const response = await axios.get("/api/email");
+      responseRef.current = response.data;
+      const { remainingTimeInSeconds } = response.data;
+      if (response.data.disabled) {
+        allDisabled.current = true;
+        stateUtils.switch.error();
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        timeoutRef.current = setTimeout(() => {
+          allDisabled.current = false;
+          stateUtils.switch.default();
+          updateMessage({});
+        }, remainingTimeInSeconds * 1000);
+      }
+      updateMessage({});
+    } catch (err) {
+      throw err;
+    }
+  }
+
+  async function onSending(form) {
+    scrollIntoView();
+    modUtils.switch.none();
+    allDisabled.current = true;
+    stateUtils.switch.sending();
+    updateMessage({});
+    return await axios.post("/api/email", form);
+  }
+
+  function onSent() {
+    const response = responseRef.current;
+    allDisabled.current = true;
+    stateUtils.switch.sent();
+    if (response) setToDefault(response);
+  }
+
+  function onError() {
+    const response = responseRef.current;
+    if (response) allDisabled.current = response?.disabled;
+    stateUtils.switch.error();
+  }
+
+  function setToDefault(response) {
+    const { remainingTimeInSeconds } = response;
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      allDisabled.current = false;
+      stateUtils.switch.default();
+      updateMessage({});
+    }, remainingTimeInSeconds * 1000);
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const target = event.target as HTMLFormElement;
     const form = serialize(target, { hash: true });
+
     try {
-      const response = await axios.post("/api/email", form);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
+      const response = await onSending(form);
+      responseRef.current = response.data;
+      await delay(2);
+      if (response.data.status < 300) {
+        onSent();
+      } else if (response.data.status === 429) {
+        onError();
+        setToDefault(responseRef.current);
+      } else {
+        onError();
+      }
+      updateMessage({});
+    } catch (error) {}
   }
 
   return (
@@ -205,6 +268,7 @@ export function ContactForm() {
           IconRight={iconRightRef.current}
           state={state}
           required={validator.validate}
+          disabled={allDisabled.current}
         />
       </GridItem>
       <GridItem rowSpan={1} colSpan={1}>
@@ -216,6 +280,7 @@ export function ContactForm() {
           IconRight={iconRightRef.current}
           state={state}
           required={validator.validate}
+          disabled={allDisabled.current}
         />
       </GridItem>
       <GridItem rowSpan={1} colSpan={1}>
@@ -226,6 +291,7 @@ export function ContactForm() {
           IconLeft={InputIcons.TextAlignLeft}
           maxLineCount={50}
           required={validator.validate}
+          disabled={allDisabled.current}
         />
       </GridItem>
       <GridItem rowSpan={1} colSpan={1}>
@@ -235,11 +301,28 @@ export function ContactForm() {
           IconRight={
             iconRightRef.current ? iconRightRef.current : InputIcons.LongRight
           }
-          disabled={false}
+          disabled={allDisabled.current}
         >
           Send
         </FlushIconButton>
       </GridItem>
     </MotionGrid>
   );
+}
+
+function delay(n) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, n * 1000);
+  });
+}
+
+function getInvalidNameMessage(validator) {
+  return `Please correct the following fields: ${validator
+    .getInvalidFieldNames()
+    .map((name, index, arr) =>
+      index + 1 === arr.length && arr.length > 1
+        ? `and ${firstToUpper(name)}`
+        : firstToUpper(name)
+    )
+    .join(", ")}`;
 }

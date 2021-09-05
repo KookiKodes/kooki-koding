@@ -10,5 +10,5 @@ export default function buildEmailMessage({
   message,
 }: BuildEmailMessage): string {
   const time = DateTime.now().toLocaleString(DateTime.DATETIME_MED);
-  return `Message sent ${time}:\n${message}\n\nReply back at ${email}.`;
+  return `Message sent ${time}:\n\n${message}\n\nReply back at ${email}.`;
 }

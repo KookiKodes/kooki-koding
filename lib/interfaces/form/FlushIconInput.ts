@@ -12,6 +12,7 @@ export interface FlushIconInputProps {
   IconRight: React.ComponentType | null;
   name: string;
   required?: CallbackWithArg<ChangeEvent<HTMLInputElement>>;
+  disabled?: boolean;
 }
 
 export interface IconInputProps {

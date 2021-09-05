@@ -543,10 +543,16 @@ export const FlushIconButton: ComponentStyleConfig = {
     },
     "error&": {
       button: {
+        _active: {
+          bg: "Neutral.dark.solid",
+        },
         bg: "Neutral.dark.solid",
         color: "Complementary.dark.solid",
         borderRadius: ".3rem",
         boxShadow: "0 0 0rem .2rem currentColor",
+        _hover: {
+          bg: "Neutral.dark.solid",
+        },
       },
       iconContainer: {
         bg: "Complementary.default.solid",
@@ -562,6 +568,9 @@ export const FlushIconButton: ComponentStyleConfig = {
     "error&hover": {
       button: {
         _hover: {
+          _active: {
+            bg: "Neutral.dark.solid",
+          },
           boxShadow: "button-error-hover",
           bg: "Neutral.dark.solid",
           color: "Complementary.default.solid",
@@ -585,6 +594,9 @@ export const FlushIconButton: ComponentStyleConfig = {
         color: "Complementary.light.solid",
         borderRadius: ".3rem",
         _focus: {
+          _active: {
+            bg: "Neutral.dark.solid",
+          },
           boxShadow: "button-error-focus",
           _hover: {
             bg: "Neutral.dark.solid",

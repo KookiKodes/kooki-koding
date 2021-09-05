@@ -29,8 +29,9 @@ export function FlushIconInput(props: Props) {
   });
 
   useEffect(() => {
-    // modUtils.on.disabled();
-  }, []);
+    if (props.disabled) modUtils.switch.disabled();
+    modUtils.off.disabled();
+  }, [props.disabled]);
 
   return (
     <MotionInputGroup __css={styles.container} ref={ref}>
@@ -57,7 +58,7 @@ export function FlushIconInput(props: Props) {
           }}
           onHoverStart={modUtils.on.hover}
           onHoverEnd={modUtils.off.hover}
-          disabled={modUtils.is.disabled()}
+          disabled={props.disabled}
         />
         {props.IconRight && (
           <MotionLabel htmlFor={props.name}>

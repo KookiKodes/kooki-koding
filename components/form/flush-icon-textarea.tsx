@@ -31,6 +31,7 @@ export function FlushIconTextarea({
   state,
   placeholder,
   maxLineCount = Infinity,
+  disabled,
 }: Props) {
   const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
   const [lines, setLines] = useState<number>(1);
@@ -68,8 +69,9 @@ export function FlushIconTextarea({
   }, [width]);
 
   useEffect(() => {
-    // modUtils.on.disabled();
-  }, []);
+    if (disabled) modUtils.switch.disabled();
+    modUtils.off.disabled();
+  }, [disabled]);
 
   const showIcon = () => {
     if (textarea.current) {
@@ -122,7 +124,7 @@ export function FlushIconTextarea({
           onBlur={(e) => {
             modUtils.off.focus();
           }}
-          disabled={modUtils.is.disabled()}
+          disabled={disabled}
         />
       </StylesProvider>
     </MotionFlex>

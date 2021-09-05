@@ -1,7 +1,7 @@
 import { createClient } from "redis";
 import RedisClient from "redis/dist/lib/client";
 
-export default function getProxyHandler(redisDBUrl: string) {
+export function getProxyHandler(redisDBUrl: string) {
   return {
     async get(target, prop) {
       if (prop === "redis_client" && !target[prop]?.get) {
@@ -13,7 +13,7 @@ export default function getProxyHandler(redisDBUrl: string) {
   };
 }
 
-async function instantiateRedis(url: string): Promise<RedisClient> {
+export async function instantiateRedis(url: string): Promise<RedisClient> {
   console.error("Redis Client Is Being Instantiated");
   const client = createClient({
     socket: {

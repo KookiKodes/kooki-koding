@@ -9,6 +9,7 @@ interface CreateResponseObj {
   message?: string;
   iosTime?: string;
   formatedDuration?: string;
+  disabled?: boolean;
   status?: number;
 }
 
@@ -30,6 +31,7 @@ export default function createResponseObj(
     isoTime: "",
     formatedDuration: "",
     status: 200,
+    disabled: false,
     ...partialObj,
   };
 }
@@ -52,6 +54,7 @@ export function createResponseObjWithTime({
     remainingTimeInSeconds,
     remainingTimeInMinutes,
     formatedDuration,
+    disabled: false,
     remainingTotalRequests: Infinity,
     message: "",
     isoTime: requestTime.toISO(),
