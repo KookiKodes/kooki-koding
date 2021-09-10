@@ -13,10 +13,11 @@ import useComponentState from "@lib/hooks/useComponentState";
 //* Static
 import Logos from "@static/icons";
 
-//* hooks
-import useScrollIntoView from "@lib/hooks/useScrollIntoView";
+interface Props {
+  name: string;
+}
 
-export function Footer() {
+export function Footer({ name }: Props) {
   const [state, utils] = useComponentState("default", ["hover", "focus"]);
   const date = new Date().getFullYear();
   const styles = useStyleConfig("Footer", { variant: state });
@@ -34,7 +35,7 @@ export function Footer() {
         Svgs={Logos}
       />
       <Text fontSize="sm" display="flex" alignItems="center">
-        <Icon as={Copyright} fill="currentColor" mr={2} /> Devin Jackson {date}
+        <Icon as={Copyright} fill="currentColor" mr={2} /> {name} {date}
       </Text>
     </MotionBox>
   );

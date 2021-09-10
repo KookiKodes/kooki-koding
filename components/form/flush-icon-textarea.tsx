@@ -119,7 +119,7 @@ export function FlushIconTextarea({
           minH={calcHeight(lines, cs)}
           h={showIcon() ? "50px" : "150px"}
           onFocus={(e) => {
-            modUtils.on.focus(), triggerScrollTo();
+            modUtils.on.focus();
           }}
           onBlur={(e) => {
             modUtils.off.focus();

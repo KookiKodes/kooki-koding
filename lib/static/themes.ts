@@ -11,6 +11,7 @@ import { ContactForm } from "@static/themes/form/contact-form";
 import { FlushIconInput } from "@static/themes/form/flush-icon-input";
 import { FlushIconButton } from "@static/themes/form/flush-icon-button";
 import { FlushIconTextarea } from "@static/themes/form/flush-icon-textarea";
+import { SubSectionHeading } from "@static/themes/text/subsectionheading";
 
 //* Helper Functions
 import { objFromRgba } from "@helper/objFromRgba";
@@ -84,6 +85,7 @@ export default extendTheme({
     FlushIconInput,
     FlushIconButton,
     FlushIconTextarea,
+    SubSectionHeading,
   },
   config: {
     initialColorMode: "dark",

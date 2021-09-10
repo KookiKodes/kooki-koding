@@ -167,6 +167,7 @@ export function ContactForm() {
 
   function handleFocus(event) {
     modUtils.toggle.focus();
+    scrollIntoView();
     updateMessage({ name: event.target.name });
   }
 

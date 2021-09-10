@@ -22,14 +22,14 @@ import links from "@static/links";
 
 interface Props {
   hideLinks: boolean;
+  name: string;
 }
 
-export function Navigation({ hideLinks }: Props) {
+export function Navigation({ hideLinks, name }: Props) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useDisableScroll();
   const [hoverSelector, setHoverSelector] = useState(links[0].name);
   const [hovering, setHovering] = useBoolean(false);
-  const [title, setTitle] = useState("");
   const linksVisible = (hideLinks && isOpen) || !hideLinks;
 
   // const linkContainer = useRef<HTMLElement>(null);
@@ -38,14 +38,6 @@ export function Navigation({ hideLinks }: Props) {
   useEffect(() => {
     if (hideLinks) setIsOpen.off();
   }, [hideLinks]);
-
-  useEffect(() => {
-    if (window) {
-      if (window.location.href.includes("kookikoding"))
-        setTitle("kooki koding");
-      else setTitle("devin jackson");
-    }
-  }, []);
 
   const styles = useMultiStyleConfig("Navigation", {
     variant: hideLinks && isOpen ? "navmenu" : "navbar",
@@ -82,7 +74,7 @@ export function Navigation({ hideLinks }: Props) {
               justifyContent="space-between"
               layout
             >
-              <Navtitle>{title}</Navtitle>
+              <Navtitle>{name.toLocaleLowerCase()}</Navtitle>
               {hideLinks && (
                 <MenuBtn
                   state={isOpen ? "open" : "closed"}

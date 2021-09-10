@@ -20,9 +20,6 @@ import useScrollIntoView from "@hooks/useScrollIntoView";
 import { FlushIconInputProps as Props } from "@interfaces/form/FlushIconInput";
 
 export function FlushIconInput(props: Props) {
-  const [ref, triggerScrollTo] = useScrollIntoView<HTMLLabelElement>({
-    options: { block: "center", behavior: "smooth" },
-  });
   const [mod, modUtils] = useComponentState("", ["hover", "focus", "disabled"]);
   const styles = useMultiStyleConfig("FlushIconInput", {
     variant: `${props.state}&${mod}`,
@@ -34,7 +31,7 @@ export function FlushIconInput(props: Props) {
   }, [props.disabled]);
 
   return (
-    <MotionInputGroup __css={styles.container} ref={ref}>
+    <MotionInputGroup __css={styles.container}>
       <StylesProvider value={styles}>
         {props.IconLeft && (
           <MotionLabel htmlFor={props.name}>
@@ -51,7 +48,7 @@ export function FlushIconInput(props: Props) {
           placeholder={props.placeholder}
           onChange={props.required ? props.required : null}
           onFocus={(e) => {
-            modUtils.on.focus(), triggerScrollTo();
+            modUtils.on.focus();
           }}
           onBlur={(e) => {
             modUtils.off.focus();

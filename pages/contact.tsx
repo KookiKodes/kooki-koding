@@ -19,7 +19,14 @@ interface Props {
 
 const ContactPage: NextPage<Props> = () => {
   return (
-    <>
+    <MotionBox
+      display="flex"
+      w="100vw"
+      justifyContent="center"
+      alignItems="flex-start"
+      px="2rem"
+      mt={["7rem", "7rem", 0]}
+    >
       <Head>
         <title>Devin Jackson | Send me a message</title>
       </Head>
@@ -35,7 +42,7 @@ const ContactPage: NextPage<Props> = () => {
       >
         <ContactForm />
       </MotionBox>
-    </>
+    </MotionBox>
   );
 };
 

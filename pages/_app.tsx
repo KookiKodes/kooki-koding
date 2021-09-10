@@ -1,4 +1,5 @@
 //* Packages
+import {useState, useEffect} from "react";
 import type { AppProps } from "next/app";
 import { AnimatePresence } from "framer-motion";
 import { ChakraProvider } from "@chakra-ui/react";
@@ -13,15 +14,22 @@ import { Fonts } from "@components/fonts";
 import theme from "@static/themes";
 
 function App({ Component, pageProps }: AppProps) {
+	const [name, setName] = useState("Kooki Kodes");
 	const router = useRouter();
+
+	useEffect(() => {
+		if (window && !window.location.href.includes("kookikoding")) {
+			setName("Devin Jackson")
+		}
+	}, [null])
 
 	return (
 		<ChakraProvider theme={theme}>
 			<Fonts />
-			<Layout>
+			<Layout name={name}>
 				<AnimatePresence initial={false}>
 					<Page key={router.route}>
-						<Component {...pageProps} />
+						<Component {...pageProps} name={name} />
 					</Page>
 				</AnimatePresence>
 			</Layout>

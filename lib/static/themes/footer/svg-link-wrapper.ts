@@ -14,7 +14,7 @@ export const SvgLinkWrapper: ComponentStyleConfig = {
         mx: ".5rem",
         w: "min-content",
         h: "min-content",
-        p: ".3rem",
+        p: ".4rem",
         borderRadius: "50%",
         transition: "background .3s ease, color .3s ease",
         bg: "transparent",
@@ -24,8 +24,8 @@ export const SvgLinkWrapper: ComponentStyleConfig = {
       },
       svg: {
         zIndex: 2,
-        w: "1.5rem",
-        h: "1.5rem",
+        w: "1.75rem",
+        h: "1.75rem",
         color: "inherit",
       },
       hoverLinkSelector: {
@@ -43,7 +43,7 @@ export const SvgLinkWrapper: ComponentStyleConfig = {
   variants: {
     default: {
       wrapper: {
-        color: "Neutral.default.solid",
+        color: "inherit",
         bg: "transparent",
       },
       hoverLinkSelector: {

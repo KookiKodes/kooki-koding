@@ -17,6 +17,7 @@ import Mail from "@icons/input/mail.svg";
 import ShortRight from "@icons/input/short-right.svg";
 import TextAlignLeft from "@icons/input/text-align-left.svg";
 import UserCard from "@icons/input/user-card.svg";
+import GithubLogo from "@icons/socials/github-brands.svg";
 import { Component } from "react";
 
 const icons: IconInfo[] = [
@@ -24,6 +25,11 @@ const icons: IconInfo[] = [
     href: "https://www.linkedin.com/in/devin-jackson-b06208152/",
     SVG: LinkedIn,
     name: "LinkedIn",
+  },
+  {
+    href: "https://www.github.com/KookiKodes",
+    SVG: GithubLogo,
+    name: "Github",
   },
   {
     href: "https://www.twitter.com",
