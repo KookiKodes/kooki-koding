@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 
 // components
-import EducationYear from "@components/home/EducationYear";
+import EducationYear from "@components/home/about/EducationYear";
 
 interface Props {
   year: string;

@@ -6,7 +6,7 @@ interface Props {
 
 function Bio({ children }: Props) {
   return (
-    <Flex flexDirection="column" w="100%" py="1rem" color="light.70">
+    <Flex flexDirection="column" w="100%" py="1rem" color="light.70" id="bio">
       {children}
     </Flex>
   );

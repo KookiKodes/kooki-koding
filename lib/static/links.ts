@@ -1,5 +1,6 @@
 export default [
-	{ name: "home", to: "/" },
-	{ name: "projects", to: "/projects" },
-	{ name: "contact", to: "/contact" },
+  { name: "home", to: "#aboutme" },
+  { name: "skills", to: "#skills" },
+  { name: "projects", to: "#projects" },
+  { name: "contact", to: "#contact" },
 ];

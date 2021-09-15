@@ -16,6 +16,7 @@ function HomeHeading({ children }: Props) {
       alignItems="center"
       justifyContent="center"
       h="min-content"
+      id="me"
     >
       <Flex
         flexDirection="column"

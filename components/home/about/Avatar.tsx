@@ -11,6 +11,7 @@ function Avatar({ children }: Props) {
       align="center"
       justify="center"
       color="Primary.default.solid"
+      pb="4rem"
     >
       {children}
     </Flex>

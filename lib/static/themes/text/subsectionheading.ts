@@ -8,27 +8,35 @@ export const SubSectionHeading: ComponentStyleConfig = {
       tag: {
         w: "min-content",
         mb: "1rem",
+        whiteSpace: "nowrap",
       },
       header: {
         fontWeight: "normal",
         p: ".1rem",
+        whiteSpace: "nowrap",
       },
     };
   },
   sizes: {
     sm: {
       heading: {
-        fontSize: ["lg", "xl"],
+        fontSize: ["md", "lg"],
         fontWeight: "medium",
       },
     },
     md: {
       heading: {
-        fontSize: ["xl", "2xl"],
+        fontSize: ["lg", "xl"],
         fontWeight: "normal",
       },
     },
     lg: {
+      heading: {
+        fontSize: ["xl", "2xl"],
+        fontWeight: "normal",
+      },
+    },
+    xl: {
       heading: {
         fontSize: ["3xl", "3xl"],
         fontWeight: "light",

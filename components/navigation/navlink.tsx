@@ -12,48 +12,49 @@ import { HoverLinkSelector } from "./hover-link-selector";
 import NavlinkProps from "@interfaces/navigation/Navlink";
 
 export function Navlink({
-	name,
-	// linkRef,
-	to,
-	active,
-	hovering,
-	hoverSelector,
-	setHoverSelector,
-	setFocus,
-	setBlur,
-	blurAmount,
-	onClick,
+  name,
+  // linkRef,
+  to,
+  active,
+  hovering,
+  hoverSelector,
+  setHoverSelector,
+  setFocus,
+  setBlur,
+  blurAmount,
+  onClick,
 }: NavlinkProps) {
-	const styles = useStyles();
+  const styles = useStyles();
 
-	return (
-		<NextLink href={to}>
-			<MotionLinkOverlay
-				onClick={onClick}
-				__css={styles.link}
-				cursor={active ? "default" : "pointer"}
-				onHoverStart={setHoverSelector}
-				onFocus={setFocus}
-				onBlur={setBlur}
-				onKeyDown={(e) => (e.key === "Enter" ? e.target.click() : "")}
-				animate={{ filter: blurAmount }}
-				transition={{ duration: 0.45 }}
-				zIndex='10'
-				tabIndex={0}
-				layout>
-				{active && (
-					<ActiveLinkSelector link={name} charLeft='[' charRight=']' />
-				)}
-				<MotionSpan zIndex='20'>{name}</MotionSpan>
-				{hoverSelector && (
-					<HoverLinkSelector
-						hasHoveredLink={hoverSelector}
-						hovering={hovering}
-						layoutId='navlinkHover'
-						color='Primary.default.70'
-					/>
-				)}
-			</MotionLinkOverlay>
-		</NextLink>
-	);
+  return (
+    <NextLink href={to}>
+      <MotionLinkOverlay
+        onClick={onClick}
+        __css={styles.link}
+        cursor={active ? "default" : "pointer"}
+        onHoverStart={setHoverSelector}
+        onFocus={setFocus}
+        onBlur={setBlur}
+        onKeyDown={(e) => (e.key === "Enter" ? e.target.click() : "")}
+        animate={{ filter: blurAmount }}
+        transition={{ duration: 0.45 }}
+        zIndex="10"
+        tabIndex={0}
+        layout
+      >
+        {active && (
+          <ActiveLinkSelector link={name} charLeft="[" charRight="]" />
+        )}
+        <MotionSpan zIndex="20">{name}</MotionSpan>
+        {hoverSelector && (
+          <HoverLinkSelector
+            hasHoveredLink={hoverSelector}
+            hovering={hovering}
+            layoutId="navlinkHover"
+            color="Primary.default.70"
+          />
+        )}
+      </MotionLinkOverlay>
+    </NextLink>
+  );
 }

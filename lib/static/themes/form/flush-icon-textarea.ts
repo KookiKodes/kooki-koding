@@ -45,6 +45,8 @@ export const FlushIconTextarea: ComponentStyleConfig = {
         overflow: "hidden",
         _disabled: {
           opacity: 1,
+          color: "inherit",
+          borderColor: "currentColor",
         },
       },
       lineContainer: {

@@ -26,6 +26,7 @@ function About({ children }: Props) {
       rowSpan={[1, 1, 1, 2]}
       colSpan={[5, 5, 5, 3]}
       w="100%"
+      id="about"
     >
       {children}
     </GridItem>

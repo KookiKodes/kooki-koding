@@ -1,11 +1,11 @@
-<svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0)" filter="url(#filter0_d)">
-<g clip-path="url(#clip1)">
+<svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d)" filterUnits="userSpaceOnUse">
+<g filterUnits="userSpaceOnUse">
 <path d="M9.1665 43.1635L16.854 37.3103C20.9394 42.6088 25.279 45.049 30.1103 45.049C34.9165 45.049 39.1311 42.6357 43.0332 37.3828L50.8332 43.0931C45.204 50.6683 38.2103 54.6732 30.1103 54.6732C22.0373 54.6732 14.9748 50.6952 9.1665 43.1635ZM30.0832 17.7288L16.3998 29.4434L10.0748 22.158L30.1144 5L49.9957 22.1704L43.6415 29.433L30.0832 17.7288Z" fill="url(#paint0_linear)"/>
 </g>
 </g>
 <defs>
-<filter id="filter0_d" x="0" y="0" width="60" height="59.6732" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d" width="200%" height="200%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset/>
@@ -18,11 +18,5 @@
 <stop stop-color="#245739"/>
 <stop offset="1" stop-color="#1B182B" stop-opacity="0.7"/>
 </linearGradient>
-<clipPath id="clip0">
-<rect width="50" height="49.6732" fill="white" transform="translate(5 5)"/>
-</clipPath>
-<clipPath id="clip1">
-<rect width="50" height="49.6732" fill="white" transform="translate(5 5)"/>
-</clipPath>
 </defs>
 </svg>

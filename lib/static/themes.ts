@@ -45,6 +45,8 @@ export default extendTheme({
     "sent-hover": `.1rem -.1rem 0 .1rem rgba(62, 150, 99, 1), 0 1.6rem .8rem rgba(0,0,0, .3)`,
     "default-focus": `.1rem -.1rem 0 .1rem rgba(88, 214, 140, 1), 0 .8rem .4rem rgba(0,0,0, .3)`,
     "default-hover": `.1rem -.1rem 0 .1rem rgba(88, 214, 140, 1), 0 1.6rem .8rem rgba(0,0,0, .3)`,
+
+    "dark-glow": "0 0 .1rem rgba(20, 22, 34, 1)",
     // Primary: {
     //   dark: `.1rem -.1rem 0 .1rem rgba(36, 87, 57, 1)`,
     //   default: `.1rem -.1rem 0 .1rem rgba(62, 150, 99, 1)`,
@@ -63,6 +65,7 @@ export default extendTheme({
     global: {
       html: {
         overflowX: "hidden",
+        scrollBehavior: "smooth",
       },
       "#tsparticles": {
         position: "absolute",

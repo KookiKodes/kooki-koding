@@ -26,7 +26,7 @@ export function FlushIconInput(props: Props) {
   });
 
   useEffect(() => {
-    if (props.disabled) modUtils.switch.disabled();
+    if (props.disabled) return modUtils.switch.disabled();
     modUtils.off.disabled();
   }, [props.disabled]);
 

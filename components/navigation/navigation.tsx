@@ -1,5 +1,5 @@
 //* Packages
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
   useBoolean,
@@ -12,10 +12,9 @@ import { Navtitle } from "./navtitle";
 import { NavlinkContainer } from "./navlink-container";
 import { MotionFlex, MotionNav } from "@components/framer";
 import { MenuBtn } from "./menu-btn";
-// import { FocusMenuSelector } from "./focus-menu-selector";
 
 //* hooks
-import useDisableScroll from "@hooks/useDisableScroll";
+// import useDisableScroll from "@hooks/useDisableScroll";
 
 //* Static
 import links from "@static/links";
@@ -27,7 +26,7 @@ interface Props {
 
 export function Navigation({ hideLinks, name }: Props) {
   const router = useRouter();
-  const [isOpen, setIsOpen] = useDisableScroll();
+  const [isOpen, setIsOpen] = useBoolean();
   const [hoverSelector, setHoverSelector] = useState(links[0].name);
   const [hovering, setHovering] = useBoolean(false);
   const linksVisible = (hideLinks && isOpen) || !hideLinks;
@@ -35,9 +34,9 @@ export function Navigation({ hideLinks, name }: Props) {
   // const linkContainer = useRef<HTMLElement>(null);
   // const link = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    if (hideLinks) setIsOpen.off();
-  }, [hideLinks]);
+  // useEffect(() => {
+  //   if (hideLinks) setIsOpen.off();
+  // }, [hideLinks]);
 
   const styles = useMultiStyleConfig("Navigation", {
     variant: hideLinks && isOpen ? "navmenu" : "navbar",
@@ -56,17 +55,6 @@ export function Navigation({ hideLinks, name }: Props) {
         layout
       >
         <StylesProvider value={styles}>
-          {/* {hideLinks && isOpen && (
-						<FocusMenuSelector
-							bgPosition={
-								Math.floor(window.innerHeight / 2) +
-								(linkContainer.current?.offsetTop || 0) +
-								Math.floor((link.current?.scrollHeight || 0) / 2) +
-								(link.current?.scrollHeight || 0) *
-									links.findIndex(({ name }) => name === hoverSelector)
-							}
-						/>
-					)} */}
           <MotionFlex sx={styles.position} layout>
             <MotionFlex
               alignItems="center"

@@ -12,15 +12,17 @@ function AboutMe({ children }: Props) {
   return (
     <Flex
       pt="9rem"
-      bgGradient="linear(to bottom, Neutral.dark.70, dark.70)"
+      bgGradient="linear(to bottom, Neutral.dark.80, dark.80)"
       position="relative"
       maxW="1080px"
       as="section"
       pointerEvents="all"
+      overflow="hidden"
+      id="aboutme"
     >
       <Flex
         position="absolute"
-        transform="translate(-56.5%, -51%)"
+        transform="translate(-58%, -51%)"
         backgroundImage={`url(${TopWave.src})`}
         w={TopWave.width}
         h={TopWave.height}
@@ -28,7 +30,6 @@ function AboutMe({ children }: Props) {
       <Grid
         w="100vw"
         flexDir="column"
-        minH="100vh"
         h="min-content"
         position="relative"
         templateColumns="repeat(5, 1fr)"

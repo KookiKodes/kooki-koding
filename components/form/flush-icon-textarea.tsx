@@ -69,7 +69,7 @@ export function FlushIconTextarea({
   }, [width]);
 
   useEffect(() => {
-    if (disabled) modUtils.switch.disabled();
+    if (disabled) return modUtils.switch.disabled();
     modUtils.off.disabled();
   }, [disabled]);
 

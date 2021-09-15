@@ -13,6 +13,7 @@ function Interests({ children }: Props) {
         py="1rem"
         color="light.70"
         fontWeight="normal"
+        id="interests"
       >
         {children}
       </Flex>
