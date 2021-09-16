@@ -17,10 +17,8 @@ function ProjectCard({ children, id }: Props) {
         color="light.70"
         maxW="25rem"
         transition="all .3s ease"
-        transformstyle="perserve-3d"
         _hover={{
           boxShadow: "0 1.6rem 1.6rem rgba(0, 0, 0, .25)",
-          perspective: "40rem",
           transform: "scale(1.05)",
         }}
       >
