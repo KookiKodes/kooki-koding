@@ -7,13 +7,7 @@ interface Props {
 
 function ProjectCardBtnContainer({ children }: Props): ReactElement {
   return (
-    <Flex
-      w="100%"
-      justifyContent="space-evenly"
-      alignItems="center"
-      px="2rem"
-      py={3}
-    >
+    <Flex w="100%" justifyContent="space-evenly" alignItems="center" py={3}>
       {children}
     </Flex>
   );
