@@ -111,11 +111,11 @@ export default async function handler(
     });
   } catch (error) {
     console.error(error);
-    const response = createResponseObjWithTime({
+    const response: ResponseObject = createResponseObjWithTime({
       expiration: EXPIRE_IN_MINUTES,
       requestTime,
     });
-    response.message = error;
+    Reflect.set(response, "message", error);
     return res.json(
       await prepareResponse({ redis_client, status: 503, response })
     );
