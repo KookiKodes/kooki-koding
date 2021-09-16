@@ -1,14 +1,14 @@
 //* Interfaces
 import {
   ProjectFiles,
-  GetProjectFiles,
-  BuildProjectFiles,
-  Projects,
+  // GetProjectFiles,
+  // BuildProjectFiles,
+  // Projects,
 } from "@interfaces/ProjectFileInterface";
 import { Octokit } from "@octokit/rest";
 
-const FolderTypes = ["dir", "tree", "folder"];
-const ImageTypes = ["png", "jpg", "jpeg", "gif"];
+// const FolderTypes = ["dir", "tree", "folder"];
+// const ImageTypes = ["png", "jpg", "jpeg", "gif"];
 
 const getProjectFileTemp = (title: string): ProjectFiles => {
   return {
