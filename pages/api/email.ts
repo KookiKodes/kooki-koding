@@ -121,14 +121,19 @@ export default async function handler(
     );
   }
 
-  response = await setIPRecord({
+  response = (await setIPRecord({
     redis_client,
     ip,
     requestTime,
     expiration: EXPIRE_IN_SECONDS,
-  });
+  })) as ResponseObject;
 
-  return res.json(await prepareResponse({ redis_client, response }));
+  return res.json(
+    await prepareResponse({
+      redis_client,
+      response: response as ResponseObject,
+    })
+  );
 }
 
 // Shorthand to redirect user to 404 page.
