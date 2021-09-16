@@ -1,7 +1,7 @@
 import { Text } from "@chakra-ui/react";
 
 interface Props {
-  children: string;
+  children: string | JSX.Element | JSX.Element[];
 }
 
 function ProjectCardDescription({ children }: Props) {

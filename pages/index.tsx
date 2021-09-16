@@ -37,6 +37,7 @@ import ProjectCardTitle from "@components/home/projects/ProjectCardTitle";
 import ProjectCardDescription from "@components/home/projects/ProjectCardDescription";
 import ProjectCardBtnContainer from "@components/home/projects/ProjectCardBtnContainer";
 import ProjectCardBtn from "@components/home/projects/ProjectCardBtn";
+import ProjectCardTools from "@components/home/projects/ProjectCardTools";
 
 //* components: utilities
 import SubSectionHeading from "@components/home/utilities/SubSectionHeading";
@@ -53,6 +54,9 @@ import {
   frameworkIcons,
   softSkillIcons,
 } from "@static/icons";
+
+//* links
+import { discordBotTools } from "@static/links";
 
 export default function HomePage({ name }) {
   return (
@@ -93,9 +97,10 @@ export default function HomePage({ name }) {
               sit tortor fermentum congue diam blandit mattis.
             </Text>
           </Bio>
+          <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
           <Grid
             templateColumns="repeat(3, 1fr)"
-            templateRows="repeat(2, 1fr)"
+            templateRows="repeat(2, min-content)"
             gap={4}
           >
             <Interests>
@@ -119,13 +124,28 @@ export default function HomePage({ name }) {
                 Education
               </SubSectionHeading>
               <EducationInfo
-                year="2019 - 2021"
+                year="2020 - 2020"
+                educator="Eloquent Javascript"
+                educatorLink="https://eloquentjavascript.net/"
+                source="Book"
+              />
+              <EducationDescription>
+                {[
+                  "Taught me everything I know about javascript",
+                  "My goto recommendtion if you want to learn javascript in detail.",
+                ]}
+              </EducationDescription>
+              <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
+              <EducationInfo
+                year="2019 - 2020"
                 educator="Udemy"
+                educatorLink="https://www.udemy.com"
                 source="Online"
               />
               <EducationDescription>
                 {[
-                  "Taught myself algorithms, responosive web design and front-end web development",
+                  "Taught myself algorithms, responsive web design and front-end web development",
+                  "Kickstarted my passion for web development",
                 ]}
               </EducationDescription>
             </Education>
@@ -188,7 +208,7 @@ export default function HomePage({ name }) {
               Translation Bot
             </ProjectCardTitle>
             <ProjectCardDescription>
-              DiscordJs, FaunaDB, Google Translate, Typescript, Nodejs
+              <ProjectCardTools tools={discordBotTools} separator=", " />
             </ProjectCardDescription>
             <ProjectCardTitle size={["lg", "xl"]} color="Accent.solid">
               Summary

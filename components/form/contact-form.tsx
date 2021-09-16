@@ -55,7 +55,6 @@ export function ContactForm() {
   });
   const [message, setMessage] = useState<string | string[]>("");
   const [ref, scrollIntoView] = useScrollIntoView<HTMLFormElement>({
-    onLoad: true,
     options: { block: "center", behavior: "smooth" },
   });
 

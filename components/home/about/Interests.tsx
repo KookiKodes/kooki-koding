@@ -6,7 +6,7 @@ interface Props {
 
 function Interests({ children }: Props) {
   return (
-    <GridItem rowSpan={[1, 2]} colSpan={[3, 1]}>
+    <GridItem rowSpan={[1, 2]} colSpan={[3, 1]} h="min-content">
       <Flex
         w="100%"
         flexDirection="column"
@@ -14,6 +14,7 @@ function Interests({ children }: Props) {
         color="light.70"
         fontWeight="normal"
         id="interests"
+        h="min-content"
       >
         {children}
       </Flex>

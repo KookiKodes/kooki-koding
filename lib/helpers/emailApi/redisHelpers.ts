@@ -6,7 +6,7 @@ export async function setIPRecord({
   ip,
   expiration,
   requestTime,
-}: IPRecordArgs): Promise<ResponseObject> {
+}: IPRecordArgs): Promise<ResponseObject | void> {
   try {
     // Converts request time to an iso string for storing in redis db;
     const curTime = requestTime.toISO();
@@ -27,7 +27,9 @@ export async function setIPRecord({
 
     return response;
   } catch (err) {
-    throw new Error(err.message);
+    if (err instanceof Error) {
+      throw err;
+    }
   }
 }
 
@@ -55,8 +57,10 @@ export async function getIPRecord({
       response.status = 429;
       return response;
     }
-    return false;
   } catch (err) {
-    throw new Error(err.message);
+    if (err instanceof Error) {
+      throw err;
+    }
   }
+  return false;
 }

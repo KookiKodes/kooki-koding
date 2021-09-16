@@ -11,18 +11,18 @@ export function BgOverlay() {
 
   return (
     <>
-      <Box
+      {/* <Box
         zIndex="2"
         position="absolute"
         w="100%"
         h="100%"
-        bgGradient="linear(to-b, dark.70 50%, Neutral.dark.50) 80%"
+        bgGradient="linear(to-b, dark.30 50%, Neutral.dark.30) 80%"
         backdropFilter="blur(3px)"
         pointerEvents="none"
         top="0"
         left="0"
         overflowX="hidden"
-      />
+      /> */}
       <Particles
         id="tsparticles"
         init={particlesInit.current}
@@ -116,7 +116,7 @@ export function BgOverlay() {
             number: {
               density: {
                 enable: true,
-                value_area: 800,
+                value_area: 1200,
               },
               value: 100,
             },
