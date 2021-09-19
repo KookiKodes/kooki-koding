@@ -1,61 +1,70 @@
 //* Packages
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
 import Head from "next/head";
-import { motion, useAnimation } from "framer-motion";
+import { useEffect } from "react";
+import { Heading, Flex, LinkOverlay } from "@chakra-ui/react";
+import { SVGWrapper } from "@components/utilities/svg-wrapper";
+import { InputIcons } from "@static/icons";
 
-//* Components
-// import SvgWrapper from "@components/Footer/SvgWrapper";
+export default function ErrorPage({ setLinks }) {
+  const router = useRouter();
 
-//* Variants
-import error404Variants from "../lib/static/error404Variants";
-
-export default function ErrorPage() {
-  // const router = useRouter();
-  // const { colors } = useThemedContext();
-  // const container = useAnimation();
-
-  // React.useEffect(() => {
-  //   if (router.asPath !== "/404") {
-  //     router.push("/404");
-  //   }
-  //   router.prefetch("/");
-  // }, [router]);
+  useEffect(() => {
+    if (router.asPath !== "/404") {
+      router.push("/404");
+    }
+    router.prefetch("/");
+    setLinks([
+      { name: "home", to: "/" },
+      // { name: "skills", to: "/#skills" },
+      // { name: "projects", to: "/#projects" },
+      // { name: "contact", to: "/#contact" },
+    ]);
+  }, [router]);
 
   return (
-    // <motion.div
-    //   layout
-    //   initial="initial"
-    //   animate="visible"
-    //   variants={error404Variants.page(colors)}
-    //   transition={{ duration: 0.5, type: "spring" }}
-    //   className="w-full h-full flex flex-col items-center justify-center"
-    // >
-    <>
+    <Flex w="100vw" h="100vh" justifyContent="center" alignItems="center">
       <Head>
         <title>Error 404</title>
       </Head>
-      <h1 className="text-4xl lg:text-6xl lg:mb-12 mb-8 font-semibold">
-        404 - Page not Found
-      </h1>
-      <Link href="/">
-        <motion.a
-          initial="initial"
-          // animate={container}
-          // variants={error404Variants.anchor(colors)}
-          whileHover="hover"
-          className="w-28 lg:w-40 h-10 lg:h-16 lg:text-xl flex color-current items-center justify-center cursor-pointer rounded-lg font-medium border-current border-2 flex-col text-sm relative overflow-hidden"
-        >
-          Home
-          {/* <SvgWrapper
-						initial='initial'
-						path='utility/long-arrow-left-light'
-						// variants={error404Variants.arrowIcon(colors)}
-					/> */}
-        </motion.a>
-      </Link>
-    </>
-    // </motion.div>
+      <Flex
+        flexDir="column"
+        bg="dark.80"
+        backdropFilter="blur(5px)"
+        border=".4rem solid"
+        borderColor="Neutral.dark.solid"
+        borderRadius=".3rem"
+        boxShadow="2xl"
+        pointerEvents="all"
+        transition=".3s border-color ease"
+        _hover={{
+          borderColor: "Primary.default.solid",
+        }}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Heading p={10}>404 - Page not Found</Heading>
+        <Link href="/">
+          <LinkOverlay
+            p={5}
+            fontSize="2xl"
+            w="100%"
+            textAlign="center"
+            position="relative"
+            _hover={{
+              textDecoration: "underline",
+              cursor: "pointer",
+            }}
+          >
+            Return home
+            <SVGWrapper
+              SVG={InputIcons.LongRight}
+              styles={{ ml: "1rem", w: 8, h: 8 }}
+            />
+          </LinkOverlay>
+        </Link>
+      </Flex>
+    </Flex>
   );
 }

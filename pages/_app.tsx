@@ -12,10 +12,12 @@ import { Fonts } from "@components/fonts";
 
 //* Static
 import theme from "@static/themes";
+import navlinks from "@static/links";
 
 function App({ Component, pageProps }: AppProps) {
 	const [name, setName] = useState("Kooki Kodes");
 	const router = useRouter();
+  const [links, setLinks] = useState(navlinks);
 
 	useEffect(() => {
 		if (window && !window.location.href.includes("kookikoding")) {
@@ -26,10 +28,10 @@ function App({ Component, pageProps }: AppProps) {
 	return (
 		<ChakraProvider theme={theme}>
 			<Fonts />
-			<Layout name={name}>
+			<Layout name={name} links={links}>
 				<AnimatePresence initial={false}>
 					<Page key={router.route}>
-						<Component {...pageProps} name={name} />
+						<Component {...pageProps} name={name} setLinks={setLinks} />
 					</Page>
 				</AnimatePresence>
 			</Layout>

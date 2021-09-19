@@ -1,7 +1,8 @@
 //* Packages
-import React from "react";
+import { useEffect } from "react";
 import Head from "next/head";
-import { Grid, Text, Divider, Center } from "@chakra-ui/react";
+import { Grid, Text, Divider } from "@chakra-ui/react";
+import { DateTime } from "luxon";
 
 //* components: about
 import AboutMe from "@components/home/about/AboutMe";
@@ -56,9 +57,17 @@ import {
 } from "@static/icons";
 
 //* links
-import { discordBotTools } from "@static/links";
+import links, { discordBotTools } from "@static/links";
 
-export default function HomePage({ name }) {
+export default function HomePage({ name, setLinks }) {
+  useEffect(() => {
+    setLinks(links);
+  }, []);
+
+  const programmingFor = DateTime.now().diff(DateTime.local(2019, 1), "years")
+    .years;
+  const yearsFormatted = `${Math.floor(programmingFor)}+ years`;
+
   return (
     <>
       <Head>
@@ -82,19 +91,12 @@ export default function HomePage({ name }) {
             >
               Biography
             </SubSectionHeading>
+            <Text>UNDER CONSTRUCTION</Text>
             <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-              euismod imperdiet elit fermentum amet suspendisse. Donec nunc a
-              tristique laoreet. Aliquet tortor justo faucibus cras rhoncus
-              dolor tellus nunc nulla. Hendrerit nulla magna ligula turpis fames
-              aliquam a at. Pretium, posuere aenean vel donec maecenas sodales
-              tempus. A tellus ac ac hac. Ultrices sed mi in scelerisque vitae
-              diam, dui. Vitae nibh posuere et justo, eget. Laoreet nullam in
-              aliquet pellentesque. Sed netus netus mauris non eget varius
-              penatibus amet. Fermentum leo porttitor turpis porta tellus, urna,
-              enim at. Faucibus elit vestibulum, enim ultricies tempus, nullam.
-              Sit auctor aenean non, porta amet ultricies enim. Ultrices vitae
-              sit tortor fermentum congue diam blandit mattis.
+              Hello, I'm {name}! I'm a self-taught programmer who loves to
+              design, develop and deliver beautiful front-end web applications.
+              I've been programming for {yearsFormatted}, but I've been learning
+              design since I was a teenager.
             </Text>
           </Bio>
           <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
@@ -111,8 +113,9 @@ export default function HomePage({ name }) {
               >
                 Interests
               </SubSectionHeading>
+              <Text>UNDER CONSTRUCTION</Text>
               <InterestsList>
-                {["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]}
+                {["Designing", "Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]}
               </InterestsList>
             </Interests>
             <Education>
@@ -138,6 +141,18 @@ export default function HomePage({ name }) {
               <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
               <EducationInfo
                 year="2019 - 2020"
+                educator="Hardvard"
+                educatorLink="https://cs50.harvard.edu/college/2019/fall/"
+                source="Online"
+              />
+              <EducationDescription>
+                {[
+                  "Helped me develop programming skills that apply to all programming languages",
+                ]}
+              </EducationDescription>
+              <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
+              <EducationInfo
+                year="2019 - 2020"
                 educator="Udemy"
                 educatorLink="https://www.udemy.com"
                 source="Online"
@@ -145,7 +160,6 @@ export default function HomePage({ name }) {
               <EducationDescription>
                 {[
                   "Taught myself algorithms, responsive web design and front-end web development",
-                  "Kickstarted my passion for web development",
                 ]}
               </EducationDescription>
             </Education>
@@ -170,7 +184,7 @@ export default function HomePage({ name }) {
             <SkillCardSubTitle>Front-end Languages</SkillCardSubTitle>
             <SkillCardDescription>
               Javascript, SASS, HTML5, CSS3, and Typescript. My goto languages
-              for scaffolding, implemnting and building web apps.
+              for scaffolding, implementing and building web apps.
             </SkillCardDescription>
           </SkillCard>
           <SkillCard id="frameworks">

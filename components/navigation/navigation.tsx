@@ -1,5 +1,5 @@
 //* Packages
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import {
   useBoolean,
@@ -13,30 +13,21 @@ import { NavlinkContainer } from "./navlink-container";
 import { MotionFlex, MotionNav } from "@components/framer";
 import { MenuBtn } from "./menu-btn";
 
-//* hooks
-// import useDisableScroll from "@hooks/useDisableScroll";
-
 //* Static
-import links from "@static/links";
+import { NavigationLinks } from "@static/links";
 
 interface Props {
   hideLinks: boolean;
   name: string;
+  links: NavigationLinks;
 }
 
-export function Navigation({ hideLinks, name }: Props) {
+export function Navigation({ hideLinks, name, links }: Props) {
   const router = useRouter();
   const [isOpen, setIsOpen] = useBoolean();
   const [hoverSelector, setHoverSelector] = useState(links[0].name);
   const [hovering, setHovering] = useBoolean(false);
   const linksVisible = (hideLinks && isOpen) || !hideLinks;
-
-  // const linkContainer = useRef<HTMLElement>(null);
-  // const link = useRef<HTMLElement>(null);
-
-  // useEffect(() => {
-  //   if (hideLinks) setIsOpen.off();
-  // }, [hideLinks]);
 
   const styles = useMultiStyleConfig("Navigation", {
     variant: hideLinks && isOpen ? "navmenu" : "navbar",
@@ -74,8 +65,6 @@ export function Navigation({ hideLinks, name }: Props) {
               <NavlinkContainer
                 activeRoute={router.route}
                 links={links}
-                // linkRef={link}
-                // linkContainerRef={linkContainer}
                 closeOnLinkClick={() => setIsOpen.off()}
                 hovering={hovering}
                 setHovering={setHovering}

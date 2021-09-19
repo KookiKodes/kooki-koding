@@ -69,6 +69,8 @@ export default extendTheme({
       },
       "#tsparticles": {
         position: "absolute",
+        minWidth: "100vw",
+        minHeight: "100vh",
         width: "100%",
         height: "100%",
         zIndex: 1,

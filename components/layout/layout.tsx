@@ -1,5 +1,5 @@
 //* Packages
-import * as React from "react";
+import { useRef, useState } from "react";
 import { AnimateSharedLayout } from "framer-motion";
 import { useBreakpoint, useStyleConfig } from "@chakra-ui/react";
 
@@ -9,13 +9,16 @@ import { Navigation } from "@components/navigation/navigation";
 import { BgOverlay } from "./bg-overlay";
 import { Footer } from "@components/footer/footer";
 
+//* static
+import { NavigationLinks } from "@static/links";
 interface Props {
   children: JSX.Element | JSX.Element[];
   name: string;
+  links: NavigationLinks;
 }
 
-export function Layout({ children, name }: Props) {
-  const containerRef = React.useRef(null);
+export function Layout({ children, name, links }: Props) {
+  const containerRef = useRef(null);
   const breakpoint = useBreakpoint();
   const styles = useStyleConfig("Layout", {});
 
@@ -26,6 +29,7 @@ export function Layout({ children, name }: Props) {
           <Navigation
             hideLinks={["base", "sm"].includes(breakpoint as string)}
             name={name}
+            links={links}
           />
           {children}
           <Footer name={name} />

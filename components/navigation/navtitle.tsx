@@ -1,17 +1,20 @@
 import * as React from "react";
+import Link from "next/link";
 import { useStyles } from "@chakra-ui/react";
-import { MotionHeading } from "../framer";
+import { MotionLink } from "../framer";
 
 interface Props {
-	children: string;
+  children: string;
 }
 
 export function Navtitle({ children }: Props) {
-	const styles = useStyles();
+  const styles = useStyles();
 
-	return (
-		<MotionHeading sx={styles.title} transition={{ duration: 0.3 }} layout>
-			{children}
-		</MotionHeading>
-	);
+  return (
+    <Link href="/#aboutme">
+      <MotionLink __css={styles.title} transition={{ duration: 0.3 }} layout>
+        {children}
+      </MotionLink>
+    </Link>
+  );
 }

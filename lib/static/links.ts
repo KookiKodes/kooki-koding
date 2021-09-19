@@ -3,7 +3,13 @@ export default [
   { name: "skills", to: "#skills" },
   { name: "projects", to: "#projects" },
   { name: "contact", to: "#contact" },
-];
+] as NavigationLinks;
+
+export type NavigationLinks = NavigationLink[];
+interface NavigationLink {
+  name: string;
+  to: string;
+}
 
 export interface ToolLink {
   name: string;
