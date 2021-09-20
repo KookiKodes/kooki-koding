@@ -1,12 +1,6 @@
 import {
   GridItem,
-  Tag,
-  Flex,
-  Heading,
-  UnorderedList,
-  ListItem,
-  Text,
-  Badge,
+  Flex
 } from "@chakra-ui/react";
 
 interface Props {
@@ -17,14 +11,15 @@ function Education({ children }: Props) {
   return (
     <GridItem
       rowSpan={[1, 2]}
-      colSpan={[3, 2]}
+      colSpan={[1, 3]}
       display="flex"
       w="100%"
       flexDirection="column"
-      py="1rem"
+      pb="1rem"
       color="light.70"
       fontWeight="normal"
       id="education"
+      fontSize="lg"
     >
       {children}
     </GridItem>

@@ -27,6 +27,11 @@ function ProjectCardBtn({ children, color, href }: Props) {
         boxShadow: "0 0 1rem currentColor",
         transform: "scale(1.1)",
       }}
+      _focus={{
+        textDecoration: "none",
+        boxShadow: "0 0 .75rem currentColor",
+        transform: "scale(.9)",
+      }}
       _active={{
         boxShadow: "0 0 .75rem currentColor",
         transform: "scale(.9)",

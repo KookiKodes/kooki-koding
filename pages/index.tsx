@@ -66,7 +66,7 @@ export default function HomePage({ name, setLinks }) {
 
   const programmingFor = DateTime.now().diff(DateTime.local(2019, 1), "years")
     .years;
-  const yearsFormatted = `${Math.floor(programmingFor)}+ years`;
+  const yearsFormatted = `${Math.floor(programmingFor)} years`;
 
   return (
     <>
@@ -91,21 +91,24 @@ export default function HomePage({ name, setLinks }) {
             >
               Biography
             </SubSectionHeading>
-            <Text>UNDER CONSTRUCTION</Text>
-            <Text>
-              Hello, I'm {name}! I'm a self-taught programmer who loves to
+            <Text fontSize="xl">
+              Hello! My name is {name}. Currently, I'm based in Southern California and I have over {yearsFormatted} of design and programming experience. I pride myself on being self-taught in both front and back-end web development. With the skills I have cultivated, I am able to design, develop and deliver beautiful web applications.
+              {/* I'm a self-taught programmer who loves to
               design, develop and deliver beautiful front-end web applications.
               I've been programming for {yearsFormatted}, but I've been learning
-              design since I was a teenager.
+              design since I was a teenager. */}
             </Text>
           </Bio>
           <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
+        </About>
           <Grid
+            gridColumn="span 5/span 5"
             templateColumns="repeat(3, 1fr)"
             templateRows="repeat(2, min-content)"
             gap={4}
+            w="100%"
           >
-            <Interests>
+            {/* <Interests>
               <SubSectionHeading
                 size="md"
                 bg="Primary.default.solid"
@@ -113,14 +116,13 @@ export default function HomePage({ name, setLinks }) {
               >
                 Interests
               </SubSectionHeading>
-              <Text>UNDER CONSTRUCTION</Text>
               <InterestsList>
-                {["Designing", "Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]}
+                {["UI Design", "Web Development", "", "Lorem Ipsum"]}
               </InterestsList>
-            </Interests>
+            </Interests> */}
             <Education>
               <SubSectionHeading
-                size="md"
+                size="lg"
                 bg="Primary.default.solid"
                 color="Primary.dark.solid"
               >
@@ -130,41 +132,39 @@ export default function HomePage({ name, setLinks }) {
                 year="2020 - 2020"
                 educator="Eloquent Javascript"
                 educatorLink="https://eloquentjavascript.net/"
-                source="Book"
+                source="Marijn Haverbeke"
               />
               <EducationDescription>
                 {[
-                  "Taught me everything I know about javascript",
-                  "My goto recommendtion if you want to learn javascript in detail.",
+                  "Learned important design patterns, data structures, and in-depth concepts about Javascript features such as: the \"this\" keyword, classes and functional programming.",
                 ]}
               </EducationDescription>
-              <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
+              <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" mb="2rem" mt="2rem"/>
               <EducationInfo
                 year="2019 - 2020"
                 educator="Hardvard"
                 educatorLink="https://cs50.harvard.edu/college/2019/fall/"
-                source="Online"
+                source="Online Course"
               />
               <EducationDescription>
                 {[
-                  "Helped me develop programming skills that apply to all programming languages",
+                  "Learned key skills used in algorithmic problem solving and how to apply those skills accross several different languages."
                 ]}
               </EducationDescription>
-              <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
+              <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" mb="2rem" mt="2rem" />
               <EducationInfo
                 year="2019 - 2020"
                 educator="Udemy"
                 educatorLink="https://www.udemy.com"
-                source="Online"
+                source="Online Courses"
               />
               <EducationDescription>
                 {[
-                  "Taught myself algorithms, responsive web design and front-end web development",
+                  "Took many courses about web development which taught me the fundamentals of algorithms, responsive web design and front-end web design.",
                 ]}
               </EducationDescription>
             </Education>
           </Grid>
-        </About>
       </AboutMe>
       <SkillSection>
         <SectionHeading>Skills</SectionHeading>

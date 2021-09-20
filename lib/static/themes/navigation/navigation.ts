@@ -144,7 +144,7 @@ export const Navigation: ComponentStyleConfig = {
         container: {
           bg: dark ? "Neutral.dark.70" : "neutral.400.80",
           borderBottom: ".2rem solid currentColor",
-          color: dark ? "Neutral.default.solid" : "neutral.200.solid",
+          color: dark ? "Neutral.light.solid" : "neutral.200.solid",
           w: "100vw",
           h: "min-content",
           minH: "2vh",

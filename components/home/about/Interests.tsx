@@ -1,4 +1,4 @@
-import { GridItem, UnorderedList, ListItem, Flex } from "@chakra-ui/react";
+import { Flex, GridItem } from "@chakra-ui/react";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

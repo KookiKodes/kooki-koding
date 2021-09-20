@@ -1,14 +1,6 @@
 // packages
 import {
-  Heading,
-  Flex,
-  Tag,
-  Badge,
-  Text,
-  Grid,
   GridItem,
-  UnorderedList,
-  ListItem,
 } from "@chakra-ui/react";
 
 interface Props {
@@ -22,11 +14,12 @@ function About({ children }: Props) {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      h="min-content"
+      h="100%"
       rowSpan={[1, 1, 1, 2]}
       colSpan={[5, 5, 5, 3]}
       w="100%"
       id="about"
+      position="relative"
     >
       {children}
     </GridItem>
