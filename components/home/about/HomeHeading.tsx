@@ -8,8 +8,8 @@ interface Props {
 function HomeHeading({ children }: Props) {
   return (
     <GridItem
-      rowSpan={[1, 1, 1, 2]}
       colSpan={[5, 5, 5, 2]}
+      rowSpan={1}
       display="flex"
       flexDir="column"
       position="relative"

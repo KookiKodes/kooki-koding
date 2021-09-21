@@ -5,7 +5,7 @@ interface Props {
 }
 function EducationYear({ children }: Props) {
   return (
-    <Badge bg="dark.solid" color="light.70" fontSize="md">
+    <Badge bg="dark.solid" color="light.70" fontSize={["xs", "md"]}>
       {children}
     </Badge>
   );

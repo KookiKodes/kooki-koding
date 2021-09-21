@@ -29,7 +29,7 @@ function ProjectSection({ children, id }: Props) {
         position="relative"
         flexDir="column"
         alignItems="center"
-        px="25px"
+        px={["1rem", "25px"]}
       >
         {children}
       </Flex>

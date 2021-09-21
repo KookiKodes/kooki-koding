@@ -9,7 +9,7 @@ export const Page: ComponentStyleConfig = {
       alignItems: "center",
       pointerEvents: "none",
       zIndex: "10",
-      px: 6,
+      px: [0, 6],
       mb: 10,
     };
   },

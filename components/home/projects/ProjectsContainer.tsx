@@ -10,7 +10,7 @@ function ProjectsContainer({ children }: Props) {
       columns={[1, 1, 2]}
       rows={[4, 4, 4]}
       w="100%"
-      px="1rem"
+      px={["0", "1rem"]}
       h="min-content"
       gap={10}
     >

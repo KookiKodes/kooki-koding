@@ -91,13 +91,14 @@ export default function HomePage({ name, setLinks }) {
             >
               Biography
             </SubSectionHeading>
-            <Text fontSize="xl">
+            <Text fontSize="xl" w="100%">
               Hello! My name is {name}. Currently, I'm based in Southern
               California and I have over {yearsFormatted} of design and
               programming experience. I pride myself on being self-taught in
-              both front and back-end web development. With the skills I have
-              cultivated, I am able to design, develop and deliver beautiful web
-              applications.
+              both front and back-end web development. I am also a very fast
+              learner when it comes to learning new languages and tooling
+              systems. With the skills I have cultivated, I am able to design,
+              develop and deliver beautiful web applications.
               {/* I'm a self-taught programmer who loves to
               design, develop and deliver beautiful front-end web applications.
               I've been programming for {yearsFormatted}, but I've been learning
@@ -106,14 +107,15 @@ export default function HomePage({ name, setLinks }) {
           </Bio>
           <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
         </About>
-        <Grid
+        {/* <Grid
           gridColumn="span 5/span 5"
           templateColumns="repeat(3, 1fr)"
           templateRows="repeat(2, min-content)"
           gap={4}
-          w="100%"
-        >
-          {/* <Interests>
+          minW="100%"
+          w="min-content"
+        > */}
+        {/* <Interests>
               <SubSectionHeading
                 size="md"
                 bg="Primary.default.solid"
@@ -125,65 +127,69 @@ export default function HomePage({ name, setLinks }) {
                 {["UI Design", "Web Development", "", "Lorem Ipsum"]}
               </InterestsList>
             </Interests> */}
-          <Education>
-            <SubSectionHeading
-              size="lg"
-              bg="Primary.default.solid"
-              color="Primary.dark.solid"
-            >
-              Education
-            </SubSectionHeading>
-            <EducationInfo
-              year="2020 - 2020"
-              educator="Eloquent Javascript"
-              educatorLink="https://eloquentjavascript.net/"
-              source="Marijn Haverbeke"
-            />
-            <EducationDescription>
-              {[
-                'Learned important design patterns, data structures, and in-depth concepts about Javascript features such as: the "this" keyword, classes and functional programming.',
-              ]}
-            </EducationDescription>
-            <Divider
-              bg="light.50"
-              my={2}
-              h=".05rem"
-              borderRadius="50rem"
-              mb="2rem"
-              mt="2rem"
-            />
-            <EducationInfo
-              year="2019 - 2020"
-              educator="Hardvard"
-              educatorLink="https://cs50.harvard.edu/college/2019/fall/"
-              source="Online Course"
-            />
-            <EducationDescription>
-              {[
-                "Learned key skills used in algorithmic problem solving and how to apply those skills accross several different languages.",
-              ]}
-            </EducationDescription>
-            <Divider
-              bg="light.50"
-              my={2}
-              h=".05rem"
-              borderRadius="50rem"
-              mb="2rem"
-              mt="2rem"
-            />
-            <EducationInfo
-              year="2019 - 2020"
-              educator="Udemy"
-              educatorLink="https://www.udemy.com"
-              source="Online Courses"
-            />
-            <EducationDescription>
-              {[
-                "Took many courses about web development which taught me the fundamentals of algorithms, responsive web design and front-end web design.",
-              ]}
-            </EducationDescription>
-          </Education>
-        </Grid>
+        <Education>
+          <SubSectionHeading
+            size="lg"
+            bg="Primary.default.solid"
+            color="Primary.dark.solid"
+          >
+            Education
+          </SubSectionHeading>
+          <EducationInfo
+            year="2020 - 2020"
+            educator="Eloquent Javascript"
+            educatorLink="https://eloquentjavascript.net/"
+            source="Marijn Haverbeke"
+          />
+          <EducationDescription>
+            {[
+              `Learned important design patterns, data structures, and in-depth concepts about Javascript's key features.`,
+              `Provided an environment and problems to further solidify my understanding of Javascript.`,
+            ]}
+          </EducationDescription>
+          <Divider
+            bg="light.50"
+            my={2}
+            h=".05rem"
+            borderRadius="50rem"
+            mb="2rem"
+            mt="2rem"
+          />
+          <EducationInfo
+            year="2019 - 2020"
+            educator="Harvard CS50"
+            educatorLink="https://cs50.harvard.edu/college/2019/fall/"
+            source="Online Course"
+          />
+          <EducationDescription>
+            {[
+              "Taught me important concepts about programming and problem solving.",
+              "Learned key skills used in algorithmic problem solving and how to apply those skills accross several different languages.",
+              "Solved all provided algorithms and problems provided by the course.",
+            ]}
+          </EducationDescription>
+          <Divider
+            bg="light.50"
+            my={2}
+            h=".05rem"
+            borderRadius="50rem"
+            mb="2rem"
+            mt="2rem"
+          />
+          <EducationInfo
+            year="2019 - 2020"
+            educator="Udemy"
+            educatorLink="https://www.udemy.com"
+            source="Online Courses"
+          />
+          <EducationDescription>
+            {[
+              "Took many courses on web development, responsive web design and front-end web design.",
+              "Learned how to read and understand tooling systems through their provided documentation.",
+            ]}
+          </EducationDescription>
+        </Education>
+        {/* </Grid> */}
       </AboutMe>
       <SkillSection>
         <SectionHeading>Skills</SectionHeading>

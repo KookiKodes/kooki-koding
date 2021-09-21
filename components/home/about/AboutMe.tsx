@@ -11,10 +11,11 @@ interface Props {
 function AboutMe({ children }: Props) {
   return (
     <Flex
+      minW="0%"
       pt="9rem"
       bgGradient="linear(to bottom, Neutral.dark.80, dark.80)"
       position="relative"
-      maxW="1080px"
+      maxW="1080ddpx"
       as="section"
       pointerEvents="all"
       overflow="hidden"
@@ -28,12 +29,15 @@ function AboutMe({ children }: Props) {
         h={TopWave.height}
       />
       <Grid
-        w="100vw"
         flexDir="column"
         h="min-content"
-        position="relative"
-        templateColumns="repeat(5, 1fr)"
-        px="25px"
+        templateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(5, 1fr)"]}
+        templateRows={[
+          "repeat(3, min-content)",
+          "repeat(3, min-content)",
+          "repeat(1, min-content)",
+        ]}
+        px={["20px", "25px"]}
       >
         {children}
       </Grid>

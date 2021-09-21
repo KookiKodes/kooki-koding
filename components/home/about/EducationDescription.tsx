@@ -6,7 +6,7 @@ interface Props {
 
 function EducationDescription({ children }: Props) {
   return (
-    <Flex w="100%" px="1rem" pl="2rem">
+    <Flex w="100%" px="1rem" pl="2rem" fontSize={["sm", "md"]}>
       <UnorderedList>
         {children.map((str, index) => {
           return <ListItem key={index}>{str}</ListItem>;

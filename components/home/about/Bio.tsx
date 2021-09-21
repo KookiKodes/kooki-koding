@@ -1,4 +1,4 @@
-import { Heading, Tag, Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

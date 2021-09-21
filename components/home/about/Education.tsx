@@ -1,7 +1,4 @@
-import {
-  GridItem,
-  Flex
-} from "@chakra-ui/react";
+import { GridItem, Flex } from "@chakra-ui/react";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -9,20 +6,21 @@ interface Props {
 
 function Education({ children }: Props) {
   return (
-    <GridItem
-      rowSpan={[1, 2]}
-      colSpan={[1, 3]}
+    <Flex
+      // rowSpan={[1, 2]}
+      // colSpan={[1, 3]}
+      gridColumn="span 5/span 5"
       display="flex"
       w="100%"
       flexDirection="column"
-      pb="1rem"
+      py="1.5rem"
       color="light.70"
       fontWeight="normal"
       id="education"
       fontSize="lg"
     >
       {children}
-    </GridItem>
+    </Flex>
   );
 }
 
