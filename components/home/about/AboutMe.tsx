@@ -15,7 +15,7 @@ function AboutMe({ children }: Props) {
       pt="9rem"
       bgGradient="linear(to bottom, Neutral.dark.80, dark.80)"
       position="relative"
-      maxW="1080ddpx"
+      maxW="1080px"
       as="section"
       pointerEvents="all"
       overflow="hidden"
