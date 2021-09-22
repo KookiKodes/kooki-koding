@@ -253,11 +253,12 @@ export default function HomePage({ name, setLinks }) {
               Summary
             </ProjectCardTitle>
             <ProjectCardDescription>
-              This project was to solve a simple problem with discord, the
-              problem being that there is no good way to translate messages from
-              one language to another without it clutting chat. I built the
-              basic idea in 4 days, not ever having the knowledge of how
-              FaunaDB, DiscordJs or the Google Translate Api work.
+              This project was to solve a simple problem with discord. My
+              solution was to use Discord's newly released feature(threads),
+              which allow sub channels to be created within a text channel to
+              de-clutter the main channel. Threads are the perfect solution for
+              translating messages. If you'd like to see how it works, feel free
+              to view the demo and join my sample Discord channel :) !
             </ProjectCardDescription>
             <ProjectCardBtnContainer>
               <ProjectCardBtn
