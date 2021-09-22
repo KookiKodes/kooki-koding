@@ -13,7 +13,6 @@ import NavlinkProps from "@interfaces/navigation/Navlink";
 
 export function Navlink({
   name,
-  // linkRef,
   to,
   active,
   hovering,

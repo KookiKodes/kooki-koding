@@ -7,20 +7,21 @@ import { MotionSpan } from "../framer";
 import ActiveLinkSelectorProps from "@interfaces/navigation/ActiveLinkSelector";
 
 export function ActiveLinkSelector({
-	charLeft,
-	charRight,
-	link,
+  charLeft,
+  charRight,
+  link,
 }: ActiveLinkSelectorProps) {
-	const style = useStyles();
+  const style = useStyles();
 
-	return (
-		<MotionSpan
-			sx={style.activeLinkSelector}
-			layoutId='activeLink'
-			transition={{ type: "spring", damping: 13 }}>
-			{charLeft}
-			{<MotionSpan visibility='hidden'>{link}</MotionSpan>}
-			{charRight}
-		</MotionSpan>
-	);
+  return (
+    <MotionSpan
+      __css={style.activeLinkSelector}
+      layoutId="activeLink"
+      transition={{ type: "spring", damping: 13 }}
+    >
+      {charLeft}
+      {<MotionSpan visibility="hidden">{link}</MotionSpan>}
+      {charRight}
+    </MotionSpan>
+  );
 }

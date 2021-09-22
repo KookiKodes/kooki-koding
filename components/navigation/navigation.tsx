@@ -63,7 +63,7 @@ export function Navigation({ hideLinks, name, links }: Props) {
             </MotionFlex>
             {linksVisible && (
               <NavlinkContainer
-                activeRoute={router.route}
+                activeRoute={router.asPath}
                 links={links}
                 closeOnLinkClick={() => setIsOpen.off()}
                 hovering={hovering}
