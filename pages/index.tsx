@@ -268,7 +268,7 @@ export default function HomePage({ name, setLinks }) {
               </ProjectCardBtn>
               <ProjectCardBtn
                 color="Accent.solid"
-                href="https://github.com/KookiKodes/diplomatic-kooki-bot"
+                href="https://discord.gg/rSbD2SDtPZ"
               >
                 View code
               </ProjectCardBtn>
