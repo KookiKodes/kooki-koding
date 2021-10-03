@@ -1,7 +1,7 @@
 //* Packages
 import { useEffect } from "react";
 import Head from "next/head";
-import { Grid, Text, Divider } from "@chakra-ui/react";
+import { Text, Divider } from "@chakra-ui/react";
 import { DateTime } from "luxon";
 
 //* components: about
@@ -14,11 +14,9 @@ import Name from "@components/home/about/Name";
 import SocialLinks from "@components/home/about/SocialLinks";
 import About from "@components/home/about/About";
 import Bio from "@components/home/about/Bio";
-import Interests from "@components/home/about/Interests";
 import Education from "@components/home/about/Education";
 import EducationInfo from "@components/home/about/EducationInfo";
 import EducationDescription from "@components/home/about/EducationDescription";
-import InterestsList from "@components/home/about/InterestsList";
 
 //* components: skills
 import SkillSection from "@components/home/skills/SkillSection";
@@ -72,6 +70,12 @@ export default function HomePage({ name, setLinks }) {
     <>
       <Head>
         <title>{name} | Front-end Developer</title>
+        <meta
+          name="description"
+          content={`Hello! My name is ${name}. I'm a Front-end Web Developer based in Southern
+              California and I have over ${yearsFormatted} of design and
+              programming experience.`}
+        />
       </Head>
       <AboutMe>
         <HomeHeading>
@@ -99,34 +103,10 @@ export default function HomePage({ name, setLinks }) {
               learner when it comes to learning new languages and tooling
               systems. With the skills I have cultivated, I am able to design,
               develop and deliver beautiful web applications.
-              {/* I'm a self-taught programmer who loves to
-              design, develop and deliver beautiful front-end web applications.
-              I've been programming for {yearsFormatted}, but I've been learning
-              design since I was a teenager. */}
             </Text>
           </Bio>
           <Divider bg="light.50" my={2} h=".05rem" borderRadius="50rem" />
         </About>
-        {/* <Grid
-          gridColumn="span 5/span 5"
-          templateColumns="repeat(3, 1fr)"
-          templateRows="repeat(2, min-content)"
-          gap={4}
-          minW="100%"
-          w="min-content"
-        > */}
-        {/* <Interests>
-              <SubSectionHeading
-                size="md"
-                bg="Primary.default.solid"
-                color="Primary.dark.solid"
-              >
-                Interests
-              </SubSectionHeading>
-              <InterestsList>
-                {["UI Design", "Web Development", "", "Lorem Ipsum"]}
-              </InterestsList>
-            </Interests> */}
         <Education>
           <SubSectionHeading
             size="lg"

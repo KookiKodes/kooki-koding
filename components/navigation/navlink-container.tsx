@@ -14,8 +14,6 @@ import NavlinkContainerProps from "@interfaces/navigation/NavlinkContainer";
 
 export function NavlinkContainer({
   links,
-  // linkRef,
-  // linkContainerRef,
   activeRoute,
   hovering,
   setHovering,
@@ -38,7 +36,6 @@ export function NavlinkContainer({
     >
       {links.map((link, index) => {
         const hover = hoverSelector === link.name;
-        console.log(activeRoute);
         return (
           <Navlink
             key={index}

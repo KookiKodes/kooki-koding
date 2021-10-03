@@ -37,6 +37,9 @@ export function Footer({ name }: Props) {
       <Text fontSize="sm" display="flex" alignItems="center">
         <Icon as={Copyright} fill="currentColor" mr={2} /> {name} {date}
       </Text>
+      <Text fontSize="sm" display="flex" alignItems="center">
+        Powered by NextJs, Vercel, and ChakraUi
+      </Text>
     </MotionBox>
   );
 }
