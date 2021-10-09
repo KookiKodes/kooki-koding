@@ -26,7 +26,6 @@ export function NavlinkContainer({
   return (
     <MotionFlex
       __css={styles.linkContainer}
-      // ref={linkContainerRef}
       variants={linkContainer}
       onHoverStart={setHovering.on}
       onHoverEnd={setHovering.off}
@@ -39,7 +38,10 @@ export function NavlinkContainer({
         return (
           <Navlink
             key={index}
-            active={activeRoute === "/" + link.to}
+            active={
+              activeRoute === "/" + link.to ||
+              (activeRoute === "/" && link.to === "#aboutme")
+            }
             hoverSelector={hover}
             setHoverSelector={() => setHoverSelector(link.name)}
             hovering={hovering}

@@ -17,6 +17,7 @@ export function ActiveLinkSelector({
     <MotionSpan
       __css={style.activeLinkSelector}
       layoutId="activeLink"
+      initial={{ position: "absolute" }}
       transition={{ type: "spring", damping: 13 }}
     >
       {charLeft}
