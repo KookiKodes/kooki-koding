@@ -10,7 +10,7 @@ function ProjectCardBtn({ children, color, href }: Props) {
   return (
     <Link
       target="_blank"
-      href={href}
+      href={`${href}`}
       display="flex"
       alignItems="center"
       justifyContent="center"

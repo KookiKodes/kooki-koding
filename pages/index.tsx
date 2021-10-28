@@ -45,6 +45,7 @@ import { ContactForm } from "@components/form/contact-form";
 
 //* pictures
 import Test from "@lib/assets/projects/test.png";
+import KookiKomerce from "@lib/assets/projects/quick-glance-kooki-komerce.gif";
 
 //* icon sets
 import {
@@ -233,12 +234,13 @@ export default function HomePage({ name, setLinks }) {
               Summary
             </ProjectCardTitle>
             <ProjectCardDescription>
-              This project was to solve a simple problem with discord. My
-              solution was to use Discord's newly released feature(threads),
-              which allow sub channels to be created within a text channel to
-              de-clutter the main channel. Threads are the perfect solution for
-              translating messages. If you'd like to see how it works, feel free
-              to view the demo and join my sample Discord channel :) !
+              I created this project to solve the many issues of communication
+              between several different languages with the goal of making this
+              communication easier and less cluttered. The project is still a
+              work in progress, please feel free to check out the github to see
+              where I'm at in the process or come join the discord server and
+              see how the bot works. If you are interested in using the discord
+              bot for your server, please contact me below.
             </ProjectCardDescription>
             <ProjectCardBtnContainer>
               <ProjectCardBtn
@@ -250,6 +252,48 @@ export default function HomePage({ name, setLinks }) {
               <ProjectCardBtn
                 color="Accent.solid"
                 href="https://github.com/KookiKodes/diplomatic-kooki-bot"
+              >
+                View code
+              </ProjectCardBtn>
+            </ProjectCardBtnContainer>
+          </ProjectCard>
+          <ProjectCard id="discordBot">
+            <ProjectCardImage
+              src={KookiKomerce.src}
+              alt="image of discord bot"
+              width={KookiKomerce.width}
+              height={200}
+            />
+            <ProjectCardTitle size="3xl" color="Accent.solid">
+              Kooki Komerce
+            </ProjectCardTitle>
+            <ProjectCardDescription>
+              <ProjectCardTools tools={discordBotTools} separator=", " />
+            </ProjectCardDescription>
+            <ProjectCardTitle size={["lg", "xl"]} color="Accent.solid">
+              Summary
+            </ProjectCardTitle>
+            <ProjectCardDescription>
+              An ecommerce website built using "React", "Chakra-Ui", "Express
+              JS", "MongoDb", "Firebase", and "Cloudinary." The website was
+              built to simulate a ecommerce website, from both the user and
+              provider side. The website uses a very basic role system to
+              determine the difference between admins, user's and guest. Due to
+              this, users can only navigate to pages depending on their role.
+              Please feel free to check out both the api and client side
+              codebase on my github. Also feel free to navigate as a normal user
+              would on the website. Links are down below.
+            </ProjectCardDescription>
+            <ProjectCardBtnContainer>
+              <ProjectCardBtn
+                color="Primary.default.solid"
+                href="http://kooki-komerce.ml/"
+              >
+                View demo
+              </ProjectCardBtn>
+              <ProjectCardBtn
+                color="Accent.solid"
+                href="https://github.com/KookiKodes?tab=repositories&q=kooki-komerce&type=&language=&sort="
               >
                 View code
               </ProjectCardBtn>

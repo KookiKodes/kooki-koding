@@ -7,7 +7,7 @@ interface Props {
 
 function ProjectCard({ children, id }: Props) {
   return (
-    <Flex w="100%" justifyContent="center" id={id ? id : ""}>
+    <Flex h="min-content" w="100%" justifyContent="center" id={id ? id : ""}>
       <Flex
         p="1rem"
         borderRadius=".3rem"
