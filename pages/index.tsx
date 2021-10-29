@@ -56,7 +56,7 @@ import {
 } from "@static/icons";
 
 //* links
-import links, { discordBotTools } from "@static/links";
+import links, { discordBotTools, kookiKomerceTools } from "@static/links";
 
 export default function HomePage({ name, setLinks }) {
   useEffect(() => {
@@ -268,15 +268,14 @@ export default function HomePage({ name, setLinks }) {
               Kooki Komerce
             </ProjectCardTitle>
             <ProjectCardDescription>
-              <ProjectCardTools tools={discordBotTools} separator=", " />
+              <ProjectCardTools tools={kookiKomerceTools} separator=", " />
             </ProjectCardDescription>
             <ProjectCardTitle size={["lg", "xl"]} color="Accent.solid">
               Summary
             </ProjectCardTitle>
-            <ProjectCardDescription>
-              An ecommerce website built using "React", "Chakra-Ui", "Express
-              JS", "MongoDb", "Firebase", and "Cloudinary." The website was
-              built to simulate a ecommerce website, from both the user and
+            <ProjectCardDescription mb={10}>
+              A mock ecommerce website for selling computers. The website was
+              built to simulate an ecommerce website, from both the user and
               provider side. The website uses a very basic role system to
               determine the difference between admins, user's and guest. Due to
               this, users can only navigate to pages depending on their role.

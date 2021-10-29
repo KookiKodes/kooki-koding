@@ -44,3 +44,41 @@ export const discordBotTools: ToolLink[] = [
     target: true,
   },
 ];
+
+export const kookiKomerceTools: ToolLink[] = [
+  {
+    name: "React",
+    href: "https://reactjs.org/",
+    target: true,
+  },
+  {
+    name: "ChakraUi",
+    href: "https://chakra-ui.com/",
+    target: true,
+  },
+  {
+    name: "React Redux",
+    href: "https://react-redux.js.org/",
+    target: true,
+  },
+  {
+    name: "Express JS",
+    href: "https://expressjs.com/",
+    target: true,
+  },
+  {
+    name: "Mongo DB",
+    href: "https://www.mongodb.com/",
+    target: true,
+  },
+  {
+    name: "Firebase",
+    href: "https://firebase.google.com/",
+    target: true,
+  },
+  {
+    name: "Cloudinary",
+    href: "https://cloudinary.com/",
+    target: true,
+  },
+];

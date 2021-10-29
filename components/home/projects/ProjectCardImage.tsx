@@ -1,27 +1,26 @@
-import { Flex } from "@chakra-ui/react";
-import Image from "next/image";
+import { Flex, Image } from "@chakra-ui/react";
+// import Image from "next/image";
 
 interface Props {
   src: string;
   alt: string;
   width: number;
   height: number;
+  minH?: string;
 }
 
 function ProjectCardImage(props: Props) {
   return (
     <Flex
-      w="100%"
-      h="auto"
-      minH="10rem"
+      minH={props.minH ? props.minH : "10rem"}
+      maxH={props.minH ? props.minH : 150}
       border=".3rem solid"
-      boxSizing="border-box"
       borderColor="dark.solid"
-      borderRadius=".2rem"
+      rounded="md"
       objectFit="cover"
       mb={2.5}
     >
-      <Image {...props} objectFit="cover" />
+      <Image src={props.src} alt={props.alt} objectFit="cover" />
     </Flex>
   );
 }

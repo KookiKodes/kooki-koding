@@ -2,6 +2,7 @@
 import * as React from "react";
 import { MotionFlex } from "../framer";
 import { useStyles } from "@chakra-ui/react";
+import Scrollspy from "react-scrollspy";
 
 //* Component
 import { Navlink } from "./navlink";
@@ -23,6 +24,7 @@ export function NavlinkContainer({
   closeOnLinkClick,
 }: NavlinkContainerProps) {
   const styles = useStyles();
+  const [active, setActive] = React.useState(activeRoute);
   return (
     <MotionFlex
       __css={styles.linkContainer}
@@ -33,40 +35,50 @@ export function NavlinkContainer({
       animate="enter"
       transition={{ type: "spring", damping: 12, delay: 0.15 }}
     >
-      {links.map((link, index) => {
-        const hover = hoverSelector === link.name;
-        return (
-          <Navlink
-            key={index}
-            active={
-              activeRoute === "/" + link.to ||
-              (activeRoute === "/" && link.to === "#aboutme")
-            }
-            hoverSelector={hover}
-            setHoverSelector={() => setHoverSelector(link.name)}
-            hovering={hovering}
-            blurAmount={shouldBeBlurred && !hover ? "blur(2.5px)" : "blur(0px)"}
-            setFocus={(e) => {
-              setHoverSelector(link.name);
-              setHovering.on();
-            }}
-            setBlur={(e) => {
-              setHovering.off();
-            }}
-            onClick={(e) => {
-              setHoverSelector(link.name);
-              if (activeRoute === link.to) e.preventDefault();
-              else {
-                setTimeout(() => {
-                  setHoverSelector("");
-                  closeOnLinkClick();
-                }, 700);
+      <Scrollspy
+        style={{ display: "inherit" }}
+        currentClassName=""
+        items={links.map((link) => link.to.substr(1))}
+        offset={-200}
+        onUpdate={(e) => setActive("/#" + e.id)}
+      >
+        {links.map((link, index) => {
+          const hover = hoverSelector === link.to;
+          return (
+            <Navlink
+              key={index}
+              active={
+                active === "/" + link.to ||
+                (active === "/" && link.to === "#aboutme")
               }
-            }}
-            {...link}
-          />
-        );
-      })}
+              hoverSelector={hover}
+              setHoverSelector={() => setHoverSelector(link.to)}
+              hovering={hovering}
+              blurAmount={
+                shouldBeBlurred && !hover ? "blur(2.5px)" : "blur(0px)"
+              }
+              setFocus={(e) => {
+                setHoverSelector(link.name);
+                setHovering.on();
+              }}
+              setBlur={(e) => {
+                setHovering.off();
+              }}
+              onClick={(e) => {
+                setHoverSelector(link.name);
+                if (activeRoute === link.to) e.preventDefault();
+                else {
+                  setTimeout(() => {
+                    setHoverSelector("");
+                    closeOnLinkClick();
+                  }, 700);
+                }
+              }}
+              {...link}
+            />
+          );
+        })}
+      </Scrollspy>
     </MotionFlex>
   );
 }
