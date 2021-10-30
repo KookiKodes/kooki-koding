@@ -3,6 +3,7 @@ import * as React from "react";
 import { MotionFlex } from "../framer";
 import { useStyles } from "@chakra-ui/react";
 import Scrollspy from "react-scrollspy";
+import { useRouter } from "next/router";
 
 //* Component
 import { Navlink } from "./navlink";
@@ -40,7 +41,9 @@ export function NavlinkContainer({
         currentClassName=""
         items={links.map((link) => link.to.substr(1))}
         offset={-200}
-        onUpdate={(e) => setActive("/#" + e.id)}
+        onUpdate={(e) => {
+          setActive("/#" + e.id);
+        }}
       >
         {links.map((link, index) => {
           const hover = hoverSelector === link.to;

@@ -63,14 +63,16 @@ export default function HomePage({ name, setLinks }) {
     setLinks(links);
   }, []);
 
-  const programmingFor = DateTime.now().diff(DateTime.local(2019, 1), "years")
-    .years;
+  const programmingFor = DateTime.now().diff(
+    DateTime.local(2019, 1),
+    "years"
+  ).years;
   const yearsFormatted = `${Math.floor(programmingFor)} years`;
 
   return (
     <>
       <Head>
-        <title>{name} | Front-end Developer</title>
+        <title>{name} | ReactJS Developer</title>
         <meta
           name="description"
           content={`Hello! My name is ${name}. I'm a Front-end Web Developer based in Southern
@@ -83,7 +85,7 @@ export default function HomePage({ name, setLinks }) {
           <Avatar>
             <ProfileImage name={name} />
             <Name>{name}</Name>
-            <Position>Front-end Web Developer</Position>
+            <Position>ReactJS Web Developer</Position>
             <SocialLinks />
           </Avatar>
         </HomeHeading>
