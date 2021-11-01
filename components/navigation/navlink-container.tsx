@@ -26,6 +26,8 @@ export function NavlinkContainer({
 }: NavlinkContainerProps) {
   const styles = useStyles();
   const [active, setActive] = React.useState(activeRoute);
+  const router = useRouter();
+
   return (
     <MotionFlex
       __css={styles.linkContainer}
@@ -37,7 +39,7 @@ export function NavlinkContainer({
       transition={{ type: "spring", damping: 12, delay: 0.15 }}
     >
       <Scrollspy
-        style={{ display: "inherit" }}
+        style={{ all: "inherit" }}
         currentClassName=""
         items={links.map((link) => link.to.substr(1))}
         offset={-200}
@@ -74,7 +76,7 @@ export function NavlinkContainer({
                   setTimeout(() => {
                     setHoverSelector("");
                     closeOnLinkClick();
-                  }, 700);
+                  }, 900);
                 }
               }}
               {...link}
