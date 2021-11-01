@@ -1,9 +1,9 @@
 // packages
-import { Tooltip, Flex } from "@chakra-ui/react";
-import Image from "next/image";
+import { Tooltip, Flex, Image } from "@chakra-ui/react";
+// import Image from "next/image";
 
 // static
-import avatar from "@lib/assets/avatar/old-avatar-picture.jpg";
+import avatar from "@lib/assets/avatar/new-avatar-picture.jpg";
 
 interface Props {
   name: string;
@@ -36,8 +36,9 @@ function ProfileImage({ name }: Props) {
         <Image
           src={avatar.src}
           alt={`Picture of ${name}`}
-          width={300}
-          height={400}
+          objectFit="cover"
+          w="full"
+          h="full"
         />
       </Flex>
     </Tooltip>
